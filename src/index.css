@@ -1,0 +1,82 @@
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+  :root {
+    font-family: 'Figtree', sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+
+  a:hover {
+    color: #535bf2;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
+  button {
+    display: flex;
+    background: linear-gradient(120deg, #7e5bef, #ff4e50);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    height: 40px;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    cursor: pointer;
+    background-position: 10% 90%;
+    background-size: 300% 100%;
+    transition: background-position 0.3s ease-in-out;
+
+  }
+
+  button:hover {
+    background-position: 0% 0%;
+    transition: 0.3s ease-in-out;
+
+  }
+
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+
+    a:hover {
+      color: #747bff;
+    }
+
+    button {
+      background-color: #f9f9f9;
+    }
+  }

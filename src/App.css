@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  color: whitesmoke;
+  background-color: #1C1C1C;
+  font-family: 'Figtree', sans-serif;
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 1.2rem;
+  flex-wrap: wrap;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.navigation {
+
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #292929;
+  height: 50px;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.nav-logo span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.gradient {
+  background: linear-gradient(120deg, #7e5bef 10%, #ff4e50 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#button-text {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.0rem;
+  font-weight: 500;
+}
+
+.nav-logo span svg {
+  margin-left: 10px;
+  color: #ff4e50;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin: 0 auto;
+  font-size: 18px;
+
+}
+
+.footer-item {
+  display: inline-flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.main {
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 85vh;
+  margin: 0 auto;
+  margin-top: 5%;
+
+}
+
+.column-container {
+
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 100%;
+  padding: 10px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  border: #292929 3px solid;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+}
+
+.column {
+
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: fit-content;
+  background-color: #292929;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.column-name {
+  display: inline-flex;
+  padding: 10px;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  align-items: flex-start;
+}
+
+.column-name svg {
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Task {
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 2px solid rgb(59, 57, 57);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-left: 10px;
+
+}
+
+
+.add-task {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: fit-content;
+}
+
