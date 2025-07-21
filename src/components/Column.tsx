@@ -1,6 +1,7 @@
 import Task from './Task.tsx';
 import { FaPlus } from "react-icons/fa";
-import { FiEdit3 } from "react-icons/fi";
+import { GrDrag } from "react-icons/gr";
+import { TfiMore } from "react-icons/tfi";
 
 function Column() {
     return (
@@ -10,8 +11,13 @@ function Column() {
             <div className="column-title">
                 <span className="column-name"> Column Name </span>
 
-                <div className="edit-button">
-                    <FiEdit3 />
+                <div className="icons">
+                    <span className="icon-container options">
+                        <TfiMore />
+                    </span>
+                    <span className="icon-container Drag">
+                        <GrDrag />
+                    </span>
                 </div>
 
             </div>

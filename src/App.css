@@ -152,7 +152,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  width: 220px;
+  width: 235px;
   height: fit-content;
   background-color: #292929;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
@@ -178,23 +178,31 @@ body {
   padding: 10px;
 }
 
-.edit-button {
-  display: flex;
+
+.icons {
+  display: inline-flex;
   font-size: 20px;
-  padding: 5px;
   align-items: center;
   justify-content: center;
   color: #ff4e50;
-  border: 3px solid rgb(59, 57, 57);
   border-radius: 8px;
   cursor: pointer;
+  margin-left: 5px;
 }
 
-.edit-button:hover {
-  background-color: #ff4e50;
-  border: 3px solid transparent;
-  color: white;
-  transition: 0.3s ease-in-out;
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: #292929;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.icon-container:hover, #edit:hover {
+  background: #333;
+  color: #fff;
 }
 
 .Task {
@@ -212,11 +220,25 @@ body {
 
 .title {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   font-size: 1.2rem;
   margin-left: 10px;
-  
+}
+
+.board-title, .board-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+}
+
+.board-description {
+  font-size: 1.0rem;
+  color: rgb(187, 187, 187);
 }
 
 .add-task {
@@ -248,7 +270,12 @@ body {
   background: none;
 }
 
-.add-column button:hover {
+.add-column button:hover, #edit, .edit-button {
   color: #ff4e50;
   transition: 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.Drag {
+ cursor: grab;
 }
