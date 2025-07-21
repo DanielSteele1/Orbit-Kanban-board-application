@@ -1,14 +1,20 @@
-
 import Task from './Task.tsx';
-import { FaPlus, FaStickyNote } from "react-icons/fa";
-
+import { FaPlus } from "react-icons/fa";
+import { FiEdit3 } from "react-icons/fi";
 
 function Column() {
     return (
 
         <div className="column">
 
-            <span className="column-name"> <FaStickyNote /> Column Name </span>
+            <div className="column-title">
+                <span className="column-name"> Column Name </span>
+
+                <div className="edit-button">
+                    <FiEdit3 />
+                </div>
+
+            </div>
 
             <Task />
             <Task />

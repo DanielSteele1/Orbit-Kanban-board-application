@@ -63,7 +63,7 @@ body {
 }
 
 .gradient {
-  background: linear-gradient(120deg, #7e5bef 10%, #ff4e50 90%);
+  background: linear-gradient(120deg, #7e5bef 10%, #ff4e50 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -106,7 +106,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
+  border-radius: 8px;
   width: 90%;
   height: 85vh;
   margin: 0 auto;
@@ -117,10 +117,12 @@ body {
 .column-container {
 
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   height: 100%;
-  padding: 10px;
 }
 
 .controls {
@@ -131,38 +133,68 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   padding: 10px;
+  margin: 10px;
+  background-color: #292929;
   border: #292929 3px solid;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px;
+}
 
+.taskbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
 }
 
 .column {
 
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 220px;
   height: fit-content;
   background-color: #292929;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin: 10px;
+  box-sizing: none;
 }
 
 .column-name {
   display: inline-flex;
-  padding: 10px;
+  justify-content: space-between;
   margin-left: 10px;
   font-size: 16px;
   font-weight: 400;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.column-name svg {
+.column-title{
   display: flex;
-  margin-right: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.edit-button {
+  display: flex;
+  font-size: 20px;
+  padding: 5px;
   align-items: center;
   justify-content: center;
+  color: #ff4e50;
+  border: 3px solid rgb(59, 57, 57);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #ff4e50;
+  border: 3px solid transparent;
+  color: white;
+  transition: 0.3s ease-in-out;
 }
 
 .Task {
@@ -173,9 +205,9 @@ body {
   padding: 10px;
   font-size: 16px;
   font-weight: 400;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-bottom: 2px solid rgb(59, 57, 57);
+  margin: 10px;
+  border-radius: 8px;
+  border: 3px solid rgb(59, 57, 57);
 }
 
 .title {
@@ -184,16 +216,39 @@ body {
   align-items: center;
   font-size: 1.2rem;
   margin-left: 10px;
-
+  
 }
-
 
 .add-task {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   margin: 0 auto;
   height: fit-content;
 }
 
+.add-column {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 10px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #292929;
+}
+
+.add-column button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  background: none;
+}
+
+.add-column button:hover {
+  color: #ff4e50;
+  transition: 0.3s ease-in-out;
+}
