@@ -91,7 +91,6 @@ body {
   height: 80px;
   margin: 0 auto;
   font-size: 18px;
-
 }
 
 .footer-item {
@@ -139,11 +138,11 @@ body {
 
 .controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: fit-content;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: center;
   padding: 10px;
   margin: 10px;
   background-color: #292929;
@@ -151,10 +150,18 @@ body {
   border-radius: 8px;
 }
 
+.board-text {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .taskbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-end;;
   align-items: center;
   width: 100%;
   height: fit-content;
@@ -195,9 +202,8 @@ body {
   display: inline-flex;
   font-size: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   color: #ff4e50;
-  border-radius: 8px;
   cursor: pointer;
   margin-left: 5px;
 }
@@ -212,7 +218,7 @@ body {
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
-.icon-container:hover, #edit:hover {
+.icon-container:hover, #icon:hover {
   background: #333;
   color: #fff;
 }
@@ -220,14 +226,24 @@ body {
 .Task {
 
   display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
   padding: 10px;
   font-size: 16px;
   font-weight: 400;
   margin: 10px;
   border-radius: 8px;
-  border: 3px solid rgb(59, 57, 57);
+}
+
+.task-text {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
+  height: fit-content;
 }
 
 .title {
@@ -282,7 +298,7 @@ body {
   background: none;
 }
 
-.add-column button:hover, #edit, .edit-button {
+.add-column button:hover, #icon, .edit-button {
   color: #ff4e50;
   transition: 0.3s ease-in-out;
   background-color: transparent;
