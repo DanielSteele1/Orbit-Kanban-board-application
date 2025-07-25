@@ -12,7 +12,6 @@ It uses the React DnD (drag and drop) library to the user is able to re-order ta
 
 - **Frontend**: React, JavaScript, Figma
 - **Libraries**: ReactDnD (Drag and Drop).
-- **Authentication**: MongoDB with secure user accounts
 
 ---
 
