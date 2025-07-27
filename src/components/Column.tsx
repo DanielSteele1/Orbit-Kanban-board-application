@@ -1,20 +1,20 @@
 import { FaPlus } from "react-icons/fa";
 import { GrDrag } from "react-icons/gr";
 import { TfiMore } from "react-icons/tfi";
-import Task from "./Task"
-
-type Task = {
-    id: number;
-    text: string;
-};
+import TaskComponent from "./Task";
+import type { Task as TaskType } from "../types";
 
 type ColumnProps = {
     title: string;
-    tasks: Task[];
+    tasks: TaskType[];
     handleAddTasks: () => void;
+    handleToggleIsCompleted: (taskId: number) => void;
+    handleTaskTextChange: (taskId: number, newText: string) => void;
 };
 
-const Column = ({ title, tasks, handleAddTasks }: ColumnProps) => {
+
+const Column = ({ title, tasks, handleAddTasks, handleToggleIsCompleted, handleTaskTextChange }: ColumnProps) => {
+
     return (
         <div className="column">
             <div className="column-title">
@@ -28,11 +28,15 @@ const Column = ({ title, tasks, handleAddTasks }: ColumnProps) => {
                     </span>
                 </div>
             </div>
-        
+
             {tasks.map(task => (
-                <div key={task.id}>
-                   <Task />
-                </div>
+                <TaskComponent
+                    id={task.id}
+                    text={task.text}
+                    isCompleted={task.isCompleted}
+                    onToggleIsCompleted={() => handleToggleIsCompleted(task.id)}
+                    onTextChange={newText => handleTaskTextChange(task.id, newText)}
+                />
             ))}
 
             <span className="add-task">

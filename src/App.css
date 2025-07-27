@@ -118,7 +118,7 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  width: 90%;
+  width: 93.8%;
   height: 85vh;
   margin: 0 auto;
   margin-top: 5%;
@@ -200,6 +200,8 @@ body {
 
 .icons {
   display: inline-flex;
+  height: 100%;
+  width: fit-content;
   font-size: 20px;
   align-items: center;
   justify-content: flex-end;
@@ -211,15 +213,13 @@ body {
 .icon-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 8px;
   border-radius: 8px;
   background: #292929;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
 }
 .icon-container:hover, #icon:hover {
-  background: #333;
   color: #fff;
 }
 
@@ -234,7 +234,7 @@ body {
   padding: 10px;
   font-size: 16px;
   font-weight: 400;
-  margin: 10px;
+  margin-top: 5px;
   border-radius: 8px;
 }
 
@@ -243,7 +243,31 @@ body {
   justify-content: center;
   align-items: flex-start;
   width: fit-content;
-  height: fit-content;
+}
+
+.task-input {
+  width: 100%;
+  min-height: 40px !important;
+  
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: normal;
+  font-family: 'Figtree', sans-serif;
+  resize: none;
+  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-input:focus {
+  outline: none;
 }
 
 .title {

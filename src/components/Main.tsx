@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Column from './Column.tsx';
 import AddColumn from './AddColumn.tsx';
 import { FaPlus } from "react-icons/fa";
@@ -7,19 +7,25 @@ import { FiEdit3, FiTrash } from "react-icons/fi";
 import { BsShare } from "react-icons/bs";
 import { FiCopy } from "react-icons/fi";
 
-interface Task {
-    id: number;
-    text: string;
-}
-
-interface ColumnType {
-    id: number;
-    title: string;
-    tasks: Task[];
-}
+import type { ColumnType } from '../types';
 
 function Main() {
-    const [columns, setColumns] = useState<ColumnType[]>([]);
+
+    // save each column into localStorage
+
+    const [columns, setColumns] = useState<ColumnType[]>(() => {
+
+        const saved = localStorage.getItem('columns');
+        return saved ? JSON.parse(saved) : [];
+
+    });
+
+    useEffect(() => {
+        localStorage.setItem('columns', JSON.stringify(columns));
+
+    }, [columns]);
+
+    // add a new column with no tasks
 
     const handleAddColumn = () => {
         const newColumn: ColumnType = {
@@ -31,6 +37,7 @@ function Main() {
     };
 
     // Add a new task to a specific column
+
     const handleAddTask = (columnId: number) => {
         setColumns(prev =>
             prev.map(col =>
@@ -39,8 +46,46 @@ function Main() {
                         ...col,
                         tasks: [
                             ...col.tasks,
-                            { id: Date.now(), text: 'New Task' }
+                            { id: Date.now(), text: '' }
                         ]
+                    }
+                    : col
+            )
+        );
+    };
+
+    // Toggle isCompleted for specific task (taskID) in specific column (colId)
+
+    const handleToggleIsCompleted = (columnId: number, taskId: number) => {
+        setColumns(prev =>
+            prev.map(col =>
+                col.id === columnId
+                    ? {
+                        ...col,
+                        tasks: col.tasks.map(task =>
+                            task.id === taskId
+                                ? { ...task, isCompleted: !task.isCompleted }
+                                : task
+                        )
+                    }
+                    : col
+            )
+        );
+    };
+
+    // Update text for a specific task in a specific column
+
+    const handleTaskTextChange = (columnId: number, taskId: number, newText: string) => {
+        setColumns(prev =>
+            prev.map(col =>
+                col.id === columnId
+                    ? {
+                        ...col,
+                        tasks: col.tasks.map(task =>
+                            task.id === taskId
+                                ? { ...task, text: newText }
+                                : task
+                        )
                     }
                     : col
             )
@@ -82,6 +127,8 @@ function Main() {
                         title={col.title}
                         tasks={col.tasks}
                         handleAddTasks={() => handleAddTask(col.id)}
+                        handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
+                        handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
                     />
                 ))}
                 <AddColumn handleAddColumn={handleAddColumn} />
