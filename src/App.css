@@ -6,21 +6,15 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: #1C1C1C;
 }
 
 #root {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  height: fit-content;
   color: whitesmoke;
-  background-color: #1C1C1C;
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
   font-family: 'Figtree', sans-serif;
-  box-sizing: border-box;
-  font-weight: 500;
-  font-size: 1.2rem;
-  flex-wrap: wrap;
-
 }
 
 *,
@@ -35,7 +29,6 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -84,13 +77,16 @@ body {
 .footer {
 
   display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 80px;
+  height: fit-content;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .footer-item {
@@ -107,22 +103,34 @@ body {
   margin: 10px;
   font-size: 1.4rem;
 }
+
 .social:hover {
-  cursor:pointer;
+  cursor: pointer;
   color: #ff4e50;
   transition: color 0.3s ease-in-out;
 }
 
 .main {
 
-  display: flex;
+  flex: 1;
   flex-direction: column;
   border-radius: 8px;
-  width: 93.8%;
-  height: 85vh;
-  margin: 0 auto;
-  margin-top: 5%;
+  padding: 80px 30px 100px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
 
+.column-scroll-container {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .column-container {
@@ -130,10 +138,11 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
   height: 100%;
+  overflow-x: auto;
+
 }
 
 .controls {
@@ -144,14 +153,13 @@ body {
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  margin: 10px;
   background-color: #292929;
   border: #292929 3px solid;
   border-radius: 8px;
 }
 
 .board-text {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -161,7 +169,8 @@ body {
 .taskbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;;
+  justify-content: flex-end;
+  ;
   align-items: center;
   width: 100%;
   height: fit-content;
@@ -171,25 +180,28 @@ body {
 
   display: flex;
   flex-direction: column;
-  width: 235px;
+  width: 250px;
   height: fit-content;
   background-color: #292929;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
   box-sizing: none;
 }
 
 .column-name {
   display: inline-flex;
   justify-content: space-between;
+  width: 200px;
   margin-left: 10px;
+  margin-right: 20px;
   font-size: 16px;
   font-weight: 400;
   align-items: center;
 }
 
-.column-title{
+.column-title {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -203,11 +215,12 @@ body {
   height: 100%;
   width: fit-content;
   font-size: 20px;
-  align-items: center;
-  justify-content: flex-end;
+  padding-top: 5px;
+  padding-left: 10px;
+  align-items: flex-end;
+  justify-content: center;
   color: #ff4e50;
   cursor: pointer;
-  margin-left: 5px;
 }
 
 .icon-container {
@@ -219,7 +232,9 @@ body {
   background: #292929;
   cursor: pointer;
 }
-.icon-container:hover, #icon:hover {
+
+.icon-container:hover,
+#icon:hover {
   color: #fff;
 }
 
@@ -228,10 +243,11 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   height: fit-content;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 15px;
   font-size: 16px;
   font-weight: 400;
   margin-top: 5px;
@@ -248,10 +264,9 @@ body {
 .task-input {
   width: 100%;
   min-height: 40px !important;
-  
   justify-content: center;
   align-items: center;
-  padding: 0px 10px;
+  padding: 10px 10px;
   background-color: transparent;
   border: none;
   color: white;
@@ -279,7 +294,8 @@ body {
   margin-left: 10px;
 }
 
-.board-title, .board-description {
+.board-title,
+.board-description {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -322,12 +338,46 @@ body {
   background: none;
 }
 
-.add-column button:hover, #icon, .edit-button {
+.add-column button:hover,
+#icon,
+.edit-button {
   color: #ff4e50;
   transition: 0.3s ease-in-out;
   background-color: transparent;
 }
 
 .Drag {
- cursor: grab;
+  cursor: grab;
+}
+
+@media (min-width: 300px) and (max-width: 750px) {
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .main {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .column-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .column {
+    width: 70%;
+    margin: 10px auto;
+  }
+
+  .controls {
+
+    width: 80%;
+    flex-direction: row;
+    align-items: center;
+  }
+
 }

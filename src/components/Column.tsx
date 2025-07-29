@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { GrDrag } from "react-icons/gr";
-import { TfiMore } from "react-icons/tfi";
+import { FiTrash } from "react-icons/fi";
 import TaskComponent from "./Task";
 import type { Task as TaskType } from "../types";
 
@@ -20,12 +20,17 @@ const Column = ({ title, tasks, handleAddTasks, handleToggleIsCompleted, handleT
             <div className="column-title">
                 <span className="column-name">{title}</span>
                 <div className="icons">
-                    <span className="icon-container options">
-                        <TfiMore />
+                    <span className="icon" >
+                        <FiTrash style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
+                        />
                     </span>
-                    <span className="icon-container Drag">
-                        <GrDrag />
+
+                    <span className="icon">
+
+                        <GrDrag style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
+                        />
                     </span>
+
                 </div>
             </div>
 

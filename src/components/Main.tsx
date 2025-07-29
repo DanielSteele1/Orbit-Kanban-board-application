@@ -94,6 +94,7 @@ function Main() {
 
     return (
         <div className="main">
+
             <div className="controls">
                 <div className="board-text">
                     <div className="title">
@@ -109,6 +110,7 @@ function Main() {
                         </span>
                     </div>
                 </div>
+
                 <div className="taskbar">
                     <button id="button-text">
                         <FaPlus style={{ fontSize: '15px', marginRight: '10px' }} /> Add a new Board </button>
@@ -119,21 +121,25 @@ function Main() {
                     <button id="button-text">
                         <FiCopy style={{ fontSize: '15px', marginRight: '10px' }} /> Copy Board </button>
                 </div>
+
             </div>
-            <div className="column-container">
-                {columns.map(col => (
-                    <Column
-                        key={col.id}
-                        title={col.title}
-                        tasks={col.tasks}
-                        handleAddTasks={() => handleAddTask(col.id)}
-                        handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
-                        handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
-                    />
-                ))}
-                <AddColumn handleAddColumn={handleAddColumn} />
+            <div className="column-scroll-container">
+                <div className="column-container">
+                    {columns.map(col => (
+                        <Column
+                            key={col.id}
+                            title={col.title}
+                            tasks={col.tasks}
+                            handleAddTasks={() => handleAddTask(col.id)}
+                            handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
+                            handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
+                        />
+                    ))}
+                    <AddColumn handleAddColumn={handleAddColumn} />
+                </div>
             </div>
         </div>
+
     );
 }
 
