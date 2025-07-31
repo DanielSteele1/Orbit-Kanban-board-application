@@ -170,7 +170,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  ;
   align-items: center;
   width: 100%;
   height: fit-content;
@@ -252,11 +251,18 @@ body {
   font-weight: 400;
   margin-top: 5px;
   border-radius: 8px;
+
 }
 
 .task-text {
   display: flex;
   justify-content: center;
+  max-height: 150px;
+
+  white-space: nowrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   align-items: flex-start;
   width: fit-content;
 }
