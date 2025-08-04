@@ -1,6 +1,6 @@
-# Trello Clone - Frontend Project
+# Trello style Kanban Board Application - Frontend Project
 
-This simple Trello clone helps me reinforce my fundamentals by building a useful frontend tool. It uses React and TypeScript to ensure maintainable, modular, and clean code. 
+This simple Trello-like app helps me reinforce my fundamentals by building a useful frontend tool. It uses React and TypeScript to ensure maintainable, modular, and clean code. 
 With React DnD, users can reorder tasks via drag-and-drop. All data is saved in localStorage to keep the project scope manageable.
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
