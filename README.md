@@ -5,6 +5,8 @@ It uses the React DnD (drag and drop) library to the user is able to re-order ta
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
 
+<img width="1690" height="928" alt="image" src="https://github.com/user-attachments/assets/cf3b5786-c174-42a0-9993-ca87238110fd" />
+
 <img width="1902" height="926" alt="image" src="https://github.com/user-attachments/assets/7ba07641-b16f-4dc8-8c41-06cfa9b6450e" />
 
 ---
