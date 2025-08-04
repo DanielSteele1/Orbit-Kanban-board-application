@@ -1,4 +1,4 @@
-// src/types.ts
+
 
 export interface Task {
     id: number;
@@ -10,4 +10,13 @@ export interface ColumnType {
     id: number;
     title: string;
     tasks: Task[];
+}
+
+export interface BoardType {
+
+    id: number;
+    title: string;
+    description: string;
+    columns: ColumnType[]
+
 }

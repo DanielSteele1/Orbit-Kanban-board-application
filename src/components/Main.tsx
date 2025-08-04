@@ -1,145 +1,82 @@
 
 import { useState, useEffect } from 'react';
-import Column from './Column.tsx';
-import AddColumn from './AddColumn.tsx';
-import { FaPlus } from "react-icons/fa";
-import { FiEdit3, FiTrash } from "react-icons/fi";
-import { BsShare } from "react-icons/bs";
-import { FiCopy } from "react-icons/fi";
+import BoardView from "./BoardView";
+import BoardTile from "./BoardTile";
 
-import type { ColumnType } from '../types';
+import type { BoardType } from '../types';
+import { FaPlus } from 'react-icons/fa';
+import { FiCopy, FiTrash } from 'react-icons/fi';
+import { BsFiletypeJson } from 'react-icons/bs';
+
 
 function Main() {
 
-    // save each column into localStorage
+    // save boards to local storage 
 
-    const [columns, setColumns] = useState<ColumnType[]>(() => {
+    const [boards, setBoards] = useState<BoardType[]>(() => {
 
-        const saved = localStorage.getItem('columns');
+        const saved = localStorage.getItem('boards');
         return saved ? JSON.parse(saved) : [];
 
     });
 
     useEffect(() => {
-        localStorage.setItem('columns', JSON.stringify(columns));
 
-    }, [columns]);
+        localStorage.setItem('boards', JSON.stringify(boards));
 
-    // add a new column with no tasks
+    }, [boards])
 
-    const handleAddColumn = () => {
-        const newColumn: ColumnType = {
+
+    const handleAddBoard = () => {
+
+        const newBoard: BoardType = {
+
             id: Date.now(),
-            title: 'New Column',
-            tasks: []
+            title: 'Untitled Board',
+            description: 'No Description Yet',
+            columns: []
+
         };
-        setColumns(prev => [...prev, newColumn]);
-    };
-
-    // Add a new task to a specific column
-
-    const handleAddTask = (columnId: number) => {
-        setColumns(prev =>
-            prev.map(col =>
-                col.id === columnId
-                    ? {
-                        ...col,
-                        tasks: [
-                            ...col.tasks,
-                            { id: Date.now(), text: '' }
-                        ]
-                    }
-                    : col
-            )
-        );
-    };
-
-    // Toggle isCompleted for specific task (taskID) in specific column (colId)
-
-    const handleToggleIsCompleted = (columnId: number, taskId: number) => {
-        setColumns(prev =>
-            prev.map(col =>
-                col.id === columnId
-                    ? {
-                        ...col,
-                        tasks: col.tasks.map(task =>
-                            task.id === taskId
-                                ? { ...task, isCompleted: !task.isCompleted }
-                                : task
-                        )
-                    }
-                    : col
-            )
-        );
-    };
-
-    // Update text for a specific task in a specific column
-
-    const handleTaskTextChange = (columnId: number, taskId: number, newText: string) => {
-        setColumns(prev =>
-            prev.map(col =>
-                col.id === columnId
-                    ? {
-                        ...col,
-                        tasks: col.tasks.map(task =>
-                            task.id === taskId
-                                ? { ...task, text: newText }
-                                : task
-                        )
-                    }
-                    : col
-            )
-        );
+        setBoards(prev => [...prev, newBoard]);
     };
 
     return (
         <div className="main">
 
-            <div className="controls">
-                <div className="board-text">
-                    <div className="title">
-                        <span className="board-title">
-                            Board Title
-                            <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
-                            </button>
-                        </span>
-                        <span className="board-description">
-                            This is a description of the board.
-                            <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
-                            </button>
-                        </span>
-                    </div>
-                </div>
+            <div className="taskbar">
 
-                <div className="taskbar">
-                    <button id="button-text">
-                        <FaPlus style={{ fontSize: '15px', marginRight: '10px' }} /> Add a new Board </button>
-                    <button id="button-text">
-                        <FiTrash style={{ fontSize: '15px', marginRight: '10px' }} /> Delete Board </button>
-                    <button id="button-text">
-                        <BsShare style={{ fontSize: '16px', marginRight: '10px' }} /> Share Board </button>
-                    <button id="button-text">
-                        <FiCopy style={{ fontSize: '15px', marginRight: '10px' }} /> Copy Board </button>
-                </div>
+                <span className="intro">
+
+                    <span className="App-title"> Welcome to App Name! </span>
+
+                    <span className="App-desc">                    
+                         This app helps you organize your projects and tasks with ease.
+                        Create multiple boards to separate different areas of your work or life.
+                        Inside each board, you can add columns to categorize tasks and track progress step-by-step.
+                    </span>
+
+                </span>
+
+                <button id="button-text"
+                    onClick={handleAddBoard}>
+                    <FaPlus style={{ fontSize: '20px', margin: '5px' }} /> Add a New Board </button>
+                <button id="button-text">
+                    <FiTrash style={{ fontSize: '20px' }} />  </button>
+                <button id="button-text">
+                    <BsFiletypeJson style={{ fontSize: '25px' }} />  </button>
+                <button id="button-text">
+                    <FiCopy style={{ fontSize: '20px' }} />  </button>
+            </div>
+
+            <div className="board-grid">
+
+                {boards.map(board => (
+                    <BoardTile key={board.id} board={board} />
+                ))}
 
             </div>
-            <div className="column-scroll-container">
-                <div className="column-container">
-                    {columns.map(col => (
-                        <Column
-                            key={col.id}
-                            title={col.title}
-                            tasks={col.tasks}
-                            handleAddTasks={() => handleAddTask(col.id)}
-                            handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
-                            handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
-                        />
-                    ))}
-                    <AddColumn handleAddColumn={handleAddColumn} />
-                </div>
-            </div>
+
         </div>
-
     );
 }
 

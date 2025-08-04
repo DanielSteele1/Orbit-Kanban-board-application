@@ -7,13 +7,14 @@ body {
   width: 100%;
   height: 100%;
   background-color: #1C1C1C;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #root {
   color: whitesmoke;
   min-height: 100%;
   min-width: 100%;
-  display: flex;
   font-family: 'Figtree', sans-serif;
 }
 
@@ -26,15 +27,11 @@ body {
 .navigation {
 
   display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: #292929;
-  height: 50px;
+  height: 80px;
 }
 
 .nav-logo {
@@ -112,17 +109,10 @@ body {
 
 .main {
 
-  flex: 1;
+  display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  padding: 80px 30px 100px;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
+  height: calc(100vh);
+  width: 100%
 }
 
 .column-scroll-container {
@@ -145,19 +135,6 @@ body {
 
 }
 
-.controls {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: fit-content;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-  background-color: #292929;
-  border: #292929 3px solid;
-  border-radius: 8px;
-}
-
 .board-text {
   display: flex;
   flex-direction: column;
@@ -171,8 +148,24 @@ body {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
-  height: fit-content;
+  width: 80%;
+  margin: 10px;
+  min-height: 150px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.App-title, .App-desc {
+  display:flex;
+  justify-content: center;
+  
 }
 
 .column {
@@ -192,12 +185,20 @@ body {
 .column-name {
   display: inline-flex;
   justify-content: space-between;
-  width: 200px;
-  margin-left: 10px;
+  width: 130px;
+  margin-left: 5px;
   margin-right: 20px;
+  padding-top: 5px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   align-items: center;
+  background: none;
+  border: none;
+  font-family: 'Figtree', sans-serif;
+}
+
+.column-name:hover {
+  cursor: pointer;
 }
 
 .column-title {
@@ -207,7 +208,6 @@ body {
   justify-content: space-between;
   padding: 10px;
 }
-
 
 .icons {
   display: inline-flex;
@@ -249,7 +249,6 @@ body {
   padding-right: 15px;
   font-size: 16px;
   font-weight: 400;
-  margin-top: 5px;
   border-radius: 8px;
 
 }
@@ -258,7 +257,6 @@ body {
   display: flex;
   justify-content: center;
   max-height: 150px;
-
   white-space: nowrap;
   overflow-y: auto;
   overflow-x: hidden;
@@ -298,6 +296,38 @@ body {
   align-items: flex-start;
   font-size: 1.2rem;
   margin-left: 10px;
+}
+
+.board-grid {
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(repeat, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  width: 80%;
+  height: fit-content;
+  margin: 0 auto;
+}
+
+.board-tile {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  height: 250px;
+  width: 250px;
+  background-color: #292929;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 1.0rem;
+  font-weight: 400;
+  border: 2px solid transparent;
+}
+
+.board-tile:hover {
+  cursor: pointer;
+  border: 2px solid #ff4e50;
+  transition: 0.3s ease-in;
 }
 
 .board-title,
@@ -364,26 +394,29 @@ body {
     height: 100%;
   }
 
+
   .main {
     width: 100%;
-    height: fit-content;
+    height: 100%;
   }
 
   .column-container {
     margin: 0 auto;
+    flex-direction: column;
     width: 100%;
   }
 
   .column {
-    width: 70%;
+    width: 80%;
     margin: 10px auto;
   }
 
   .controls {
 
-    width: 80%;
-    flex-direction: row;
+    width: 100%;
+    flex-direction: column;
     align-items: center;
+    margin: 0 auto;
   }
 
 }

@@ -5,20 +5,27 @@ import TaskComponent from "./Task";
 import type { Task as TaskType } from "../types";
 
 type ColumnProps = {
+    columnId: number;
     title: string;
     tasks: TaskType[];
     handleAddTasks: () => void;
     handleToggleIsCompleted: (taskId: number) => void;
     handleTaskTextChange: (taskId: number, newText: string) => void;
+    handleTitleChange: (columnId: number, newTitle: string) => void;
 };
 
-
-const Column = ({ title, tasks, handleAddTasks, handleToggleIsCompleted, handleTaskTextChange }: ColumnProps) => {
+const Column = ({ columnId, title, tasks, handleAddTasks, handleToggleIsCompleted, handleTaskTextChange, handleTitleChange }: ColumnProps) => {
 
     return (
         <div className="column">
             <div className="column-title">
-                <span className="column-name">{title}</span>
+                <input 
+                className="column-name" 
+                value={title}
+                placeholder="New Column"
+                onChange={(e) => handleTitleChange(columnId, e.target.value)}
+                
+                />
                 <div className="icons">
                     <span className="icon" >
                         <FiTrash style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
