@@ -2,6 +2,9 @@
 
 This simple Trello-like app helps me reinforce my fundamentals by building a useful frontend tool. It uses React and TypeScript to ensure maintainable, modular, and clean code. 
 With React DnD, users can reorder tasks via drag-and-drop. All data is saved in localStorage to keep the project scope manageable.
+
+ -> Please, do not clone this repository unless you are a recruiter. If you copy my work and try to pass it off as your own (this has happened before!), I will know. 
+
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
 
