@@ -4,7 +4,7 @@ import AddColumn from './AddColumn.tsx';
 import { FiEdit3 } from "react-icons/fi";
 
 import type { ColumnType } from '../types.ts';
-import type { BoardType } from '../types.ts';
+// import type { BoardType } from '../types.ts';
 
 function BoardView() {
 
@@ -109,12 +109,12 @@ function BoardView() {
                 <div className="board-text">
                     <div className="title">
                         <span className="board-title">
-                            {board.title} 
+                            {/* {board.title}  */}
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>
                         <span className="board-description">
-                            {board.description}
+                            {/* {board.description} */}
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>
