@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import Column from './Column.tsx';
 import AddColumn from './AddColumn.tsx';
-import { FaPlus } from "react-icons/fa";
-import { FiEdit3, FiTrash } from "react-icons/fi";
-import { BsFiletypeJson } from "react-icons/bs";
-import { FiCopy } from "react-icons/fi";
+import { FiEdit3 } from "react-icons/fi";
 
 import type { ColumnType } from '../types.ts';
+import type { BoardType } from '../types.ts';
 
 function BoardView() {
 
@@ -65,16 +63,6 @@ function BoardView() {
         );
     };
 
-        const handleBoardTitleChange = (boardId: number, newTitle: string) => {
-        setColumns(prev =>
-            prev.map(board =>
-                board.id === boardId
-                    ? { ...board, title: newTitle }
-                    : board
-            )
-        );
-    };
-
     // Toggle isCompleted for specific task (taskID) in specific column (colId)
 
     const handleToggleIsCompleted = (columnId: number, taskId: number) => {
@@ -113,24 +101,20 @@ function BoardView() {
         );
     };
 
+    // get the board descrtion and title here - the idea is to make the user declare it in the main screen, then when they get to each board, it's just there.
+    
     return (
         <div className="Board">
             <div className="controls">
                 <div className="board-text">
                     <div className="title">
                         <span className="board-title">
-                            {/* <input
-                                className="board-name"
-                                value={title}
-                                placeholder="New Board"
-                                onChange={(e) => handleBoardTitleChange(boardId, e.target.value)}
-
-                            /> */}
+                            {board.title} 
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>
                         <span className="board-description">
-                            This is a description of the board.
+                            {board.description}
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>

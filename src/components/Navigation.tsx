@@ -6,7 +6,7 @@ function Navigation() {
         <div className="navigation">
 
             <div className="nav-logo">
-                <span className="gradient"> TASK TRACKING APP <CgGoogleTasks style={{fontSize: '25px', display: 'flex'}} /> </span>
+                <span id="gradient"> Task Tracking App <CgGoogleTasks style={{fontSize: '25px', display: 'flex'}} /> </span>
             </div>
 
         </div>

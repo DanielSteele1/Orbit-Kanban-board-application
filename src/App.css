@@ -52,8 +52,8 @@ body {
   font-size: 1.3rem;
 }
 
-.gradient {
-  background: linear-gradient(120deg, #7e5bef 10%, #ff4e50 100%);
+#gradient {
+  background: linear-gradient(120deg, #ff4e50, #ff6ec4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -143,6 +143,13 @@ body {
   width: 100%;
 }
 
+.Board-name {
+  display: flex;
+  
+}
+
+
+
 .taskbar {
   display: flex;
   flex-direction: row;
@@ -162,10 +169,16 @@ body {
   margin: 0 auto;
 }
 
-.App-title, .App-desc {
-  display:flex;
+.App-title,
+.App-desc {
+  display: flex;
   justify-content: center;
-  
+  padding: 5px;
+
+}
+
+.App-title {
+  font-size: 1.3rem;
 }
 
 .column {

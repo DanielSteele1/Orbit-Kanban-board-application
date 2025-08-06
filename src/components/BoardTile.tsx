@@ -12,12 +12,12 @@ function BoardTile({ board }: { board: BoardType }) {
             onClick={() => navigate(`/board/${board.id}`)}
         >
 
-            <span className="Board-name">
-                {board.title || 'No Board Title Yet'}
+            <span className="Board-name" id="gradient">
+                {board.title}
             </span>
 
             <span className="Board-description">
-                {board.description || 'No Description yet'}
+                {board.description}
             </span>
 
         </div>
