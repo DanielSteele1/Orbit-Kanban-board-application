@@ -1,23 +1,42 @@
-# Trello Clone - Frontend Project
+# Trello style Kanban Board Application - Frontend Project
 
-This simple trello clone intends to re-inforce my fundimentals by creating a useful frontend tool. It uses TypeScript and React in order for the code to be as maintainable, modular and clean as possible.
-It uses the React DnD (drag and drop) library to the user is able to re-order tasks however they like. All data will be saved in LocalStorage to keep the project's scope reasonable. 
+This simple Trello-like app helps me reinforce my fundamentals by building a useful frontend tool. It uses React and TypeScript to ensure maintainable, modular, and clean code. 
+With React DnD, users can reorder tasks via drag-and-drop. All data is saved in localStorage to keep the project scope manageable.
+
+ -> Please, do not clone this repository unless you are a recruiter. If you copy my work and try to pass it off as your own (this has happened before!), I will know. 
+
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
 
-<img width="1902" height="926" alt="image" src="https://github.com/user-attachments/assets/7ba07641-b16f-4dc8-8c41-06cfa9b6450e" />
+<img width="1690" height="928" alt="image" src="https://github.com/user-attachments/assets/cf3b5786-c174-42a0-9993-ca87238110fd" />
+
+<img width="1915" height="886" alt="image" src="https://github.com/user-attachments/assets/53db04b0-2fc0-4e9f-95e9-5d5aa59794a3" />
 
 ---
+## 🛠 Planned Features
+
+- Add & delete multiple boards.
+- See all those boards in one central location, where you can customise it's title, description and give it a picture.
+- Add & Delete Columns and Tasks inside each board, in order to track daily goals or current tasks.
+- Tick off tasks when their completed.
+- All user data saved into LocalStorage. 
+- Drag and Drop any column to re-order the board. Especially useful if you have a full board with lots of tasks, and need to reorder everyting quickly. Also planned to be implemented in the main area in which the user see's all thier boards.
+
+- Ability to export each a board's data, possibly via JSON. 
+- One click copy feature on every task.
+
+---
+
 ## 🛠 Technologies Used (so far)
 
-- **Frontend**: React, JavaScript, Figma
+- **Frontend**: React, TypeScript, React-router, Figma.
 - **Libraries**: ReactDnD (Drag and Drop).
 
 ---
 
 ## 📌 Status
 
-This project is in active development and will be deployed to the web once the core features are complete.
+This project is in active development and will be deployed to the web once the core features are complete. 
 
 ---
 
