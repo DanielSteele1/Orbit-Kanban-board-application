@@ -2,11 +2,25 @@ import { useState, useEffect } from 'react';
 import Column from './Column.tsx';
 import AddColumn from './AddColumn.tsx';
 import { FiEdit3 } from "react-icons/fi";
+import { useParams } from 'react-router-dom';
 
 import type { ColumnType } from '../types.ts';
-// import type { BoardType } from '../types.ts';
+import type { BoardType } from '../types.ts';
 
 function BoardView() {
+
+    const { boardId } = useParams<{ boardId: string }>();
+    const [board, setBoard] = useState<BoardType | null>(null);
+
+    useEffect(() => {
+        const savedBoards = localStorage.getItem('boards');
+        if (savedBoards && boardId) {
+            const boards: BoardType[] = JSON.parse(savedBoards);
+            const found = boards.find(b => b.id.toString() === boardId);
+            setBoard(found ?? null);
+        }
+    }, [boardId]);
+
 
     // save each column into localStorage
 
@@ -32,6 +46,12 @@ function BoardView() {
         };
         setColumns(prev => [...prev, newColumn]);
     };
+    
+    const handleDeleteColumn = (columnId: number) => {
+        setColumns(prev =>
+            prev.filter(col => col.id !== columnId)
+        );
+    };
 
     // Add a new task to a specific column
 
@@ -42,13 +62,30 @@ function BoardView() {
                     ? {
                         ...col,
                         tasks: [
-                            ...col.tasks,
-                            { id: Date.now(), text: '' }
+                            ...col.tasks, // existing tasks
+                            { id: Date.now(), text: '' } // new task
                         ]
                     }
                     : col
             )
         );
+    };
+
+    const handleDeleteTask = (columnId: number, taskId: number) => {
+
+        setColumns(prev =>
+
+            prev.map(col =>
+                col.id === columnId
+                    ? {
+                        ...col,
+                        tasks: col.tasks.filter(task => task.id !== taskId)
+
+                    }
+                    : col
+            )
+        );
+
     };
 
     // handle titlle change for each column
@@ -101,20 +138,22 @@ function BoardView() {
         );
     };
 
+    if (!board) return <div> Loading or Board not found... </div>;
+
     // get the board descrtion and title here - the idea is to make the user declare it in the main screen, then when they get to each board, it's just there.
-    
+
     return (
         <div className="Board">
             <div className="controls">
                 <div className="board-text">
                     <div className="title">
                         <span className="board-title">
-                            {/* {board.title}  */}
+                            {board.title}
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>
                         <span className="board-description">
-                            {/* {board.description} */}
+                            {board.description}
                             <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
                             </button>
                         </span>
@@ -130,7 +169,9 @@ function BoardView() {
                             columnId={col.id}
                             title={col.title}
                             tasks={col.tasks}
+                            handleDeleteColumn={() => handleDeleteColumn(col.id)}
                             handleAddTasks={() => handleAddTask(col.id)}
+                            handleDeleteTasks={(taskId: number) => handleDeleteTask(col.id, taskId)}
                             handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
                             handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
                             handleTitleChange={handleTitleChange}

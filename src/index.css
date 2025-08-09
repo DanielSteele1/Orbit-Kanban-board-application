@@ -38,28 +38,38 @@
     line-height: 1.1;
   }
 
-  button {
+  .add-board,
+  #button-text {
     display: flex;
-    background: #df5254;
+    background-color: transparent;
     border: none;
-    padding: 10px;
     border-radius: 8px;
     height: 40px;
     width: fit-content;
     align-items: center;
-    justify-content: center;
-    margin: 10px;
+    justify-content: flex-start;
+    margin: 5px;
     cursor: pointer;
     background-position: 100% 0%;
     background-size: 300% 100%;
     transition: background-position 0.3s ease-in-out;
-
   }
+
+  .add-board {
+    background-color: #df5254 !important;
+    
+  }
+
+  button {
+    display: flex;
+    border: none;
+    margin-left: 10px;
+  }
+
 
   button:hover {
     background-position: 0% 0%;
     transition: 0.3s ease-in-out;
-
   }
 
   button:focus,

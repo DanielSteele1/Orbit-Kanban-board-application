@@ -4,8 +4,6 @@ import BoardTile from "./BoardTile";
 
 import type { BoardType } from '../types';
 import { FaPlus } from 'react-icons/fa';
-import { FiCopy, FiTrash } from 'react-icons/fi';
-import { BsFiletypeJson } from 'react-icons/bs';
 
 function Main() {
 
@@ -45,25 +43,23 @@ function Main() {
 
                 <span className="intro">
 
-                    <span className="App-title" id="gradient"> Welcome to App Name! </span>
+                    <span className="App-title" id="gradient"> Welcome to _____ ! </span>
 
-                    <span className="App-desc">                    
-                         This app helps you organize your projects and tasks with ease.
+                    <span className="App-desc">
+                        Phalanx helps you organize your projects and tasks with ease.
                         Create multiple boards to separate different areas of your work or life.
+                        You can re-order each board element inside each board to maintain full control of your workflow.
                         Inside each board, you can add columns to categorize tasks and track progress step-by-step.
                     </span>
+                    <span id="gradient" className="App-desc"> Click on the 'Add a Board' button to get started. </span>
 
                 </span>
 
                 <button id="button-text"
+                    className="add-board"
                     onClick={handleAddBoard}>
                     <FaPlus style={{ fontSize: '20px', margin: '5px' }} /> Add a New Board </button>
-                <button id="button-text">
-                    <FiTrash style={{ fontSize: '20px' }} />  </button>
-                <button id="button-text">
-                    <BsFiletypeJson style={{ fontSize: '25px' }} />  </button>
-                <button id="button-text">
-                    <FiCopy style={{ fontSize: '20px' }} />  </button>
+
             </div>
 
             <div className="board-grid">

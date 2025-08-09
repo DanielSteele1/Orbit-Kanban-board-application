@@ -4,15 +4,17 @@ import 'react-dropdown/style.css';
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md"
 import { TfiMore } from "react-icons/tfi";;
 import { MdOutlineCheckBox } from "react-icons/md";
+import { FiTrash } from "react-icons/fi";
 
 import type { Task as TaskType } from "../types";
 
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
     onTextChange: (newText: string) => void;
+    handleDeleteTasks: (taskId: any) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ text, onToggleIsCompleted, isCompleted, onTextChange }) => {
+const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsCompleted, isCompleted, onTextChange }) => {
 
 
     // resizes textarea so that it automatically grows and shrinks with content.
@@ -55,16 +57,20 @@ const Task: React.FC<TaskProps> = ({ text, onToggleIsCompleted, isCompleted, onT
                     </span>
 
                     <span className="icon">
-                        <div id="icon" className="icon-copy"> <TfiMore style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
+                        <div id="icon" className="icon-copy">
+                            <TfiMore style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
                     </span>
 
                     {/* <span className="icon">
-                        <div id="icon" className="icon-copy"> <FiCopy style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
-                    </span>
+                        <div id="icon" className="icon-copy"> 
+                            <FiCopy style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
+                    </span>  */}
 
                     <span className="icon">
-                        <div id="icon" className="icon-delete"> <FiTrash style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /> </div>
-                    </span> */}
+                        <div id="icon" className="icon-delete"
+                            onClick={handleDeleteTasks}>
+                            <FiTrash style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /> </div>
+                    </span>
                 </div>
             </div>
         </div>

@@ -9,31 +9,36 @@ type ColumnProps = {
     title: string;
     tasks: TaskType[];
     handleAddTasks: () => void;
+    handleDeleteTasks: (taskId: number) => void;
     handleToggleIsCompleted: (taskId: number) => void;
     handleTaskTextChange: (taskId: number, newText: string) => void;
     handleTitleChange: (columnId: number, newTitle: string) => void;
+    handleDeleteColumn: (columnId: any) => void;
 };
 
-const Column = ({ columnId, title, tasks, handleAddTasks, handleToggleIsCompleted, handleTaskTextChange, handleTitleChange }: ColumnProps) => {
+const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, handleDeleteTasks, handleToggleIsCompleted, handleTaskTextChange, handleTitleChange }: ColumnProps) => {
 
     return (
         <div className="column">
             <div className="column-title">
-                <input 
-                className="column-name" 
-                value={title}
-                placeholder="New Column"
-                onChange={(e) => handleTitleChange(columnId, e.target.value)}
-                
+                <input
+                    className="column-name"
+                    value={title}
+                    placeholder="New List"
+                    onChange={(e) => handleTitleChange(columnId, e.target.value)}
+
                 />
                 <div className="icons">
-                    <span className="icon" >
-                        <FiTrash style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
+                    <span className="icon"
+                        onClick={handleDeleteColumn}
+                    >
+                        <FiTrash
+                            style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
                         />
+
                     </span>
 
                     <span className="icon">
-
                         <GrDrag style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
                         />
                     </span>
@@ -46,6 +51,7 @@ const Column = ({ columnId, title, tasks, handleAddTasks, handleToggleIsComplete
                     id={task.id}
                     text={task.text}
                     isCompleted={task.isCompleted}
+                    handleDeleteTasks={() => handleDeleteTasks(task.id)}
                     onToggleIsCompleted={() => handleToggleIsCompleted(task.id)}
                     onTextChange={newText => handleTaskTextChange(task.id, newText)}
                 />
@@ -56,6 +62,7 @@ const Column = ({ columnId, title, tasks, handleAddTasks, handleToggleIsComplete
                     <FaPlus style={{ margin: '10px', fontSize: '15px' }} />
                     Add a new task
                 </button>
+
             </span>
         </div>
     );

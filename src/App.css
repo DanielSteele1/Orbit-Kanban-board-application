@@ -28,10 +28,36 @@ body {
 
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 80px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.theme-button,
+.back-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.theme-button:hover,
+.back-button:hover {
+
+  color: #ff4e50;
+  transition: 0.3s ease-in;
+  cursor: pointer;
 }
 
 .nav-logo {
@@ -112,15 +138,40 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100vh);
-  width: 100%
+  width: 100%;
+}
+
+.controls {
+
+  min-width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  background-color: #292929;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.board-text {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
 }
 
 .column-scroll-container {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 85%;
+  height: 90%;
 }
 
 .column-container {
@@ -130,9 +181,20 @@ body {
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
-  height: 100%;
-  overflow-x: auto;
+  height: 90%;
+  overflow: visible;
+  margin: 0 auto;
+}
 
+.Board {
+  max-width: 100vw;             
+  margin: 0 auto;
+  height: 90%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .board-text {
@@ -145,28 +207,32 @@ body {
 
 .Board-name {
   display: flex;
-  
+
 }
 
-
+.add-board {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+}
 
 .taskbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 80%;
-  margin: 10px;
-  min-height: 150px;
+  min-height: 300px;
+  margin: 0 auto;
 }
 
 .intro {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-  width: 50%;
-  margin: 0 auto;
+  width: 55%;
 }
 
 .App-title,
@@ -174,6 +240,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 5px;
+  margin-bottom: 10px;
 
 }
 
@@ -185,14 +252,13 @@ body {
 
   display: flex;
   flex-direction: column;
-  width: 250px;
+  justify-content: flex-start;
+  min-width: 250px;
   height: fit-content;
   background-color: #292929;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  margin-top: 10px;
   margin-right: 10px;
-  box-sizing: none;
 }
 
 .column-name {
@@ -307,8 +373,8 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  min-width: 800px;
   font-size: 1.2rem;
-  margin-left: 10px;
 }
 
 .board-grid {
@@ -316,17 +382,17 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(repeat, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  grid-row-gap: 60px;
+  grid-column-gap: 60px;
   width: 80%;
   height: fit-content;
   margin: 0 auto;
+  margin-top: 10px;
 }
 
 .board-tile {
   display: flex;
   flex-direction: column;
-  margin: 10px;
   height: 250px;
   width: 250px;
   background-color: #292929;
@@ -347,11 +413,13 @@ body {
 .board-description {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40px;
-  width: 100%;
+  flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  padding-bottom: 10px;
 }
+
 
 .board-description {
   font-size: 1.0rem;
@@ -360,10 +428,9 @@ body {
 
 .add-task {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin: 0 auto;
   height: fit-content;
 }
 
@@ -407,6 +474,57 @@ body {
     height: 100%;
   }
 
+  .nav-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+  }
+
+  .taskbar {
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: flex-start;
+    height: fit-content;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+
+  }
+
+  .taskbar button {
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .intro,
+  .app-desc {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .board-grid {
+
+    display: grid;
+    margin-top: 150px;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    height: fit-content;
+  }
+
+  .board-tile {
+    width: 80%;
+    height: fit-content;
+    margin: 0 auto;
+    gap: 10px;
+  }
 
   .main {
     width: 100%;
@@ -426,9 +544,10 @@ body {
 
   .controls {
 
-    width: 100%;
+    width: 90%;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    background-color: transparent;
     margin: 0 auto;
   }
 
