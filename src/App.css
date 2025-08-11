@@ -187,9 +187,9 @@ body {
 }
 
 .Board {
-  max-width: 100vw;             
+  max-width: 100vw;
   margin: 0 auto;
-  height: 90%;
+  height: 100%;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -205,9 +205,14 @@ body {
   width: 100%;
 }
 
-.Board-name {
+.board-info {
   display: flex;
-
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 5px;
+  height: fit-content;
 }
 
 .add-board {
@@ -215,6 +220,8 @@ body {
   width: fit-content;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .taskbar {
@@ -301,13 +308,42 @@ body {
   cursor: pointer;
 }
 
+.tooltip {
+  display: flex;
+  width: fit-content;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.tooltip-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+
+.tooltip-icons:hover {
+  cursor: pointer;
+  color: #ff4e50;
+
+}
+
+.tooltip-text {
+  display: flex;
+  font-size: 1.0rem;
+  padding-left: 5px;
+  font-family: 'Figtree', sans-serif;
+}
+
+
 .icon-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 8px;
   border-radius: 8px;
-  background: #292929;
   cursor: pointer;
 }
 
@@ -392,7 +428,8 @@ body {
 
 .board-tile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   height: 250px;
   width: 250px;
   background-color: #292929;
@@ -413,17 +450,39 @@ body {
 .board-description {
   display: flex;
   flex-direction: row;
+  height: fit-content;
+  align-items: center;
   flex-shrink: 0;
   min-width: 0;
   max-width: 100%;
   white-space: normal;
-  padding-bottom: 10px;
+  margin-top: 10px;
 }
 
+.board-dropdown {
+  height: fit-content;
+  width: fit-content;
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px;
+  color: #ff4e50;
+  font-size: 1.2rem;
+}
+
+.board-dropdown .icon {
+  margin-left: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 
 .board-description {
+  display: flex;
+  height: fit-content;
   font-size: 1.0rem;
   color: rgb(187, 187, 187);
+  margin-bottom: 10px;
 }
 
 .add-task {
@@ -531,6 +590,10 @@ body {
     height: 100%;
   }
 
+  .column-scroll-container {
+    overflow-y: auto;
+    margin: 10px;
+  }
   .column-container {
     margin: 0 auto;
     flex-direction: column;
@@ -544,11 +607,23 @@ body {
 
   .controls {
 
-    width: 90%;
+    width: 80%;
+    margin: 0px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     background-color: transparent;
+  }
+
+  .board-text{
+    width: 80%;
     margin: 0 auto;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .title{
+    margin: 0px;
+    min-width: fit-content;
   }
 
 }

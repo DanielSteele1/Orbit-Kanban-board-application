@@ -59,8 +59,8 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, ha
 
             <span className="add-task">
                 <button id="button-text" onClick={handleAddTasks}>
-                    <FaPlus style={{ margin: '10px', fontSize: '15px' }} />
-                    Add a new task
+                    <FaPlus style={{ marginRight: '10px',fontSize: '15px' }} />
+                    Add new task
                 </button>
 
             </span>

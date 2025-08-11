@@ -48,16 +48,15 @@
     width: fit-content;
     align-items: center;
     justify-content: flex-start;
-    margin: 5px;
     cursor: pointer;
     background-position: 100% 0%;
     background-size: 300% 100%;
     transition: background-position 0.3s ease-in-out;
+    padding: 10px;
   }
 
   .add-board {
     background-color: #df5254 !important;
-    
   }
 
   button {
@@ -65,7 +64,6 @@
     border: none;
     margin-left: 10px;
   }
-
 
   button:hover {
     background-position: 0% 0%;
@@ -75,6 +73,17 @@
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+  }
+
+
+  @media (min-width: 300px) and (max-width: 750px) {
+
+    .add-board {
+      margin: 10px;
+      height: fit-content;
+      width: 100%;
+    }
+
   }
 
   @media (prefers-color-scheme: light) {

@@ -2,11 +2,10 @@
 import React, { useEffect, useRef } from "react";
 import 'react-dropdown/style.css';
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md"
-import { TfiMore } from "react-icons/tfi";;
 import { MdOutlineCheckBox } from "react-icons/md";
-import { FiTrash } from "react-icons/fi";
 
 import type { Task as TaskType } from "../types";
+import TaskDropdown  from "./TaskDropdown.tsx"
 
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
@@ -14,8 +13,8 @@ interface TaskProps extends TaskType {
     handleDeleteTasks: (taskId: any) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsCompleted, isCompleted, onTextChange }) => {
 
+const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsCompleted, isCompleted, onTextChange }) => {
 
     // resizes textarea so that it automatically grows and shrinks with content.
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -37,7 +36,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                         value={text}
                         onChange={e => onTextChange(e.target.value)}
                         className="task-input"
-                        placeholder="Enter new task..."
+                        placeholder="Enter new task.."
                     />
                 </span>
                 <div className="icons">
@@ -58,18 +57,8 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
 
                     <span className="icon">
                         <div id="icon" className="icon-copy">
-                            <TfiMore style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
-                    </span>
-
-                    {/* <span className="icon">
-                        <div id="icon" className="icon-copy"> 
-                            <FiCopy style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /></div>
-                    </span>  */}
-
-                    <span className="icon">
-                        <div id="icon" className="icon-delete"
-                            onClick={handleDeleteTasks}>
-                            <FiTrash style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} /> </div>
+                            <TaskDropdown handleDeleteTasks={handleDeleteTasks}/>
+                        </div>
                     </span>
                 </div>
             </div>

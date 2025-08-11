@@ -21,7 +21,6 @@ function BoardView() {
         }
     }, [boardId]);
 
-
     // save each column into localStorage
 
     const [columns, setColumns] = useState<ColumnType[]>(() => {
