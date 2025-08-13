@@ -45,7 +45,7 @@ function BoardView() {
         };
         setColumns(prev => [...prev, newColumn]);
     };
-    
+
     const handleDeleteColumn = (columnId: number) => {
         setColumns(prev =>
             prev.filter(col => col.id !== columnId)
@@ -137,6 +137,30 @@ function BoardView() {
         );
     };
 
+    // Update the names/description of each board when edited into updatedBoards, 
+    // then map over savedBoards with updatedBoards back to localStorage.
+
+    const handleBoardText = (field: 'title' | 'description', value: string) => {
+
+        setBoard(prev => {
+            if (!prev) return prev; 
+
+            const updatedBoard = { ...prev, [field]: value };
+
+            const savedBoards = localStorage.getItem('boards'); 
+
+            if (savedBoards) {
+
+                const boards: BoardType[] = JSON.parse(savedBoards); 
+                const updatedBoards = boards.map(b => b.id === updatedBoard.id ? updatedBoard : b);
+
+                localStorage.setItem('boards', JSON.stringify(updatedBoards));
+            }
+            return updatedBoard;
+
+        });
+    };
+
     if (!board) return <div> Loading or Board not found... </div>;
 
     // get the board descrtion and title here - the idea is to make the user declare it in the main screen, then when they get to each board, it's just there.
@@ -146,16 +170,26 @@ function BoardView() {
             <div className="controls">
                 <div className="board-text">
                     <div className="title">
-                        <span className="board-title">
-                            {board.title}
-                            <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
-                            </button>
-                        </span>
-                        <span className="board-description">
-                            {board.description}
-                            <button id="icon"> <FiEdit3 style={{ fontSize: '20px' }} />
-                            </button>
-                        </span>
+
+                        <input
+                            className="board-title-input"
+                            id="gradient"
+                            placeholder="Untitled Board"
+                            value={board.title}
+                            onChange={(e) => handleBoardText('title', e.target.value)}
+
+                        />
+
+                        <textarea
+                            className="board-description-input"
+                            placeholder="Click to add a description"
+                            value={board.description}
+                            onChange={(e) => handleBoardText('description', e.target.value)}
+                        />
+
+                    </div>
+                    <div className="board-date">
+                        Board ID: {board.id}
                     </div>
                 </div>
 

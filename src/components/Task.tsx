@@ -10,9 +10,8 @@ import TaskDropdown  from "./TaskDropdown.tsx"
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
     onTextChange: (newText: string) => void;
-    handleDeleteTasks: (taskId: any) => void;
+    handleDeleteTasks: (taskId: number) => void;
 }
-
 
 const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsCompleted, isCompleted, onTextChange }) => {
 

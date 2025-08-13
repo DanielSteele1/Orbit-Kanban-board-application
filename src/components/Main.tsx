@@ -36,6 +36,16 @@ function Main() {
         setBoards(prev => [...prev, newBoard]);
     };
 
+    // delete a board
+
+    const handleDeleteBoard = (boardId: number) => {
+
+        setBoards(prev =>
+            prev.filter(board => board.id !== boardId)
+        );
+
+    };
+
     return (
         <div className="main">
 
@@ -65,7 +75,7 @@ function Main() {
             <div className="board-grid">
 
                 {boards.map(board => (
-                    <BoardTile key={board.id} board={board} />
+                    <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
                 ))}
 
             </div>

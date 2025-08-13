@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import BoardDropdown from "./BoardDropdown.tsx"
 import { GrDrag } from 'react-icons/gr';
 
-function BoardTile({ board }: { board: BoardType }) {
+interface BoardProps {
+    board: BoardType;
+    handleDeleteBoard: (boardId:number) => (void);
+}
+
+function BoardTile({board, handleDeleteBoard}:BoardProps) {
 
     const navigate = useNavigate();
 
@@ -25,7 +30,11 @@ function BoardTile({ board }: { board: BoardType }) {
             </div>
 
             <div className="board-dropdown">
-                <BoardDropdown />
+                <BoardDropdown 
+
+                boardId={board.id}
+                handleDeleteBoard={handleDeleteBoard} 
+                />
                 <span className="icon">
                     <GrDrag style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
                     />

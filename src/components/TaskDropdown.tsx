@@ -29,7 +29,7 @@ const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks }) => {
             <button
                 className="tooltip-icons"
                 onClick={() => handleDeleteTasks(null)}
-                style={{ display: 'flex', margin: '10px', marginLeft: '20px' }}
+                style={{ display: 'flex', marginLeft: '20px' }}
             >
                 <FiTrash />
 

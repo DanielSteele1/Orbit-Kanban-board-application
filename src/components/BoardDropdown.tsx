@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiCopy, FiTrash } from 'react-icons/fi';
+import { FiTrash } from 'react-icons/fi';
 import { TfiMore } from "react-icons/tfi";;
 
 import Tippy from '@tippyjs/react';
@@ -7,16 +7,20 @@ import 'tippy.js/dist/tippy.css';
 import { FaFileExport } from 'react-icons/fa';
 
 interface BoardDropdownProps {
-    
+    boardId: number;
+    handleDeleteBoard: (boardId: number) => void;
 }
 
-const BoardDropdown: React.FC<BoardDropdownProps> = ({  }) => {
+const BoardDropdown: React.FC<BoardDropdownProps> = ({ handleDeleteBoard, boardId }) => {
 
     const dropdownContent = (
-        <div className="tooltip" style={{ display: 'flex',  width: 'fit-content', flexDirection: 'column', justifyContent: 'center' }}>
+        <div className="tooltip" style={{ display: 'flex', width: 'fit-content', flexDirection: 'column', justifyContent: 'center' }}>
             <button
                 className="tooltip-icons"
-                onClick={() => alert('Copy clicked')}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteBoard(boardId);
+                }}
                 style={{ display: 'flex', margin: '10px' }}
             >
                 <FiTrash />

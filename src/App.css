@@ -432,6 +432,8 @@ body {
   justify-content: space-around;
   height: 250px;
   width: 250px;
+  min-width: 0;
+  overflow: hidden;
   background-color: #292929;
   padding: 10px;
   border-radius: 15px;
@@ -448,21 +450,58 @@ body {
 
 .board-title,
 .board-description {
+  display: block;
+  flex-direction: row;
+  height: fit-content;
+  align-items: center;
+  white-space: normal;
+  word-wrap: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-break: auto;
+  max-width: 100%;
+  text-overflow: elipsis;
+  margin-top: 10px;
+}
+
+.board-title-input,
+.board-description-input {
   display: flex;
   flex-direction: row;
   height: fit-content;
   align-items: center;
-  flex-shrink: 0;
-  min-width: 0;
-  max-width: 100%;
+  justify-content: flex-start;
+  width: fit-content;
+  height: fit-content;
+  max-height: 100px;
+  max-width: 800px;
+
+  min-width: 400px;
+  min-height: 40px;
   white-space: normal;
-  margin-top: 10px;
+  word-wrap: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  
+  margin-bottom: 10px;
+  font-family: 'Figtree', sans-serif;
+  border: none;
+  background: transparent;
 }
+
+.board-title-input {
+  font-size: 1.5rem;
+}
+
+.board-description-input {
+  font-size: 1.0rem;
+}
+
 
 .board-dropdown {
   height: fit-content;
   width: fit-content;
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-end;
@@ -594,6 +633,7 @@ body {
     overflow-y: auto;
     margin: 10px;
   }
+
   .column-container {
     margin: 0 auto;
     flex-direction: column;
@@ -614,14 +654,14 @@ body {
     background-color: transparent;
   }
 
-  .board-text{
+  .board-text {
     width: 80%;
     margin: 0 auto;
     align-items: flex-start;
     justify-content: center;
   }
 
-  .title{
+  .title {
     margin: 0px;
     min-width: fit-content;
   }
