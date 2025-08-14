@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import Column from './Column.tsx';
 import AddColumn from './AddColumn.tsx';
-import { FiEdit3 } from "react-icons/fi";
 import { useParams } from 'react-router-dom';
 
 import type { ColumnType } from '../types.ts';
 import type { BoardType } from '../types.ts';
+
+import { DndContext, closestCorners, type DragEndEvent } from "@dnd-kit/core";
+import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
 
 function BoardView() {
 
@@ -143,15 +145,15 @@ function BoardView() {
     const handleBoardText = (field: 'title' | 'description', value: string) => {
 
         setBoard(prev => {
-            if (!prev) return prev; 
+            if (!prev) return prev;
 
             const updatedBoard = { ...prev, [field]: value };
 
-            const savedBoards = localStorage.getItem('boards'); 
+            const savedBoards = localStorage.getItem('boards');
 
             if (savedBoards) {
 
-                const boards: BoardType[] = JSON.parse(savedBoards); 
+                const boards: BoardType[] = JSON.parse(savedBoards);
                 const updatedBoards = boards.map(b => b.id === updatedBoard.id ? updatedBoard : b);
 
                 localStorage.setItem('boards', JSON.stringify(updatedBoards));
@@ -161,59 +163,90 @@ function BoardView() {
         });
     };
 
+    //react-drag-and-drop
+
+    function handleDragEnd(event: DragEndEvent) {
+
+        const { active, over } = event;
+
+        if (active.id !== over?.id && over) {
+            setColumns((columns) => {
+                const oldIndex = columns.findIndex((col) => col.id === active.id);
+                const newIndex = columns.findIndex((col) => col.id === over.id);
+
+                return arrayMove(columns, oldIndex, newIndex);
+            });
+        }
+    };
+
+
     if (!board) return <div> Loading or Board not found... </div>;
 
     // get the board descrtion and title here - the idea is to make the user declare it in the main screen, then when they get to each board, it's just there.
 
     return (
-        <div className="Board">
-            <div className="controls">
-                <div className="board-text">
-                    <div className="title">
 
-                        <input
-                            className="board-title-input"
-                            id="gradient"
-                            placeholder="Untitled Board"
-                            value={board.title}
-                            onChange={(e) => handleBoardText('title', e.target.value)}
+        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+            <div className="Board">
+                <div className="controls">
+                    <div className="board-text">
+                        <div className="title">
 
-                        />
+                            <input
+                                className="board-title-input"
+                                id="gradient"
+                                placeholder="Untitled Board"
+                                value={board.title}
+                                onChange={(e) => handleBoardText('title', e.target.value)}
 
-                        <textarea
-                            className="board-description-input"
-                            placeholder="Click to add a description"
-                            value={board.description}
-                            onChange={(e) => handleBoardText('description', e.target.value)}
-                        />
+                            />
+
+                            <div className="board-id">
+                                Board ID: {board.id}
+                            </div>
+                        </div>
+
+                        <div className="board-desc">
+
+                            <textarea
+                                className="board-description-input"
+                                placeholder="Click to add a description"
+                                value={board.description}
+                                onChange={(e) => handleBoardText('description', e.target.value)}
+                            />
+
+                        </div>
 
                     </div>
-                    <div className="board-date">
-                        Board ID: {board.id}
+
+                </div>
+                <div className="column-scroll-container">
+                    <div className="column-container">
+
+                        {columns.map(col => (
+                            <SortableContext items={columns} strategy={horizontalListSortingStrategy}>
+
+                                <Column
+
+                                    key={col.id}
+                                    columnId={col.id} // id of each column
+                                    title={col.title} // title of each column
+                                    tasks={col.tasks} // list of tasks in each column
+                                    handleDeleteColumn={() => handleDeleteColumn(col.id)}
+                                    handleAddTasks={() => handleAddTask(col.id)}
+                                    handleDeleteTasks={(taskId: number) => handleDeleteTask(col.id, taskId)}
+                                    handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
+                                    handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
+                                    handleTitleChange={handleTitleChange}
+                                />
+                            </SortableContext>
+
+                        ))}
+                        <AddColumn handleAddColumn={handleAddColumn} />
                     </div>
                 </div>
-
             </div>
-            <div className="column-scroll-container">
-                <div className="column-container">
-                    {columns.map(col => (
-                        <Column
-                            key={col.id}
-                            columnId={col.id}
-                            title={col.title}
-                            tasks={col.tasks}
-                            handleDeleteColumn={() => handleDeleteColumn(col.id)}
-                            handleAddTasks={() => handleAddTask(col.id)}
-                            handleDeleteTasks={(taskId: number) => handleDeleteTask(col.id, taskId)}
-                            handleToggleIsCompleted={taskId => handleToggleIsCompleted(col.id, taskId)}
-                            handleTaskTextChange={(taskId, newText) => handleTaskTextChange(col.id, taskId, newText)}
-                            handleTitleChange={handleTitleChange}
-                        />
-                    ))}
-                    <AddColumn handleAddColumn={handleAddColumn} />
-                </div>
-            </div>
-        </div>
+        </DndContext>
 
     );
 }

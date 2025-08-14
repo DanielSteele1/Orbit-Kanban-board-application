@@ -4,6 +4,10 @@ import { FiTrash } from "react-icons/fi";
 import TaskComponent from "./Task";
 import type { Task as TaskType } from "../types";
 
+
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 type ColumnProps = {
     columnId: number;
     title: string;
@@ -16,15 +20,26 @@ type ColumnProps = {
     handleDeleteColumn: (columnId: any) => void;
 };
 
+
 const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, handleDeleteTasks, handleToggleIsCompleted, handleTaskTextChange, handleTitleChange }: ColumnProps) => {
 
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: columnId });
+
+    const style = {
+
+        transform: CSS.Transform.toString(transform),
+        transition,
+        width: "inherit",
+    };
+
     return (
-        <div className="column">
+
+        <div className="column" ref={setNodeRef} {...attributes} style={style}>
             <div className="column-title">
                 <input
                     className="column-name"
                     value={title}
-                    placeholder="New List"
+                    placeholder="New List Title"
                     onChange={(e) => handleTitleChange(columnId, e.target.value)}
 
                 />
@@ -38,8 +53,8 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, ha
 
                     </span>
 
-                    <span className="icon">
-                        <GrDrag style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
+                    <span className="icon" {...listeners} id="drag-icon">
+                        <GrDrag id="drag-icon" style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle' }}
                         />
                     </span>
 
@@ -59,7 +74,7 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, ha
 
             <span className="add-task">
                 <button id="button-text" onClick={handleAddTasks}>
-                    <FaPlus style={{ marginRight: '10px',fontSize: '15px' }} />
+                    <FaPlus style={{ marginRight: '10px', fontSize: '15px' }} />
                     Add new task
                 </button>
 

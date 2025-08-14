@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Quicksand:wght@300..700&display=swap');
 
 html,
 body {
@@ -6,7 +6,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #1C1C1C;
+  background-color: rgb(17, 16, 16);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -81,6 +81,7 @@ body {
 #gradient {
   background: linear-gradient(120deg, #ff4e50, #ff6ec4);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -143,16 +144,15 @@ body {
 
 .controls {
 
-  min-width: 85%;
+  min-width: 90%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: fit-content;
-  background-color: #292929;
-  border-radius: 8px;
+  border: 2px solid #292929;
+  border-radius: 12px;
   margin: 0 auto;
-  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -170,7 +170,10 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 85%;
+  width: 90%;
+  padding: 10px;
+  border: 2px solid #292929;
+  border-radius: 8px;
   height: 90%;
 }
 
@@ -215,6 +218,12 @@ body {
   height: fit-content;
 }
 
+.board-name {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
 .add-board {
   display: flex;
   width: fit-content;
@@ -248,11 +257,14 @@ body {
   justify-content: center;
   padding: 5px;
   margin-bottom: 10px;
-
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
 }
 
 .App-title {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
 
 .column {
@@ -262,8 +274,8 @@ body {
   justify-content: flex-start;
   min-width: 250px;
   height: fit-content;
-  background-color: #292929;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  background-color:rgb(17, 16, 16);
+  border: 2px solid #292929;
   border-radius: 8px;
   margin-right: 10px;
 }
@@ -280,7 +292,8 @@ body {
   align-items: center;
   background: none;
   border: none;
-  font-family: 'Figtree', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 900;
 }
 
 .column-name:hover {
@@ -352,6 +365,12 @@ body {
   color: #fff;
 }
 
+#drag-icon{
+  cursor: grab;
+
+}
+
+
 .Task {
 
   display: flex;
@@ -406,11 +425,21 @@ body {
 
 .title {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
-  min-width: 800px;
   font-size: 1.2rem;
+  width: 100%;
+}
+
+.board-id{
+  display: flex;
+  font-size: 1.0rem;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 10px;
+  color: whitesmoke;
+  width: fit-content;
 }
 
 .board-grid {
@@ -418,28 +447,27 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(repeat, 1fr);
-  grid-row-gap: 60px;
-  grid-column-gap: 60px;
   width: 80%;
   height: fit-content;
   margin: 0 auto;
-  margin-top: 10px;
+
 }
 
 .board-tile {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 250px;
-  width: 250px;
+  height: 280px;
+  width: 280px;
   min-width: 0;
   overflow: hidden;
-  background-color: #292929;
   padding: 10px;
   border-radius: 15px;
   font-size: 1.0rem;
   font-weight: 400;
-  border: 2px solid transparent;
+  margin-top: 20px;
+  border: 2px solid #292929;
+
 }
 
 .board-tile:hover {
@@ -482,7 +510,7 @@ body {
   word-wrap: normal;
   word-break: break-word;
   overflow-wrap: break-word;
-  
+
   margin-bottom: 10px;
   font-family: 'Figtree', sans-serif;
   border: none;
@@ -496,7 +524,6 @@ body {
 .board-description-input {
   font-size: 1.0rem;
 }
-
 
 .board-dropdown {
   height: fit-content;
@@ -533,14 +560,12 @@ body {
 }
 
 .add-column {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: fit-content;
   margin: 10px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: #292929;
+  height: 30px;
 }
 
 .add-column button {
@@ -584,6 +609,7 @@ body {
     align-items: center;
     justify-content: center;
     height: fit-content;
+    padding: 0px;
   }
 
   .taskbar {
@@ -648,22 +674,28 @@ body {
   .controls {
 
     width: 80%;
+    padding: 0px;
     margin: 0px;
     flex-direction: column;
     align-items: center;
     background-color: transparent;
   }
-
-  .board-text {
-    width: 80%;
-    margin: 0 auto;
-    align-items: flex-start;
-    justify-content: center;
+  .title {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: fit-content;
   }
 
-  .title {
+  .board-description-input, .board-title-input {
+    min-width: 100px;
+    max-width: 100%;
+  }
+
+  .board-text, .board-id {
+    width: fit-content;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin: 0px;
-    min-width: fit-content;
   }
 
 }
