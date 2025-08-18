@@ -8,7 +8,7 @@ With React DnD, users can reorder tasks via drag-and-drop. All data is saved in 
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
 
-<img width="1690" height="928" alt="image" src="https://github.com/user-attachments/assets/cf3b5786-c174-42a0-9993-ca87238110fd" />
+<img width="1766" height="900" alt="Screenshot 2025-08-18 183007" src="https://github.com/user-attachments/assets/9c1858c5-99f6-46b3-aa37-7c448640f6c5" />
 
 <img width="1915" height="886" alt="image" src="https://github.com/user-attachments/assets/53db04b0-2fc0-4e9f-95e9-5d5aa59794a3" />
 
