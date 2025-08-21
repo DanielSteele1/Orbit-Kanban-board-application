@@ -22,7 +22,10 @@ With React DnD, users can reorder tasks via drag-and-drop. All data is saved in 
 - All user data saved into LocalStorage. 
 - Drag and Drop any column to re-order the board. Especially useful if you have a full board with lots of tasks, and need to reorder everyting quickly. Also planned to be implemented in the main area in which the user see's all thier boards.
 
+- Search for boards by board name & filter boards by multiple means such as date created, alphabetically sorted etc. 
+
 - Ability to export each a board's data, possibly via JSON. 
+
 - One click copy feature on every task.
 
 ---
