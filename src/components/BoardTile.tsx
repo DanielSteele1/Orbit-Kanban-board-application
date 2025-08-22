@@ -3,10 +3,11 @@ import type { BoardType } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 import BoardDropdown from "./BoardDropdown.tsx"
-import { GrDrag } from 'react-icons/gr';
+import { AiOutlineDrag } from "react-icons/ai";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+
 
 interface BoardProps {
     board: BoardType;
@@ -21,7 +22,7 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
 
         transform: CSS.Transform.toString(transform),
         transition,
-        width: "inherit",
+        willChange: "transform",
     };
 
     const navigate = useNavigate();
@@ -30,31 +31,38 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
         <div className="board-tile" ref={setNodeRef} {...attributes} style={style} // this should bind each board tile to it's corrosponding board, using it's ID
             onClick={() => navigate(`/board/${board.id}`)}
         >
+
             <div className="board-info">
-                <span className="board-name" id="gradient">
-                    {board.title}
-                </span>
+                <div className="board-top">
 
-                <span className="board-description">
-                    {board.description}
-                </span>
+                    <span className="board-name">
+                        {board.title}
+                    </span>
+
+                    <div className="board-dropdown">
+                        <BoardDropdown
+
+                            boardId={board.id}
+                            handleDeleteBoard={handleDeleteBoard}
+                        />
+                        <span className="icon" {...listeners}>
+                            <AiOutlineDrag id="drag-icon" style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }}
+                            />
+                        </span>
+                    </div>
+
+                </div>
+
+                <div className="board-bottom">
+
+                    <span className="board-description">
+                        {board.description}
+                    </span>
+
+                </div>
 
             </div>
-
-            <div className="board-dropdown">
-                <BoardDropdown
-
-                    boardId={board.id}
-                    handleDeleteBoard={handleDeleteBoard}
-                />
-                <span className="icon" {...listeners}>
-                    <GrDrag style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', cursor: 'pointer' }}
-                    />
-                </span>
-            </div>
-
         </div>
-
     );
 
 }

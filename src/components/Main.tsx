@@ -7,6 +7,11 @@ import { FaPlus } from 'react-icons/fa';
 
 import { DndContext, closestCorners, type DragEndEvent } from "@dnd-kit/core";
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
+import { MdOutlineSort } from "react-icons/md";
+import Masonry from 'react-masonry-css'
+import { IoSearchSharp } from "react-icons/io5";
+import './Masonry-grid.css';
+
 
 function Main() {
 
@@ -64,6 +69,11 @@ function Main() {
         }
     };
 
+    // filter boards by search term and display
+
+    const [filteredBoard, setFilteredBoard] = useState<BoardType[]>(boards);
+
+        
 
     return (
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
@@ -73,10 +83,10 @@ function Main() {
 
                     <span className="intro">
 
-                        <span className="App-title" id="gradient"> Welcome to _____ ! </span>
+                        <span className="App-title" id="gradient"> Welcome to Task managment tool </span>
 
                         <span className="App-desc">
-                            Phalanx helps you organize your projects and tasks with ease.
+                            This app helps you organize your projects and tasks with ease.
                             Create multiple boards to separate different areas of your work or life.
                             You can re-order each board element inside each board to maintain full control of your workflow.
                             Inside each board, you can add columns to categorize tasks and track progress step-by-step.
@@ -85,11 +95,31 @@ function Main() {
 
                     </span>
 
-                    <button id="button-text"
-                        className="add-board"
-                        onClick={handleAddBoard}>
-                        <FaPlus style={{ fontSize: '20px', margin: '5px' }} /> Add a New Board </button>
+                </div>
 
+                <div className="grid-controls">
+
+                        <button
+                            className="add-board"
+                            onClick={handleAddBoard}>
+                            <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add a New Board
+                        </button>
+
+                        <div className="board-search">
+                            <IoSearchSharp style={{ fontSize: '20px' }} />
+                            <input type="search"
+                                className="board-search-input"
+                                placeholder="Search for a board..."
+                                onChange={(e) => {
+                                    const searchTerm = e.target.value.toLowerCase();
+                                    setBoards(prevBoards => prevBoards.filter(board => board.title.toLowerCase().includes(searchTerm)));
+                                }}
+                            />
+                        </div>
+
+                        <button className="board-filter">
+                            <MdOutlineSort style={{ fontSize: '20px', marginRight: '5px' }} /> Filter Boards
+                        </button>
                 </div>
 
                 <SortableContext
@@ -97,9 +127,15 @@ function Main() {
                     strategy={horizontalListSortingStrategy}>
                     <div className="board-grid">
 
-                        {boards.map(board => (
-                            <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
-                        ))}
+                        <Masonry
+                            breakpointCols={2}
+                            className="masonry-grid"
+                            columnClassName="masonry-grid_column">
+
+                            {boards.map(board => (
+                                <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
+                            ))}
+                        </Masonry>
 
                     </div>
                 </SortableContext>

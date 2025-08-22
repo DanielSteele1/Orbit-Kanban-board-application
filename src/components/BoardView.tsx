@@ -6,10 +6,18 @@ import { useParams } from 'react-router-dom';
 import type { ColumnType } from '../types.ts';
 import type { BoardType } from '../types.ts';
 
-import { DndContext, closestCorners, type DragEndEvent } from "@dnd-kit/core";
+import { DndContext, closestCorners, type DragEndEvent, useSensor, useSensors, KeyboardSensor, PointerSensor } from "@dnd-kit/core";
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
 function BoardView() {
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
     const { boardId } = useParams<{ boardId: string }>();
     const [board, setBoard] = useState<BoardType | null>(null);
@@ -23,89 +31,114 @@ function BoardView() {
         }
     }, [boardId]);
 
-    // save each column into localStorage
-
-    const [columns, setColumns] = useState<ColumnType[]>(() => {
-
-        const saved = localStorage.getItem('columns');
-        return saved ? JSON.parse(saved) : [];
-
-    });
-
-    useEffect(() => {
-        localStorage.setItem('columns', JSON.stringify(columns));
-
-    }, [columns]);
-
-    // add a new column with no tasks
+    // Helper function to update localStorage
+    const updateBoardInStorage = (updatedBoard: BoardType) => {
+        const savedBoards = localStorage.getItem('boards');
+        if (savedBoards) {
+            const boards: BoardType[] = JSON.parse(savedBoards);
+            const updatedBoards = boards.map(b => 
+                b.id === updatedBoard.id ? updatedBoard : b
+            );
+            localStorage.setItem('boards', JSON.stringify(updatedBoards));
+        }
+    };
 
     const handleAddColumn = () => {
+        if (!board) return;
+        
         const newColumn: ColumnType = {
             id: Date.now(),
             title: '',
             tasks: []
         };
-        setColumns(prev => [...prev, newColumn]);
+        
+        const updatedBoard = {
+            ...board,
+            columns: [...board.columns, newColumn]
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
     const handleDeleteColumn = (columnId: number) => {
-        setColumns(prev =>
-            prev.filter(col => col.id !== columnId)
-        );
+        if (!board) return;
+        
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.filter(col => col.id !== columnId)
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
     // Add a new task to a specific column
-
     const handleAddTask = (columnId: number) => {
-        setColumns(prev =>
-            prev.map(col =>
+        if (!board) return;
+
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
                 col.id === columnId
                     ? {
                         ...col,
                         tasks: [
-                            ...col.tasks, // existing tasks
-                            { id: Date.now(), text: '' } // new task
+                            ...col.tasks,
+                            { id: Date.now(), text: '' }
                         ]
                     }
                     : col
             )
-        );
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
     const handleDeleteTask = (columnId: number, taskId: number) => {
+        if (!board) return;
 
-        setColumns(prev =>
-
-            prev.map(col =>
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
                 col.id === columnId
                     ? {
                         ...col,
                         tasks: col.tasks.filter(task => task.id !== taskId)
-
                     }
                     : col
             )
-        );
-
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
-    // handle titlle change for each column
-
+    // handle title change for each column
     const handleTitleChange = (columnId: number, newTitle: string) => {
-        setColumns(prev =>
-            prev.map(col =>
+        if (!board) return;
+
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
                 col.id === columnId
                     ? { ...col, title: newTitle }
                     : col
             )
-        );
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
-    // Toggle isCompleted for specific task (taskID) in specific column (colId)
-
+    // Toggle isCompleted for specific task
     const handleToggleIsCompleted = (columnId: number, taskId: number) => {
-        setColumns(prev =>
-            prev.map(col =>
+        if (!board) return;
+
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
                 col.id === columnId
                     ? {
                         ...col,
@@ -117,14 +150,19 @@ function BoardView() {
                     }
                     : col
             )
-        );
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
     // Update text for a specific task in a specific column
-
     const handleTaskTextChange = (columnId: number, taskId: number, newText: string) => {
-        setColumns(prev =>
-            prev.map(col =>
+        if (!board) return;
+
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
                 col.id === columnId
                     ? {
                         ...col,
@@ -136,7 +174,10 @@ function BoardView() {
                     }
                     : col
             )
-        );
+        };
+        
+        setBoard(updatedBoard);
+        updateBoardInStorage(updatedBoard);
     };
 
     // Update the names/description of each board when edited into updatedBoards, 
@@ -166,16 +207,21 @@ function BoardView() {
     //react-drag-and-drop
 
     function handleDragEnd(event: DragEndEvent) {
-
+        if (!board) return;
         const { active, over } = event;
 
         if (active.id !== over?.id && over) {
-            setColumns((columns) => {
-                const oldIndex = columns.findIndex((col) => col.id === active.id);
-                const newIndex = columns.findIndex((col) => col.id === over.id);
-
-                return arrayMove(columns, oldIndex, newIndex);
-            });
+            const updatedBoard = {
+                ...board,
+                columns: arrayMove(
+                    board.columns,
+                    board.columns.findIndex((col) => col.id === active.id),
+                    board.columns.findIndex((col) => col.id === over.id)
+                )
+            };
+            
+            setBoard(updatedBoard);
+            updateBoardInStorage(updatedBoard);
         }
     };
 
@@ -186,7 +232,7 @@ function BoardView() {
 
     return (
 
-        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <div className="Board">
                 <div className="controls">
                     <div className="board-text">
@@ -223,15 +269,13 @@ function BoardView() {
                 <div className="column-scroll-container">
                     <div className="column-container">
 
-                        {columns.map(col => (
-                            <SortableContext items={columns} strategy={horizontalListSortingStrategy}>
-
+                        {board.columns.map(col => (
+                            <SortableContext items={board.columns} strategy={horizontalListSortingStrategy}>
                                 <Column
-
                                     key={col.id}
-                                    columnId={col.id} // id of each column
-                                    title={col.title} // title of each column
-                                    tasks={col.tasks} // list of tasks in each column
+                                    columnId={col.id}
+                                    title={col.title}
+                                    tasks={col.tasks}
                                     handleDeleteColumn={() => handleDeleteColumn(col.id)}
                                     handleAddTasks={() => handleAddTask(col.id)}
                                     handleDeleteTasks={(taskId: number) => handleDeleteTask(col.id, taskId)}

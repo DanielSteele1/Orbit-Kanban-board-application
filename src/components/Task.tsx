@@ -5,7 +5,7 @@ import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md"
 import { MdOutlineCheckBox } from "react-icons/md";
 
 import type { Task as TaskType } from "../types";
-import TaskDropdown  from "./TaskDropdown.tsx"
+import TaskDropdown from "./TaskDropdown.tsx"
 
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
@@ -25,10 +25,27 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
         }
     }, [text]);
 
-
     return (
         <div className="Task-container">
             <div className="Task">
+
+                <div className="icons">
+                    <span className="icon">
+
+                        {isCompleted ? (
+                            <MdOutlineCheckBox
+                                style={{ display: 'flex', marginTop: '5px', verticalAlign: 'middle', cursor: 'pointer' }}
+                                onClick={onToggleIsCompleted}
+                            />
+                        ) : (
+                            <MdOutlineCheckBoxOutlineBlank
+                                style={{ display: 'flex', marginTop: '5px', verticalAlign: 'middle', cursor: 'pointer' }}
+                                onClick={onToggleIsCompleted}
+                            />
+                        )}
+                    </span>
+                </div>
+
                 <span className="task-text">
                     <textarea
                         ref={textAreaRef}
@@ -40,23 +57,8 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                 </span>
                 <div className="icons">
                     <span className="icon">
-
-                        {isCompleted ? (
-                            <MdOutlineCheckBox
-                                style={{ display: 'flex', margin: '5px', verticalAlign: 'middle', cursor: 'pointer' }}
-                                onClick={onToggleIsCompleted}
-                            />
-                        ) : (
-                            <MdOutlineCheckBoxOutlineBlank
-                                style={{ display: 'flex', margin: '5px', verticalAlign: 'middle', cursor: 'pointer' }}
-                                onClick={onToggleIsCompleted}
-                            />
-                        )}
-                    </span>
-
-                    <span className="icon">
                         <div id="icon" className="icon-copy">
-                            <TaskDropdown handleDeleteTasks={handleDeleteTasks}/>
+                            <TaskDropdown handleDeleteTasks={handleDeleteTasks} />
                         </div>
                     </span>
                 </div>

@@ -4,7 +4,6 @@ import { FiTrash } from "react-icons/fi";
 import TaskComponent from "./Task";
 import type { Task as TaskType } from "../types";
 
-
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -37,6 +36,7 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, ha
         <div className="column" ref={setNodeRef} {...attributes} style={style}>
             <div className="column-title">
                 <input
+                    id="gradient"
                     className="column-name"
                     value={title}
                     placeholder="New List Title"

@@ -56,7 +56,7 @@ const BoardDropdown: React.FC<BoardDropdownProps> = ({ handleDeleteBoard, boardI
             hideOnClick={false}
         >
             <span className="icon-trigger">
-                <TfiMore style={{ display: 'flex', verticalAlign: 'middle' }} />
+                <TfiMore style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }} />
             </span>
         </Tippy>
     );

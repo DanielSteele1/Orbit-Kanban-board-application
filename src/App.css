@@ -28,11 +28,13 @@ body {
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
-  height: 60px;
+  height: 70px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
 }
 
 .nav-buttons {
@@ -40,7 +42,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px;
 }
 
 .theme-button,
@@ -50,6 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   margin: 10px;
+  font-size: 1.2rem;
 }
 
 .theme-button:hover,
@@ -89,6 +91,7 @@ body {
   font-family: 'Figtree', sans-serif;
   font-size: 1.0rem;
   font-weight: 500;
+  width: 100%;
 }
 
 .nav-logo span svg {
@@ -139,7 +142,14 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100vh);
+  max-height: fit-content;
   width: 100%;
+
+}
+
+.board-title-input:focus,
+.board-description-input:focus {
+  outline: none;
 }
 
 .controls {
@@ -149,18 +159,16 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: fit-content;
-  border: 2px solid #292929;
+  min-height: 110px;
   border-radius: 12px;
   margin: 0 auto;
   margin-bottom: 20px;
+  background-color: #292929;
 }
 
 .board-text {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  padding: 10px;
 }
 
 .column-scroll-container {
@@ -171,8 +179,6 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   width: 90%;
-  padding: 10px;
-  border: 2px solid #292929;
   border-radius: 8px;
   height: 90%;
 }
@@ -184,7 +190,8 @@ body {
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
-  height: 90%;
+  min-height: 75vh;
+  padding-bottom: 10px;
   overflow: visible;
   margin: 0 auto;
 }
@@ -192,7 +199,8 @@ body {
 .Board {
   max-width: 100vw;
   margin: 0 auto;
-  height: 100%;
+  min-height: 90vh;
+  max-height: 100%;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -219,18 +227,77 @@ body {
 }
 
 .board-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
+  color: #ff4e50;
+
 }
 
-.add-board {
+.board-title-input:hover,
+.board-description-input:hover {
+  cursor: pointer;
+}
+
+.board-top,
+.board-bottom {
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.add-board,
+.board-search,
+.board-filter {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #d85456;
   width: fit-content;
+  height: 40px;
+
   justify-content: center;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  color: whitesmoke;
+
+}
+
+.board-search-input,
+.board-search,
+.board-filter,
+.add-board {
+
+  font-family: 'Figtree', sans-serif;
+  font-weight: 500;
+  font-size: 1.0rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.board-search-input {
+  border: none;
+  display: flex;
+  height: fit-content;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.add-board:hover,
+.board-search-input:hover,
+.board-filter:hover,
+.board-search-input:focus {
+  cursor: pointer;
+  outline: none;
 }
 
 .taskbar {
@@ -239,7 +306,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  min-height: 300px;
+  height: 300px;
   margin: 0 auto;
 }
 
@@ -248,7 +315,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 55%;
+  width: 90%;
+  margin: 20px;
 }
 
 .App-title,
@@ -258,7 +326,7 @@ body {
   padding: 5px;
   margin-bottom: 10px;
   font-family: 'Quicksand', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .App-title {
@@ -273,9 +341,9 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   min-width: 250px;
+  max-width: 300px;
   height: fit-content;
-  background-color:rgb(17, 16, 16);
-  border: 2px solid #292929;
+  background-color: #292929;
   border-radius: 8px;
   margin-right: 10px;
 }
@@ -283,10 +351,9 @@ body {
 .column-name {
   display: inline-flex;
   justify-content: space-between;
-  width: 130px;
+  width: 100%;
   margin-left: 5px;
   margin-right: 20px;
-  padding-top: 5px;
   font-size: 16px;
   font-weight: 500;
   align-items: center;
@@ -365,11 +432,14 @@ body {
   color: #fff;
 }
 
-#drag-icon{
+#drag-icon {
   cursor: grab;
 
 }
 
+#drag-icon:active {
+  cursor: grabbing;
+}
 
 .Task {
 
@@ -379,12 +449,10 @@ body {
   align-items: flex-start;
   width: 100%;
   height: fit-content;
-  padding-left: 10px;
   padding-right: 15px;
   font-size: 16px;
   font-weight: 400;
   border-radius: 8px;
-
 }
 
 .task-text {
@@ -394,14 +462,14 @@ body {
   white-space: nowrap;
   overflow-y: auto;
   overflow-x: hidden;
-
   align-items: flex-start;
   width: fit-content;
 }
 
 .task-input {
+  display: flex;
   width: 100%;
-  min-height: 40px !important;
+  min-height: 30px !important;
   justify-content: center;
   align-items: center;
   padding: 10px 10px;
@@ -427,12 +495,13 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   font-size: 1.2rem;
   width: 100%;
+  color: #ff4e50;
 }
 
-.board-id{
+.board-id {
   display: flex;
   font-size: 1.0rem;
   align-items: flex-end;
@@ -444,36 +513,45 @@ body {
 
 .board-grid {
 
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(repeat, 1fr);
+  column-count: 4;
+  column-gap: 15px;
   width: 80%;
   height: fit-content;
   margin: 0 auto;
+  margin-top: 50px;
 
 }
 
-.board-tile {
+.grid-controls {
+
   display: flex;
+  width: 80%;
+  height: fit-content;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.board-tile {
+  display: inline-block;
   flex-direction: row;
-  justify-content: space-around;
-  height: 280px;
-  width: 280px;
-  min-width: 0;
+  justify-content: center;
+  min-height: fit-content;
+  min-height: fit-content;
+  width: 350px;
   overflow: hidden;
   padding: 10px;
   border-radius: 15px;
   font-size: 1.0rem;
   font-weight: 400;
-  margin-top: 20px;
-  background-color: rgb(17, 16, 16);
-  border: 2px solid #292929;
-
+  margin-bottom: 20px;
+  background-color: #292929;
+  will-change: transform;
 }
 
 .board-tile:hover {
   cursor: pointer;
-  border: 2px solid #ff4e50;
   transition: 0.3s ease-in;
 }
 
@@ -490,7 +568,6 @@ body {
   line-break: auto;
   max-width: 100%;
   text-overflow: elipsis;
-  margin-top: 10px;
 }
 
 .board-title-input,
@@ -502,17 +579,16 @@ body {
   justify-content: flex-start;
   width: fit-content;
   height: fit-content;
-  max-height: 100px;
+  max-height: 80px;
   max-width: 800px;
 
-  min-width: 400px;
+  width: 800px;
   min-height: 40px;
   white-space: normal;
   word-wrap: normal;
   word-break: break-word;
   overflow-wrap: break-word;
-
-  margin-bottom: 10px;
+  margin: 10px;
   font-family: 'Figtree', sans-serif;
   border: none;
   background: transparent;
@@ -528,12 +604,12 @@ body {
 
 .board-dropdown {
   height: fit-content;
-  width: fit-content;
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-end;
-  padding: 10px;
+  padding: 5px;
   color: #ff4e50;
   font-size: 1.2rem;
 }
@@ -557,7 +633,11 @@ body {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: fit-content;
+  height: 35px;
+  background-color: #d85456;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
 }
 
 .add-column {
@@ -638,7 +718,7 @@ body {
   .board-grid {
 
     display: grid;
-    margin-top: 150px;
+    margin-top: 50px;
     grid-template-columns: repeat(1, 1fr);
     width: 100%;
     height: fit-content;
@@ -648,7 +728,9 @@ body {
     width: 80%;
     height: fit-content;
     margin: 0 auto;
-    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 100px;
   }
 
   .main {
@@ -659,6 +741,7 @@ body {
   .column-scroll-container {
     overflow-y: auto;
     margin: 10px;
+    width: 80%;
   }
 
   .column-container {
@@ -668,8 +751,33 @@ body {
   }
 
   .column {
-    width: 80%;
-    margin: 10px auto;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .column-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .Task-container {
+    width: 100%;
+  }
+
+  .Task {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 
   .controls {
@@ -679,20 +787,22 @@ body {
     margin: 0px;
     flex-direction: column;
     align-items: center;
-    background-color: transparent;
   }
+
   .title {
     flex-direction: column;
     justify-content: flex-start;
     width: fit-content;
   }
 
-  .board-description-input, .board-title-input {
+  .board-description-input,
+  .board-title-input {
     min-width: 100px;
     max-width: 100%;
   }
 
-  .board-text, .board-id {
+  .board-text,
+  .board-id {
     width: fit-content;
     align-items: flex-start;
     justify-content: flex-start;
