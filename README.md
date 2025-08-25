@@ -21,7 +21,7 @@ With React DnD, users can reorder tasks via drag-and-drop. All data is saved in 
 
 ---
 
-🛠 Completed Features
+## ✔️ Completed Features
 - Add & delete multiple boards.
 - See all those boards in one central location, where you can customise it's title, description and give it a picture.
 - Add & Delete Columns and Tasks inside each board, in order to track daily goals or current tasks.
