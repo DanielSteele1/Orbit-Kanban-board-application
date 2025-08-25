@@ -143,22 +143,33 @@ function Main() {
                         items={filteredBoard || []}
                         strategy={horizontalListSortingStrategy}>
                         <div className="grid">
+                            {filteredBoard?.length > 0 ? (
+                                <Masonry
+                                    breakpointCols={1}
+                                    className="masonry-grid"
+                                    columnClassName="masonry-grid_column">
 
-                            <Masonry
-                                breakpointCols={1}
-                                className="masonry-grid"
-                                columnClassName="masonry-grid_column">
+                                
+                                    {filteredBoard.map(board => (
+                                    <BoardTile
+                                        key={board.id}
+                                        board={board}
+                                        handleDeleteBoard={handleDeleteBoard}
+                                    />
+                                    ))}
+                                </Masonry>
+                            ) : boards.length === 0 ? (
 
-                                {filteredBoard?.length > 0 ? (
-                                    filteredBoard.map(board => (
-                                        <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
-                                    ))
-                                ) : (
-                                    <div className="no-results">
-                                        No boards match your search.
-                                    </div>
-                                )}
-                            </Masonry>
+                                <div className="no-results">
+                                    No boards available. Click "Add a New Board" to create one.
+                                </div>
+                            ) : (
+                                <div className="no-results">
+                                    No boards match your current search.
+                                </div>
+
+                            )}
+
 
                         </div>
                     </SortableContext>

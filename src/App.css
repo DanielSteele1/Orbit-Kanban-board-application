@@ -680,6 +680,27 @@ body {
   cursor: grab;
 }
 
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: fit-content;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  color: rgb(187, 187, 187);
+  overflow: hidden;
+  
+}
+
+.masonry-grid-column .no-results {
+  width: 100%;
+  margin: 0 auto;
+  break-inside: avoid;
+  overflow: hidden;
+}
+
 @media (min-width: 300px) and (max-width: 750px) {
 
   html,
