@@ -1,15 +1,43 @@
-.my-masonry-grid {
-  display: -webkit-box; 
-  display: -ms-flexbox; 
+.masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  margin-left: -30px;
-  width: auto;
+  width: 100%;
+  justify-content: flex-start;
 }
+
 .masonry-grid_column {
-  padding-left: 20px;
   background-clip: padding-box;
 }
 
-.masonry-grid_column > div {
+.masonry-grid_column>div {
   margin-bottom: 20px;
+}
+
+@media (min-width: 300px) and (max-width: 750px) {
+  .masonry-grid {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .masonry-grid_column>div {
+    column-count: 1;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+  .masonry-grid {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .masonry-grid_column>div {
+    column-count: 3;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
 }

@@ -154,7 +154,7 @@ body {
 
 .controls {
 
-  min-width: 90%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -164,12 +164,9 @@ body {
   margin: 0 auto;
   margin-bottom: 20px;
   background-color: #292929;
+
 }
 
-.board-text {
-  display: flex;
-  flex-direction: column;
-}
 
 .column-scroll-container {
   white-space: nowrap;
@@ -196,7 +193,7 @@ body {
   margin: 0 auto;
 }
 
-.Board {
+.kanban-board {
   max-width: 100vw;
   margin: 0 auto;
   min-height: 90vh;
@@ -206,6 +203,16 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+}
+
+.grid-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  height: fit-content;
+  padding: 10px;
 }
 
 .board-text {
@@ -255,20 +262,15 @@ body {
 .add-board,
 .board-search,
 .board-filter {
-
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: #d85456;
   width: fit-content;
   height: 40px;
-
-  justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   color: whitesmoke;
-
 }
 
 .board-search-input,
@@ -292,6 +294,11 @@ body {
   background-color: transparent;
 }
 
+.board-search,
+.board-filter {
+  margin-left: 20px;
+}
+
 .add-board:hover,
 .board-search-input:hover,
 .board-filter:hover,
@@ -306,7 +313,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  height: 300px;
+  height: 250px;
   margin: 0 auto;
 }
 
@@ -340,8 +347,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 230px;
+  max-width: 250px;
   height: fit-content;
   background-color: #292929;
   border-radius: 8px;
@@ -511,37 +518,40 @@ body {
   width: fit-content;
 }
 
-.board-grid {
+.grid {
 
   column-count: 4;
   column-gap: 15px;
-  width: 80%;
+  width: 100%;
   height: fit-content;
   margin: 0 auto;
-  margin-top: 50px;
-
 }
 
 .grid-controls {
-
   display: flex;
-  width: 80%;
+  width: 100%;
   height: fit-content;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 auto;
-  padding: 10px;
+  padding-bottom: 20px;
 }
 
 .board-tile {
-  display: inline-block;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+
+  display: flex;
   flex-direction: row;
   justify-content: center;
   min-height: fit-content;
-  min-height: fit-content;
   width: 350px;
+  max-width: 100%;
   overflow: hidden;
-  padding: 10px;
+  padding: 15px;
   border-radius: 15px;
   font-size: 1.0rem;
   font-weight: 400;
@@ -700,8 +710,32 @@ body {
     height: fit-content;
     width: 100%;
     margin: 0 auto;
-    padding: 10px;
 
+  }
+
+  .grid-board {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 20px;
+  }
+
+  .add-board,
+  .board-search,
+  .board-filter {
+    height: 35px;
+    width: fit-content;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
   }
 
   .taskbar button {
@@ -715,22 +749,23 @@ body {
     margin: 0 auto;
   }
 
-  .board-grid {
-
-    display: grid;
-    margin-top: 50px;
-    grid-template-columns: repeat(1, 1fr);
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
+    margin: 20px auto;
     height: fit-content;
+    padding: 10px;
   }
 
   .board-tile {
-    width: 80%;
+    width: 90%;
+    min-width: unset;
     height: fit-content;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    min-height: 100px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
   }
 
   .main {
@@ -782,23 +817,29 @@ body {
 
   .controls {
 
-    width: 80%;
-    padding: 0px;
-    margin: 0px;
+    width: fit-content;
     flex-direction: column;
     align-items: center;
+    background-color: transparent;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .board-text {
+    border-radius: 8px;
   }
 
   .title {
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
     width: fit-content;
   }
 
-  .board-description-input,
-  .board-title-input {
-    min-width: 100px;
+  .board-title-input,
+  .board-description-input {
     max-width: 100%;
+    min-width: fit-content;
   }
 
   .board-text,
@@ -807,6 +848,41 @@ body {
     align-items: flex-start;
     justify-content: flex-start;
     margin: 0px;
+    margin-left: 10px;
+  }
+}
+
+
+@media (min-width: 750px) and (max-width: 1000px) {
+  .grid {
+    column-count: 2;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin: 0 auto;
+  }
+
+  .grid-controls {
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+}
+
+@media (min-width: 1000px) and (max-width: 1600px) {
+  .grid {
+    column-count: 3;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin: 0 auto;
+  }
+
+  .grid-controls {
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
   }
 
 }

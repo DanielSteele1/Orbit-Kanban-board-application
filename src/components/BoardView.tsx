@@ -233,7 +233,7 @@ function BoardView() {
     return (
 
         <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-            <div className="Board">
+            <div className="kanban-board">
                 <div className="controls">
                     <div className="board-text">
                         <div className="title">

@@ -62,7 +62,6 @@
   button {
     display: flex;
     border: none;
-    margin-left: 10px;
   }
 
   button:hover {

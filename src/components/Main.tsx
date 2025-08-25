@@ -73,21 +73,40 @@ function Main() {
 
     const [filteredBoard, setFilteredBoard] = useState<BoardType[]>(boards);
 
-        
+
+    useEffect(() => {
+        setFilteredBoard(boards);
+    }, [boards]);
+
+
+    function SearchBoards(e: React.ChangeEvent<HTMLInputElement>) {
+        const searchTerm = e.target.value.toLowerCase();
+
+        if (searchTerm === '') {
+
+            setFilteredBoard(boards);
+
+
+        } else {
+            const filtered = boards.filter(board =>
+                board.title.toLowerCase().includes(searchTerm)
+            );
+            setFilteredBoard(filtered);
+        }
+    }
 
     return (
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <div className="main">
-
                 <div className="taskbar">
-
                     <span className="intro">
-
                         <span className="App-title" id="gradient"> Welcome to Task managment tool </span>
 
                         <span className="App-desc">
                             This app helps you organize your projects and tasks with ease.
                             Create multiple boards to separate different areas of your work or life.
+                            <br></br>
+                            <br></br>
                             You can re-order each board element inside each board to maintain full control of your workflow.
                             Inside each board, you can add columns to categorize tasks and track progress step-by-step.
                         </span>
@@ -97,7 +116,8 @@ function Main() {
 
                 </div>
 
-                <div className="grid-controls">
+                <div className="grid-board">
+                    <div className="grid-controls">
 
                         <button
                             className="add-board"
@@ -110,35 +130,39 @@ function Main() {
                             <input type="search"
                                 className="board-search-input"
                                 placeholder="Search for a board..."
-                                onChange={(e) => {
-                                    const searchTerm = e.target.value.toLowerCase();
-                                    setBoards(prevBoards => prevBoards.filter(board => board.title.toLowerCase().includes(searchTerm)));
-                                }}
+                                onChange={SearchBoards}
                             />
                         </div>
 
                         <button className="board-filter">
                             <MdOutlineSort style={{ fontSize: '20px', marginRight: '5px' }} /> Filter Boards
                         </button>
-                </div>
-
-                <SortableContext
-                    items={boards}
-                    strategy={horizontalListSortingStrategy}>
-                    <div className="board-grid">
-
-                        <Masonry
-                            breakpointCols={2}
-                            className="masonry-grid"
-                            columnClassName="masonry-grid_column">
-
-                            {boards.map(board => (
-                                <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
-                            ))}
-                        </Masonry>
-
                     </div>
-                </SortableContext>
+
+                    <SortableContext
+                        items={filteredBoard || []}
+                        strategy={horizontalListSortingStrategy}>
+                        <div className="grid">
+
+                            <Masonry
+                                breakpointCols={1}
+                                className="masonry-grid"
+                                columnClassName="masonry-grid_column">
+
+                                {filteredBoard?.length > 0 ? (
+                                    filteredBoard.map(board => (
+                                        <BoardTile key={board.id} board={board} handleDeleteBoard={handleDeleteBoard} />
+                                    ))
+                                ) : (
+                                    <div className="no-results">
+                                        No boards match your search.
+                                    </div>
+                                )}
+                            </Masonry>
+
+                        </div>
+                    </SortableContext>
+                </div>
             </div>
         </DndContext>
     );
