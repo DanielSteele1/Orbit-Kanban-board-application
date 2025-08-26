@@ -16,9 +16,8 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ---
 ## 🛠 Planned Features
 
-- Search for boards by board name & filter boards by multiple means such as date created, alphabetically sorted etc. 
+- filter boards by multiple means such as date created, alphabetically sorted etc. 
 - Ability to export each a board's data, possibly via JSON. 
-- One click copy feature on every task.
 
 ---
 
@@ -29,6 +28,9 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 - Tick off tasks when their completed.
 - All user data saved into LocalStorage. 
 - Drag and Drop any column to re-order the board. Especially useful if you have a full board with lots of tasks, and need to reorder everyting quickly. Also planned to be implemented in the main area in which the user see's all thier boards.
+
+- One click copy feature on every task
+- Search for boards by board name
 
 ## 🛠 Technologies Used (so far)
 
