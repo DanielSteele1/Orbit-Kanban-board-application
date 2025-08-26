@@ -1,7 +1,8 @@
 # Trello style Kanban Board Application - Frontend Project
 
-This simple Trello-like app helps me reinforce my fundamentals by building a useful frontend tool. It uses React and TypeScript to ensure maintainable, modular, and clean code. 
-With React DnD, users can reorder tasks via drag-and-drop. All data is saved in localStorage to keep the project scope manageable.
+This Trello-inspired task management app showcases my ability to build structured, interactive frontends with React and TypeScript. 
+I've implemented drag-and-drop functionality using React DnD, enabling smooth task reordering within columns.
+To keep the project lightweight and focused on frontend fundamentals, I used localStorage for data persistence, ensuring a responsive and self-contained user experience while maintaining clean, modular, and scalable code.
 
  -> Please, do not clone this repository unless you are a recruiter. If you copy my work and try to pass it off as your own (this has happened before!), I will know. 
 
