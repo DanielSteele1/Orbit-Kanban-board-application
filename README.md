@@ -35,7 +35,7 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ## 🛠 Technologies Used (so far)
 
 - **Frontend**: React, TypeScript, React-router, Figma.
-- **Libraries**: DnDkit (Drag and Drop), Masonry layout library.
+- **Libraries**: DnDkit (Drag and Drop), Masonry layout library, Toastify.js
 
 ---
 
