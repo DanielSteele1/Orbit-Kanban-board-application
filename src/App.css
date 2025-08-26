@@ -399,16 +399,17 @@ body {
   display: flex;
   width: fit-content;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   border-radius: 8px;
 }
 
 .tooltip-icons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-size: 1.2rem;
   background-color: transparent;
+  margin: 5px;
 }
 
 .tooltip-icons:hover {
@@ -457,15 +458,13 @@ body {
   width: 100%;
   height: fit-content;
   padding-right: 15px;
-  font-size: 16px;
-  font-weight: 400;
   border-radius: 8px;
 }
 
 .task-text {
   display: flex;
   justify-content: center;
-  max-height: 150px;
+  max-height: 250px;
   white-space: nowrap;
   overflow-y: auto;
   overflow-x: hidden;
@@ -482,9 +481,9 @@ body {
   padding: 10px 10px;
   background-color: transparent;
   border: none;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 400;
+  color: whitesmoke;
+  font-size: 1.0rem;
+  font-weight: 350;
   line-height: normal;
   font-family: 'Figtree', sans-serif;
   resize: none;
@@ -692,6 +691,11 @@ body {
   color: rgb(187, 187, 187);
   overflow: hidden;
   
+}
+
+.task-input.completed {
+    text-decoration: line-through;
+    transition: all 0.2s ease-in-out;
 }
 
 .masonry-grid-column .no-results {

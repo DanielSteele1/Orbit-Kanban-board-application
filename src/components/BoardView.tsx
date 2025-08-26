@@ -10,6 +10,10 @@ import { DndContext, closestCorners, type DragEndEvent, useSensor, useSensors, K
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css"
+
+
 function BoardView() {
 
     const sensors = useSensors(
@@ -36,7 +40,7 @@ function BoardView() {
         const savedBoards = localStorage.getItem('boards');
         if (savedBoards) {
             const boards: BoardType[] = JSON.parse(savedBoards);
-            const updatedBoards = boards.map(b => 
+            const updatedBoards = boards.map(b =>
                 b.id === updatedBoard.id ? updatedBoard : b
             );
             localStorage.setItem('boards', JSON.stringify(updatedBoards));
@@ -45,30 +49,53 @@ function BoardView() {
 
     const handleAddColumn = () => {
         if (!board) return;
-        
+
         const newColumn: ColumnType = {
             id: Date.now(),
             title: '',
             tasks: []
         };
-        
+
         const updatedBoard = {
             ...board,
             columns: [...board.columns, newColumn]
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
 
     const handleDeleteColumn = (columnId: number) => {
         if (!board) return;
-        
+
+
+        Toastify({
+            text: "Column Deleted.",
+            duration: 4000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: '#00000000',
+                color: '#ff4e50',
+                border: '1px solid #ff4e50',
+                boxShadow: 'none',
+                display: 'flex',
+                width: 'fit-content',
+                padding: '10px'
+
+            },
+            onClick: function () { }
+        }).showToast();
+
         const updatedBoard = {
             ...board,
             columns: board.columns.filter(col => col.id !== columnId)
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
@@ -91,13 +118,36 @@ function BoardView() {
                     : col
             )
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
 
     const handleDeleteTask = (columnId: number, taskId: number) => {
         if (!board) return;
+
+
+        Toastify({
+            text: "Task Deleted.",
+            duration: 4000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: '#00000000',
+                color: '#ff4e50',
+                border: '1px solid #ff4e50',
+                boxShadow: 'none',
+                display: 'flex',
+                width: 'fit-content',
+                padding: '10px'
+
+            },
+            onClick: function () { }
+        }).showToast();
 
         const updatedBoard = {
             ...board,
@@ -110,7 +160,7 @@ function BoardView() {
                     : col
             )
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
@@ -127,7 +177,7 @@ function BoardView() {
                     : col
             )
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
@@ -151,7 +201,7 @@ function BoardView() {
                     : col
             )
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
@@ -175,7 +225,7 @@ function BoardView() {
                     : col
             )
         };
-        
+
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
     };
@@ -219,7 +269,7 @@ function BoardView() {
                     board.columns.findIndex((col) => col.id === over.id)
                 )
             };
-            
+
             setBoard(updatedBoard);
             updateBoardInStorage(updatedBoard);
         }

@@ -7,6 +7,9 @@ import { MdOutlineCheckBox } from "react-icons/md";
 import type { Task as TaskType } from "../types";
 import TaskDropdown from "./TaskDropdown.tsx"
 
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css"
+
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
     onTextChange: (newText: string) => void;
@@ -24,6 +27,34 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
             textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // Set to scroll height
         }
     }, [text]);
+
+
+    const handleCopy = (text: string) => {
+
+        Toastify({
+            text: "Text copied to clipboard.",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true, 
+            style: {
+                background: '#00000000',
+                color: '#ff4e50',
+                border: '1px solid #ff4e50',
+                boxShadow: 'none',
+                display: 'flex',
+                width: 'fit-content',
+                padding: '10px'
+
+            },
+            onClick: function () { }
+        }).showToast();
+
+        navigator.clipboard.writeText(text);
+    }
 
     return (
         <div className="Task-container">
@@ -50,6 +81,10 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                     <textarea
                         ref={textAreaRef}
                         value={text}
+                        style={{
+                            textDecoration: isCompleted ? 'line-through' : 'none',
+                            color: isCompleted ? '' : 'white'
+                        }}
                         onChange={e => onTextChange(e.target.value)}
                         className="task-input"
                         placeholder="Enter new task.."
@@ -58,7 +93,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                 <div className="icons">
                     <span className="icon">
                         <div id="icon" className="icon-copy">
-                            <TaskDropdown handleDeleteTasks={handleDeleteTasks} />
+                            <TaskDropdown text={text} handleDeleteTasks={handleDeleteTasks} handleCopy={handleCopy} />
                         </div>
                     </span>
                 </div>

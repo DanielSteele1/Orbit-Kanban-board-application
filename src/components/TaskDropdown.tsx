@@ -6,17 +6,19 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 interface DropdownProps {
+    handleCopy: (text: string) => void;
     handleDeleteTasks: (taskId: any) => void;
+    text: string;
 }
 
-const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks }) => {
+const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks, handleCopy, text }) => {
 
     const dropdownContent = (
-        <div className="tooltip" style={{ display: 'flex',  width: 'fit-content', flexDirection: 'column', justifyContent: 'center' }}>
+        <div className="tooltip" style={{ display: 'flex',  width: 'fit-content', flexDirection: 'column',  }}>
             <button
                 className="tooltip-icons"
-                onClick={() => alert('Copy clicked')}
-                style={{ display: 'flex', margin: '10px' }}
+                onClick={() => handleCopy(text)}
+                style={{ display: 'flex' }}
             >
                 <FiCopy />
 
@@ -29,7 +31,7 @@ const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks }) => {
             <button
                 className="tooltip-icons"
                 onClick={() => handleDeleteTasks(null)}
-                style={{ display: 'flex', marginLeft: '20px' }}
+                style={{ display: 'flex' }}
             >
                 <FiTrash />
 

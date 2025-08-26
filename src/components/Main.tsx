@@ -12,6 +12,8 @@ import Masonry from 'react-masonry-css'
 import { IoSearchSharp } from "react-icons/io5";
 import './Masonry-grid.css';
 
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css"
 
 function Main() {
 
@@ -46,7 +48,29 @@ function Main() {
 
     // delete a board
 
-    const handleDeleteBoard = (boardId: number) => {
+    const handleDeleteBoard = ( boardId: number) => {
+
+        Toastify({
+            text: `Board (with Id:${boardId}) Deleted.`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: '#00000000',
+                color: '#ff4e50',
+                border: '1px solid #ff4e50',
+                boxShadow: 'none',
+                display: 'flex',
+                width: 'fit-content',
+                padding: '10px'
+
+            },
+            onClick: function () { }
+        }).showToast();
 
         setBoards(prev =>
             prev.filter(board => board.id !== boardId)
@@ -94,6 +118,7 @@ function Main() {
             setFilteredBoard(filtered);
         }
     }
+
 
     return (
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
@@ -149,13 +174,13 @@ function Main() {
                                     className="masonry-grid"
                                     columnClassName="masonry-grid_column">
 
-                                
+
                                     {filteredBoard.map(board => (
-                                    <BoardTile
-                                        key={board.id}
-                                        board={board}
-                                        handleDeleteBoard={handleDeleteBoard}
-                                    />
+                                        <BoardTile
+                                            key={board.id}
+                                            board={board}
+                                            handleDeleteBoard={handleDeleteBoard}
+                                        />
                                     ))}
                                 </Masonry>
                             ) : boards.length === 0 ? (
