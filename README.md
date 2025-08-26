@@ -13,6 +13,8 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 
 <img width="1782" height="909" alt="image" src="https://github.com/user-attachments/assets/4f00deb5-5a4f-4e8e-b509-73000ec5b567" />
 
+<img width="223" height="153" alt="image" src="https://github.com/user-attachments/assets/21b31200-745e-4851-8b34-5ebd6d58b7d0" />
+
 ---
 ## 🛠 Planned Features
 
