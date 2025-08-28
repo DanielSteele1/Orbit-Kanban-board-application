@@ -154,7 +154,7 @@ body {
 
 .controls {
 
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -164,9 +164,7 @@ body {
   margin: 0 auto;
   margin-bottom: 20px;
   background-color: #292929;
-
 }
-
 
 .column-scroll-container {
   white-space: nowrap;
@@ -175,7 +173,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 90%;
+  width: 80%;
   border-radius: 8px;
   height: 90%;
 }

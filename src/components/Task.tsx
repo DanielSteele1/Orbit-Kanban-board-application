@@ -34,7 +34,6 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
         Toastify({
             text: "Text copied to clipboard.",
             duration: 3000,
-            destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: true,
             gravity: "bottom",

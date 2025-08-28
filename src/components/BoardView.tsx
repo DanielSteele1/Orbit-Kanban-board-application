@@ -72,7 +72,6 @@ function BoardView() {
         Toastify({
             text: "Column Deleted.",
             duration: 4000,
-            destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: true,
             gravity: "bottom",
@@ -130,7 +129,6 @@ function BoardView() {
         Toastify({
             text: "Task Deleted.",
             duration: 4000,
-            destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: true,
             gravity: "bottom",
