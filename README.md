@@ -9,16 +9,21 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ---
 ## 📷 Screenshot - Everything is subject to change including this UI
 
+### Main page showing a masonry grid with each board
 <img width="1607" height="917" alt="image" src="https://github.com/user-attachments/assets/7c7c709a-2a9f-446b-8a54-947b47fbd7b6" />
 
+### Inside each board is a kanban board where you can add/remove tasks and columns, and reorder with drag and drop.
+
 <img width="1782" height="909" alt="image" src="https://github.com/user-attachments/assets/4f00deb5-5a4f-4e8e-b509-73000ec5b567" />
+
+### After each operatation, a toast notification displays in the bottom right hand corner of the screen telling the user an operation has been carried out.
+<img width="223" height="153" alt="image" src="https://github.com/user-attachments/assets/21b31200-745e-4851-8b34-5ebd6d58b7d0" />
 
 ---
 ## 🛠 Planned Features
 
-- Search for boards by board name & filter boards by multiple means such as date created, alphabetically sorted etc. 
+- filter boards by multiple means such as date created, alphabetically sorted etc. 
 - Ability to export each a board's data, possibly via JSON. 
-- One click copy feature on every task.
 
 ---
 
@@ -30,10 +35,13 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 - All user data saved into LocalStorage. 
 - Drag and Drop any column to re-order the board. Especially useful if you have a full board with lots of tasks, and need to reorder everyting quickly. Also planned to be implemented in the main area in which the user see's all thier boards.
 
+- One click copy feature on every task
+- Search for boards by board name
+
 ## 🛠 Technologies Used (so far)
 
 - **Frontend**: React, TypeScript, React-router, Figma.
-- **Libraries**: DnDkit (Drag and Drop), Masonry layout library.
+- **Libraries**: DnDkit (Drag and Drop), Masonry layout library, Toastify.js
 
 ---
 
