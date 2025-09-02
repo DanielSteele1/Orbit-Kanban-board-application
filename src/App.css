@@ -27,14 +27,23 @@ body {
 .navigation {
 
   display: flex;
+  z-index: 99999;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: calc(100vw - 15px);
   margin: 0 auto;
   height: 70px;
+  position: fixed;
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
+  background: linear-gradient(90deg, #ff4e50, #ff6ec4);
+  color: #f5f5f5;
+
+}
+
+.nav-hamburger {
+  display: none;
 }
 
 .nav-buttons {
@@ -44,14 +53,46 @@ body {
   align-items: center;
 }
 
+.theme-button .Dropdown-control {
+  display: flex;
+  background-color: transparent !important;
+  border: none;
+  min-width: 150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-button .Dropdown-placeholder,
+.theme-button .Dropdown-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke !important;
+}
+
+.theme-button .Dropdown-menu {
+
+  background-color: #292929 !important;
+  border: none !important;
+}
+
+.theme-button .Dropdown-optons {
+  background-color: #ff4e50 !important;
+}
+
 .theme-button,
 .back-button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 45px;
   margin: 10px;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
+  padding-left: 10px;
+  border-radius: 8px;
+  background-color: #292929;
+
 }
 
 .theme-button:hover,
@@ -60,6 +101,7 @@ body {
   color: #ff4e50;
   transition: 0.3s ease-in;
   cursor: pointer;
+  background-color: #292929;
 }
 
 .nav-logo {
@@ -67,6 +109,11 @@ body {
   align-items: center;
   justify-content: center;
   margin: 10px;
+  margin-left: 20px;
+  background-color: #292929;
+  color: #f5f5f5;
+  border-radius: 8px;
+  height: fit-content;
 }
 
 .nav-logo span {
@@ -75,9 +122,10 @@ body {
   align-items: center;
   flex-direction: row;
   width: fit-content;
-  padding: 10px;
+  height: fit-content;
+  padding: 10px 20px;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
 }
 
 #gradient {
@@ -87,6 +135,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+
 #button-text {
   font-family: 'Figtree', sans-serif;
   font-size: 1.0rem;
@@ -95,7 +144,6 @@ body {
 }
 
 .nav-logo span svg {
-  margin-left: 10px;
   color: #ff4e50;
   align-items: center;
   justify-content: center;
@@ -138,13 +186,31 @@ body {
 }
 
 .main {
-
   display: flex;
   flex-direction: column;
   height: calc(100vh);
   max-height: fit-content;
   width: 100%;
+  margin-top: 100px;
 
+}
+
+
+.kanban-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  max-width: 100vw;
+  margin-top: 150px;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.main,
+.kanban-board {
+  min-height: 80vh;
+  box-sizing: border-box;
 }
 
 .board-title-input:focus,
@@ -168,8 +234,7 @@ body {
 
 .column-scroll-container {
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -189,18 +254,6 @@ body {
   padding-bottom: 10px;
   overflow: visible;
   margin: 0 auto;
-}
-
-.kanban-board {
-  max-width: 100vw;
-  margin: 0 auto;
-  min-height: 90vh;
-  max-height: 100%;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
 }
 
 .grid-board {
@@ -290,6 +343,7 @@ body {
   width: 100%;
   padding: 10px;
   background-color: transparent;
+  color: whitesmoke;
 }
 
 .board-search,
@@ -300,9 +354,16 @@ body {
 .add-board:hover,
 .board-search-input:hover,
 .board-filter:hover,
-.board-search-input:focus {
+.board-search-input:focus,
+#button-text:focus,
+.tooltip-icons:focus,
+#delete-board:focus {
   cursor: pointer;
   outline: none;
+}
+
+.board-search-input::placeholder {
+  color: whitesmoke;
 }
 
 .taskbar {
@@ -345,8 +406,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 230px;
-  max-width: 250px;
+  min-width: 250px;
+  max-width: 300px;
   height: fit-content;
   background-color: #292929;
   border-radius: 8px;
@@ -399,6 +460,7 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 8px;
+
 }
 
 .tooltip-icons {
@@ -665,6 +727,15 @@ body {
   background: none;
 }
 
+#delete-board {
+  color: #ff4e50;
+  background-color: transparent;
+}
+
+#delete-board:hover {
+  cursor: pointer;
+}
+
 .add-column button:hover,
 #icon,
 .edit-button {
@@ -688,12 +759,12 @@ body {
   font-size: 1.5rem;
   color: rgb(187, 187, 187);
   overflow: hidden;
-  
+
 }
 
 .task-input.completed {
-    text-decoration: line-through;
-    transition: all 0.2s ease-in-out;
+  text-decoration: line-through;
+  transition: all 0.2s ease-in-out;
 }
 
 .masonry-grid-column .no-results {
@@ -711,6 +782,10 @@ body {
     height: 100%;
   }
 
+  .kanban-board {
+    margin-top: 10vh;
+  }
+
   .nav-buttons {
     width: 100%;
     display: flex;
@@ -719,11 +794,45 @@ body {
   }
 
   .navigation {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
     height: fit-content;
+    padding: 10px;
+  }
+
+  .nav-hamburger {
+    display: unset;
+  }
+
+  .hamburger:active {
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    display: none;
+  }
+
+  .nav-menu-mobile {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: linear-gradient(120deg, #ff4e50, #ff6ec4);
+    flex-direction: column;
+    transition: 0.3s ease-in-out;
+  }
+
+  .nav-button {
+
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
     padding: 0px;
+
   }
 
   .taskbar {
@@ -799,7 +908,7 @@ body {
   .column-scroll-container {
     overflow-y: auto;
     margin: 10px;
-    width: 80%;
+    width: 100%;
   }
 
   .column-container {
@@ -809,7 +918,9 @@ body {
   }
 
   .column {
-    width: 100%;
+
+    min-width: 350px;
+    max-width: 350px;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -824,28 +935,42 @@ body {
 
   .Task-container {
     width: 100%;
+    display: flex;
   }
 
   .Task {
     width: 100%;
-    height: 50px;
-    padding: 10px;
-    align-items: center;
+    max-height: 200px;
+    min-height: 60px;
+    width: 320px;
     justify-content: space-around;
     margin: 0 auto;
     font-size: 0.9rem;
     padding-right: 0px;
     padding-left: 0px;
+    overflow: hidden;
+  }
+
+  .task-text {
+    flex: 1;
+    max-height: 180px;
+    min-height: 0px;
+    overflow-y: auto;
+    padding: 0 10px;
+  }
+
+  .task-input, .task-container {
+    height: fit-content;
+    min-height: fit-content;
   }
 
   .controls {
 
-    width: fit-content;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     background-color: transparent;
     padding: 10px;
-    margin-bottom: 10px;
   }
 
   .board-text {
@@ -861,8 +986,10 @@ body {
 
   .board-title-input,
   .board-description-input {
-    max-width: 100%;
-    min-width: fit-content;
+    width: 350px;
+    max-width: 350px;
+    min-width: 350px;
+    height: 80px;
   }
 
   .board-text,
@@ -872,6 +999,11 @@ body {
     justify-content: flex-start;
     margin: 0px;
     margin-left: 10px;
+  }
+
+
+  .icons {
+    align-items: flex-start;
   }
 }
 

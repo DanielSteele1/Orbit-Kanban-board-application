@@ -38,15 +38,15 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
             close: true,
             gravity: "bottom",
             position: "right",
-            stopOnFocus: true, 
+            stopOnFocus: true,
             style: {
-                background: '#00000000',
+                background: '#292929',
                 color: '#ff4e50',
-                border: '1px solid #ff4e50',
                 boxShadow: 'none',
                 display: 'flex',
                 width: 'fit-content',
                 padding: '10px'
+
 
             },
             onClick: function () { }
@@ -86,6 +86,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                         }}
                         onChange={e => onTextChange(e.target.value)}
                         className="task-input"
+                        maxLength={300}
                         placeholder="Enter new task.."
                     />
                 </span>

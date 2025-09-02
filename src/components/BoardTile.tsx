@@ -2,12 +2,11 @@
 import type { BoardType } from '../types';
 import { useNavigate } from 'react-router-dom';
 
-import BoardDropdown from "./BoardDropdown.tsx"
 import { AiOutlineDrag } from "react-icons/ai";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
+import { FiTrash } from 'react-icons/fi';
 
 interface BoardProps {
     board: BoardType;
@@ -49,11 +48,18 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
                     </span>
 
                     <div className="board-dropdown">
-                        <BoardDropdown
-
-                            boardId={board.id}
-                            handleDeleteBoard={handleDeleteBoard}
-                        />
+                        <span className="icon">
+                            <button
+                                id="delete-board"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteBoard(board.id);
+                                }}
+                                style={{  display: 'flex', marginLeft: '0px', verticalAlign: 'middle', fontSize: '20px' }}
+                            >
+                                <FiTrash />
+                            </button>
+                            </span>
                         <span className="icon" {...listeners}>
                             <AiOutlineDrag id="drag-icon" style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }}
                             />

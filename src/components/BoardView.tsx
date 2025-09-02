@@ -78,9 +78,8 @@ function BoardView() {
             position: "right",
             stopOnFocus: true,
             style: {
-                background: '#00000000',
+                background: '#292929',
                 color: '#ff4e50',
-                border: '1px solid #ff4e50',
                 boxShadow: 'none',
                 display: 'flex',
                 width: 'fit-content',
@@ -135,9 +134,8 @@ function BoardView() {
             position: "right",
             stopOnFocus: true,
             style: {
-                background: '#00000000',
+                background: '#292929',
                 color: '#ff4e50',
-                border: '1px solid #ff4e50',
                 boxShadow: 'none',
                 display: 'flex',
                 width: 'fit-content',
@@ -290,6 +288,7 @@ function BoardView() {
                                 className="board-title-input"
                                 id="gradient"
                                 placeholder="Untitled Board"
+                                maxLength={50}
                                 value={board.title}
                                 onChange={(e) => handleBoardText('title', e.target.value)}
 
@@ -305,6 +304,7 @@ function BoardView() {
                             <textarea
                                 className="board-description-input"
                                 placeholder="Click to add a description"
+                                maxLength={500}
                                 value={board.description}
                                 onChange={(e) => handleBoardText('description', e.target.value)}
                             />

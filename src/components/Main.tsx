@@ -14,6 +14,7 @@ import './Masonry-grid.css';
 
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
+import { TbPlanet } from 'react-icons/tb';
 
 function Main() {
 
@@ -59,9 +60,8 @@ function Main() {
             position: "right",
             stopOnFocus: true,
             style: {
-                background: '#00000000',
+                background: '#292929',
                 color: '#ff4e50',
-                border: '1px solid #ff4e50',
                 boxShadow: 'none',
                 display: 'flex',
                 width: 'fit-content',
@@ -101,7 +101,6 @@ function Main() {
         setFilteredBoard(boards);
     }, [boards]);
 
-
     function SearchBoards(e: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = e.target.value.toLowerCase();
 
@@ -118,21 +117,24 @@ function Main() {
         }
     }
 
-
     return (
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <div className="main">
                 <div className="taskbar">
                     <span className="intro">
-                        <span className="App-title" id="gradient"> Welcome to Task managment tool </span>
+                        <span className="App-title" id="gradient"> Welcome to Orbit <TbPlanet style={{ display: 'flex', justifyContent: 'center', alignContent:'center', marginLeft: '10px', color: '#ff4e50'}}/> </span>
 
                         <span className="App-desc">
-                            This app helps you organize your projects and tasks with ease.
+                            Orbit helps you organize your projects and tasks with ease.
+                            <br></br>
                             Create multiple boards to separate different areas of your work or life.
                             <br></br>
                             <br></br>
-                            You can re-order each board element inside each board to maintain full control of your workflow.
-                            Inside each board, you can add columns to categorize tasks and track progress step-by-step.
+                            Inside each board, you can add column to categorize tasks and track progress step-by-step.
+                            <br></br>
+                            <br></br>
+                            You can re-order each column to maintain full control of your workflow.
+                            
                         </span>
                         <span id="gradient" className="App-desc"> Click on the 'Add a Board' button to get started. </span>
 
