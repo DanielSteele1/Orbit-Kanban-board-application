@@ -1,6 +1,6 @@
-# Trello style Kanban Board Application - Frontend Project
+# Orbit - Trello inspired Kanban Board application - Frontend Project
 
-This Trello-inspired task management app showcases my ability to build structured, interactive frontends with React and TypeScript. 
+Orbit is a task management app intended to showcase my ability to build structured, interactive frontends with React and TypeScript. 
 I've implemented drag-and-drop functionality using React DnD, enabling smooth task reordering within columns.
 To keep the project lightweight and focused on frontend fundamentals, I used localStorage for data persistence, ensuring a responsive and self-contained user experience while maintaining clean, modular, and scalable code.
 
@@ -10,11 +10,13 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ## 📷 Screenshot - Everything is subject to change including this UI
 
 ### Main page showing a masonry grid with each board
-<img width="1607" height="917" alt="image" src="https://github.com/user-attachments/assets/7c7c709a-2a9f-446b-8a54-947b47fbd7b6" />
+<img width="1903" height="909" alt="image" src="https://github.com/user-attachments/assets/8b9bd589-f134-4ec4-811a-b6ccbebb0a33" />
+
 
 ### Inside each board is a kanban board where you can add/remove tasks and columns, and reorder with drag and drop.
 
-<img width="1782" height="909" alt="image" src="https://github.com/user-attachments/assets/4f00deb5-5a4f-4e8e-b509-73000ec5b567" />
+<img width="1905" height="912" alt="image" src="https://github.com/user-attachments/assets/9344b74c-7e8d-4886-b13e-4943bcc041a0" />
+
 
 ### After each operatation, a toast notification displays in the bottom right hand corner of the screen telling the user an operation has been carried out.
 <img width="223" height="153" alt="image" src="https://github.com/user-attachments/assets/21b31200-745e-4851-8b34-5ebd6d58b7d0" />
