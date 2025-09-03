@@ -23,7 +23,8 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
         transition,
         willChange: "transform",
         opacity: isDragging ? 0.5 : undefined,
-        cursor: isDragging ? 'grabbing' : undefined
+        cursor: isDragging ? 'grabbing' : undefined,
+
 
     };
 

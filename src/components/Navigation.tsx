@@ -33,61 +33,63 @@ function Navigation(): JSX.Element {
 
     return (
 
-        <div className="navigation">
-            <div className="nav-logo">
-                <span> <TbPlanet style={{ fontSize: '25px', display: 'flex', marginRight: '10px' }} /> Orbit - Task tracking app </span>
-            </div>
-            <div className="nav-buttons">
-
-                {isLookingAtBoard && (
-                    <div className="back-button" onClick={handleBackButton}>
-                        <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
-                        <span id="button-text"> Back </span>
-                    </div>
-                )
-                }
-
-                <Dropdown className="theme-button"
-                    options={options}
-                    arrowClosed={<span className="arrow-closed" />}
-                    arrowOpen={<span className="arrow-open" />}
-                    value={options[2]}
-                />
-            </div>
-
-            <div className="nav-hamburger">
-                <Hamburger toggled={isOpen} toggle={setOpen} />
-            </div>
-
-            {isOpen && (
-
-                <div className="nav-menu-mobile">
-
-                    <div className="nav-button">
-
-                        {isLookingAtBoard && (
-                            <div className="back-button" onClick={handleBackButton}>
-                                <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
-                                <span id="button-text"> Back </span>
-                            </div>
-                        )
-                        }
-
-                    </div>
-
-                    <div className="nav-button">
-
-                        <Dropdown className="theme-button"
-                            options={options}
-                            arrowClosed={<span className="arrow-closed" />}
-                            arrowOpen={<span className="arrow-open" />}
-                            value={options[2]}
-                        />
-                    </div>
-
+        <div className="navigation-container">
+            <div className="navigation">
+                <div className="nav-logo">
+                    <span> <TbPlanet style={{ fontSize: '25px', display: 'flex', marginRight: '10px' }} /> Orbit - Task tracking app </span>
                 </div>
-            )}
+                <div className="nav-buttons">
 
+                    {isLookingAtBoard && (
+                        <div className="back-button" onClick={handleBackButton}>
+                            <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
+                            <span id="button-text"> Back </span>
+                        </div>
+                    )
+                    }
+
+                    <Dropdown className="theme-button"
+                        options={options}
+                        arrowClosed={<span className="arrow-closed" />}
+                        arrowOpen={<span className="arrow-open" />}
+                        value={options[2]}
+                    />
+                </div>
+
+                <div className="nav-hamburger">
+                    <Hamburger toggled={isOpen} toggle={setOpen} />
+                </div>
+
+                {isOpen && (
+
+                    <div className="nav-menu-mobile">
+
+                        <div className="nav-button">
+
+                            {isLookingAtBoard && (
+                                <div className="back-button" onClick={handleBackButton}>
+                                    <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
+                                    <span id="button-text"> Back </span>
+                                </div>
+                            )
+                            }
+
+                        </div>
+
+                        <div className="nav-button">
+
+                            <Dropdown className="theme-button"
+                                options={options}
+                                arrowClosed={<span className="arrow-closed" />}
+                                arrowOpen={<span className="arrow-open" />}
+                                value={options[2]}
+                            />
+                        </div>
+
+                    </div>
+                )}
+
+            </div>
         </div>
     )
 }

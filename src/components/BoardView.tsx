@@ -288,7 +288,7 @@ function BoardView() {
                                 className="board-title-input"
                                 id="gradient"
                                 placeholder="Untitled Board"
-                                maxLength={50}
+                                maxLength={33}
                                 value={board.title}
                                 onChange={(e) => handleBoardText('title', e.target.value)}
 

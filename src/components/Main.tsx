@@ -5,7 +5,7 @@ import BoardTile from "./BoardTile";
 import type { BoardType } from '../types';
 import { FaPlus } from 'react-icons/fa';
 
-import { DndContext, closestCorners, type DragEndEvent } from "@dnd-kit/core";
+import { DndContext, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { MdOutlineSort } from "react-icons/md";
 import Masonry from 'react-masonry-css'
@@ -17,6 +17,18 @@ import "toastify-js/src/toastify.css"
 import { TbPlanet } from 'react-icons/tb';
 
 function Main() {
+
+    const sensors = useSensors(
+
+        useSensor(MouseSensor),
+        useSensor(KeyboardSensor),
+        useSensor(TouchSensor, {
+            activationConstraint: {
+                delay: 200,
+                tolerance: 5,
+            },
+        })
+    )
 
     // save boards to local storage 
 
@@ -39,8 +51,8 @@ function Main() {
         const newBoard: BoardType = {
 
             id: Date.now(),
-            title: 'Untitled Board',
-            description: 'No Description Yet',
+            title: 'Edit Board Title',
+            description: 'Edit Description',
             columns: []
 
         };
@@ -49,7 +61,7 @@ function Main() {
 
     // delete a board
 
-    const handleDeleteBoard = ( boardId: number) => {
+    const handleDeleteBoard = (boardId: number) => {
 
         Toastify({
             text: `Board (with Id:${boardId}) Deleted.`,
@@ -118,25 +130,22 @@ function Main() {
     }
 
     return (
-        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <div className="main">
                 <div className="taskbar">
                     <span className="intro">
-                        <span className="App-title" id="gradient"> Welcome to Orbit <TbPlanet style={{ display: 'flex', justifyContent: 'center', alignContent:'center', marginLeft: '10px', color: '#ff4e50'}}/> </span>
+                        <span className="App-title" id="gradient"> <TbPlanet style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', marginRight: '10px', color: '#ff4e50' }} /> Welcome to Orbit  </span>
 
                         <span className="App-desc">
                             Orbit helps you organize your projects and tasks with ease.
                             <br></br>
                             Create multiple boards to separate different areas of your work or life.
                             <br></br>
-                            <br></br>
                             Inside each board, you can add column to categorize tasks and track progress step-by-step.
                             <br></br>
-                            <br></br>
                             You can re-order each column to maintain full control of your workflow.
-                            
                         </span>
-                        <span id="gradient" className="App-desc"> Click on the 'Add a Board' button to get started. </span>
+                        <span className="App-desc-action"> Click on the 'Add a Board' button to get started. </span>
 
                     </span>
 
@@ -148,7 +157,7 @@ function Main() {
                         <button
                             className="add-board"
                             onClick={handleAddBoard}>
-                            <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add a New Board
+                            <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add New Board
                         </button>
 
                         <div className="board-search">
@@ -187,7 +196,7 @@ function Main() {
                             ) : boards.length === 0 ? (
 
                                 <div className="no-results">
-                                    No boards available. Click "Add a New Board" to create one.
+                                    No boards available. Click "Add New Board" to create one.
                                 </div>
                             ) : (
                                 <div className="no-results">

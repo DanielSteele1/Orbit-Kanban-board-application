@@ -36,10 +36,9 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, ha
         <div className="column" ref={setNodeRef} {...attributes} style={style}>
             <div className="column-title">
                 <input
-                    id="gradient"
                     className="column-name"
                     value={title}
-                    placeholder="New List Title"
+                    placeholder="Edit Title"
                     onChange={(e) => handleTitleChange(columnId, e.target.value)}
 
                 />

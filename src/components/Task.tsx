@@ -81,6 +81,9 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                         ref={textAreaRef}
                         value={text}
                         style={{
+                            height: 'fit-content',
+                            paddingLeft: '10px',
+                            paddingTop: '8px',
                             textDecoration: isCompleted ? 'line-through' : 'none',
                             color: isCompleted ? '' : 'white'
                         }}
