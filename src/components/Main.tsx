@@ -14,7 +14,6 @@ import './Masonry-grid.css';
 
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
-import { TbPlanet } from 'react-icons/tb';
 
 function Main() {
 
