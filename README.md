@@ -1,4 +1,4 @@
-# Orbit - Trello inspired Kanban Board application - Frontend Project
+# Orbit - Kanban Board application - Frontend Project
 
 Orbit is a task management app intended to showcase my ability to build structured, interactive frontends with React and TypeScript. 
 I've implemented drag-and-drop functionality using React DnD, enabling smooth task reordering within columns.
@@ -7,12 +7,12 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
  -> Please, do not clone this repository unless you are a recruiter. If you copy my work and try to pass it off as your own (this has happened before!), I will know. 
 
 ---
-## 📷 Screenshot - Everything is subject to change including this UI
+## 📷 Screenshots - Everything is subject to change including this UI
 
 ### Main page showing a masonry grid with each board
 <img width="1916" height="921" alt="image" src="https://github.com/user-attachments/assets/530e2edd-6b18-4aa4-ae38-195d9f5ed70a" />
 
-### Inside each board is a kanban board where you can add/remove tasks and columns, and reorder with drag and drop.
+### Inside each board is a Kanban board, where you can add/remove tasks and columns, and reorder with drag and drop.
 
 <img width="1914" height="919" alt="image" src="https://github.com/user-attachments/assets/5a8de316-8684-414b-8fba-925300001eef" />
 
