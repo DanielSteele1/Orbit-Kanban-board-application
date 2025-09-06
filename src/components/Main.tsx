@@ -134,19 +134,16 @@ function Main() {
             <div className="main">
                 <div className="taskbar">
                     <span className="intro">
-                        <span className="App-title" id="gradient"> <TbPlanet style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', marginRight: '10px', color: '#ff4e50' }} /> Welcome to Orbit  </span>
+                        <h1 className="App-desc-title" id="gradient"> Orbit helps you organize your projects and tasks with ease.  </h1>
+                    </span>
 
-                        <span className="App-desc">
-                            Orbit helps you organize your projects and tasks with ease.
-                            <br></br>
-                            Create multiple boards to separate different areas of your work or life.
-                            <br></br>
-                            Inside each board, you can add column to categorize tasks and track progress step-by-step.
-                            <br></br>
-                            You can re-order each column to maintain full control of your workflow.
-                        </span>
-                        <span className="App-desc-action"> Click on the 'Add a Board' button to get started. </span>
-
+                    <span className="App-desc">
+                        <ul>
+                            <li className="list-item"> Create multiple boards to separate different areas of your work or life. </li>
+                            <li className="list-item"> Inside each board, you can add column to categorize tasks and track progress step-by-step. </li>
+                            <li className="list-item"> Re-order each column to maintain full control of your workflow. </li>
+                        </ul>
+                        <span className="App-desc-action" id="gradient"> Click on the 'Add a Board' button to get started. </span>
                     </span>
 
                 </div>
@@ -183,8 +180,7 @@ function Main() {
                                     breakpointCols={1}
                                     className="masonry-grid"
                                     columnClassName="masonry-grid_column">
-
-
+                                    
                                     {filteredBoard.map(board => (
                                         <BoardTile
                                             key={board.id}

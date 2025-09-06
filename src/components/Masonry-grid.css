@@ -37,7 +37,7 @@
   .masonry-grid_column>div {
     column-count: 3;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
 }

@@ -19,7 +19,6 @@ type ColumnProps = {
     handleDeleteColumn: (columnId: any) => void;
 };
 
-
 const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks, handleDeleteTasks, handleToggleIsCompleted, handleTaskTextChange, handleTitleChange }: ColumnProps) => {
 
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: columnId });

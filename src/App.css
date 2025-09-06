@@ -165,9 +165,6 @@ body {
 .footer {
 
   display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -175,6 +172,7 @@ body {
   height: fit-content;
   margin: 0 auto;
   font-size: 16px;
+  background-color: #1C1C1E;
 }
 
 .footer-item {
@@ -201,17 +199,17 @@ body {
 .main {
   display: flex;
   flex-direction: column;
-  height: calc(100vh);
-  max-height: fit-content;
+  height: 100%;
   width: 100%;
   margin-top: 100px;
-
 }
 
 .kanban-board {
   display: flex;
+  height: fit-content;
   flex-direction: column;
   align-items: center;
+  height: auto;
   max-width: 80%;
   max-width: 100vw;
   margin-top: 150px;
@@ -221,8 +219,9 @@ body {
 
 .main,
 .kanban-board {
-  min-height: 80vh;
   box-sizing: border-box;
+  height: fit-content;
+
 }
 
 .board-title-input:focus,
@@ -241,7 +240,7 @@ body {
   border-radius: 12px;
   margin: 0 auto;
   margin-bottom: 20px;
-  background-color: rgb(17, 16, 16);
+  background-color: #1C1C1E;
   border: 2px solid #292929;
 }
 
@@ -269,13 +268,15 @@ body {
 }
 
 .grid-board {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   width: 80%;
+  min-height: 500px;
   height: fit-content;
   padding: 10px;
+  padding-bottom: 100px;
 }
 
 .board-text {
@@ -381,11 +382,10 @@ body {
 
 .taskbar {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  height: 250px;
   margin: 0 auto;
 }
 
@@ -393,34 +393,53 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 25vh;
+  text-align: center;
+}
+
+.App-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 90%;
-  margin: 20px;
+  width: fit-content;
+  font-size: 1.0rem;
+}
+
+.App-desc-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
 }
 
 .App-title,
 .App-desc {
   display: flex;
   justify-content: center;
-  padding: 5px;
+  align-items: center;
   margin-bottom: 10px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-weight: 500;
 }
 
 .App-desc-action {
   display: flex;
-  font-family: 'Quicksand', sans-serif;
-  padding-left: 5px;
-  font-size: 1.1rem;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #ff4e50;
 }
 
 .App-title {
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
+  margin: 10px;
+
 }
 
 .column {
@@ -433,7 +452,7 @@ body {
   height: fit-content;
   border-radius: 8px;
   margin-right: 10px;
-  background-color: rgb(17, 16, 16);
+  background-color: #1C1C1E;
   border: #292929 2px solid;
 }
 
@@ -614,6 +633,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   padding-bottom: 20px;
+  margin: 10px;
 }
 
 .board-tile {
@@ -636,8 +656,7 @@ body {
   font-size: 1.0rem;
   font-weight: 400;
   margin-bottom: 20px;
-  background-color: rgb(17, 16, 16);
-
+  background-color: #1C1C1E;
   border: 2px solid #292929;
   will-change: transform;
 }
@@ -666,14 +685,12 @@ body {
 .board-description-input {
   display: flex;
   flex-direction: row;
-  height: fit-content;
+  height: 5px;
   align-items: center;
   justify-content: flex-start;
   width: fit-content;
-  height: fit-content;
   max-height: 80px;
   max-width: 800px;
-
   width: 800px;
   min-height: 40px;
   white-space: normal;
@@ -795,10 +812,9 @@ body {
   width: fit-content;
   text-align: center;
   padding: 20px;
-  font-size: 1.5rem;
-  color: rgb(187, 187, 187);
+  font-size: 1.2rem;
+  color: whitesmoke;
   overflow: hidden;
-
 }
 
 .task-input.completed {
@@ -895,9 +911,8 @@ body {
   .grid-controls {
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
-    padding-left: 20px;
   }
 
   .add-board,
@@ -914,10 +929,34 @@ body {
     margin-top: 10px;
   }
 
+  .App-desc-title {
+    font-size: 2.0rem;
+  }
+
+  .App-desc {
+
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .App-desc li {
+    padding: 5px;
+  }
+
+  .App-desc-action {
+    width: 80%;
+    height: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
   .intro,
   .app-desc {
     width: 80%;
     margin: 0 auto;
+    height: 30vh;
   }
 
   .grid {
@@ -941,7 +980,7 @@ body {
 
   .main {
     width: 100%;
-    height: 100%;
+    height: fit-content;
   }
 
   .column-scroll-container {
@@ -958,12 +997,11 @@ body {
 
   .column {
 
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 80%;
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: rgb(17, 16, 16);
     border: 2px solid #292929;
   }
 
@@ -1008,10 +1046,9 @@ body {
 
   .controls {
 
-    width: 80%;
+    width: 70%;
     flex-direction: column;
     align-items: center;
-    background-color: transparent;
     margin: 10px;
   }
 
@@ -1048,6 +1085,37 @@ body {
   .icons {
     align-items: flex-start;
   }
+
+  .controls {
+    width: 80%;
+  }
+
+  .footer {
+
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
+    font-size: 16px;
+
+  }
+
+  .footer-item {
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.0rem;
+  }
+
+  .footer-flavourText {
+    display: none;
+  }
+
 }
 
 
@@ -1080,7 +1148,6 @@ body {
   .grid-controls {
     justify-content: flex-start;
     width: 100%;
-    margin: 0 auto;
   }
 
 }
