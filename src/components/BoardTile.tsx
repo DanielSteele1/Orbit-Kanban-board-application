@@ -2,11 +2,11 @@
 import type { BoardType } from '../types';
 import { useNavigate } from 'react-router-dom';
 
-import { AiOutlineDrag } from "react-icons/ai";
-
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FiTrash } from 'react-icons/fi';
+import { GrDrag } from "react-icons/gr";
+
 
 interface BoardProps {
     board: BoardType;
@@ -62,7 +62,7 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
                             </button>
                             </span>
                         <span className="icon" {...listeners}>
-                            <AiOutlineDrag id="drag-icon" style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }}
+                            <GrDrag id="drag-icon" style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }}
                             />
                         </span>
                     </div>

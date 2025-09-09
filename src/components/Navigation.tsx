@@ -4,16 +4,19 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useState } from 'react';
 import { useLocation } from "react-router-dom";
 
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import { RiComputerLine } from "react-icons/ri";
+import { FiMoon } from "react-icons/fi";
+import { FiSun } from "react-icons/fi";
 
-import { BsLightbulbOff } from "react-icons/bs";
-import { BsLightbulbFill } from "react-icons/bs";
 import { TbPlanet } from "react-icons/tb";
 import Hamburger from 'hamburger-react';
 
-function Navigation(): JSX.Element {
+interface NavigationProps {
+
+    handleThemeButton: React.MouseEventHandler<HTMLButtonElement>;
+    islightOn?: boolean;
+}
+
+function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Element {
     const location = useLocation();
 
     const handleBackButton: MouseEventHandler = () => {
@@ -23,12 +26,6 @@ function Navigation(): JSX.Element {
     // get whether the user is looking at a board or not. If user isnt looking at board then we hide the back button
     const isLookingAtBoard = location.pathname.startsWith("/board/");
 
-    const options = [
-        { value: 'light', label: <span style={{ display: 'flex', alignItems: 'center' }}><BsLightbulbFill style={{ marginRight: '8px' }} /> Light Mode</span> },
-        { value: 'dark', label: <span style={{ display: 'flex', alignItems: 'center' }}>< BsLightbulbOff style={{ marginRight: '8px' }} /> Dark Mode </span> },
-        { value: 'system', label: <span style={{ display: 'flex', alignItems: 'center' }}><RiComputerLine style={{ marginRight: '8px' }} /> System </span> }
-    ]
-
     const [isOpen, setOpen] = useState(false);
 
     return (
@@ -36,24 +33,39 @@ function Navigation(): JSX.Element {
         <div className="navigation-container">
             <div className="navigation">
                 <div className="nav-logo">
-                    <span> <TbPlanet style={{ fontSize: '25px', display: 'flex', marginRight: '10px' }} /> Orbit - Task tracking app </span>
+                    <span id="logo">
+                        <TbPlanet style={{ fontSize: '25px', display: 'flex' }} />
+                        <span id="logo-text"> Orbit - Kanban Board app </span>
+                        <span id="logo-text-mobile"> Orbit </span>
+                    </span>
                 </div>
                 <div className="nav-buttons">
 
                     {isLookingAtBoard && (
                         <div className="back-button" onClick={handleBackButton}>
                             <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
-                            <span id="button-text"> Back </span>
+                            <span id="back-text"> Back </span>
                         </div>
                     )
                     }
 
-                    <Dropdown className="theme-button"
-                        options={options}
-                        arrowClosed={<span className="arrow-closed" />}
-                        arrowOpen={<span className="arrow-open" />}
-                        value={options[2]}
-                    />
+                    {islightOn ? (
+                        <button className="theme-button" onClick={handleThemeButton}>
+                            <span className="theme-icon">
+                                <FiMoon style={{ margin: '10px', fontSize: '20px' }} />
+                            </span>
+                        </button>
+
+                    ) : (
+
+                        <button className="theme-button" onClick={handleThemeButton}>
+                            <span className="theme-icon">
+                                <FiSun style={{ margin: '10px', fontSize: '20px' }} />
+
+                            </span>
+                        </button>
+                    )}
+
                 </div>
 
                 <div className="nav-hamburger">
@@ -62,30 +74,42 @@ function Navigation(): JSX.Element {
 
                 {isOpen && (
 
-                    <div className="nav-menu-mobile">
+                    <div className="nav-menu-mobile-container">
+                        <div className="nav-menu-mobile">
 
-                        <div className="nav-button">
+                            <div className="nav-button">
 
-                            {isLookingAtBoard && (
-                                <div className="back-button" onClick={handleBackButton}>
-                                    <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
-                                    <span id="button-text"> Back </span>
-                                </div>
-                            )
-                            }
+                                {isLookingAtBoard && (
+                                    <div className="back-button" onClick={handleBackButton}>
+                                        <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
+                                        <span id="button-text"> Back </span>
+                                    </div>
+                                )
+                                }
+
+                            </div>
+
+                            <div className="nav-button">
+
+                                {islightOn ? (
+                                    <button className="theme-button" onClick={handleThemeButton}>
+                                        <span className="theme-icon">
+                                            <FiSun style={{ margin: '10px' }} />
+                                        </span>
+                                    </button>
+
+                                ) : (
+
+                                    <button className="theme-button" onClick={handleThemeButton}>
+                                        <span className="theme-icon">
+                                            <FiMoon style={{ margin: '10px' }} />
+                                        </span>
+                                    </button>
+                                )}
+
+                            </div>
 
                         </div>
-
-                        <div className="nav-button">
-
-                            <Dropdown className="theme-button"
-                                options={options}
-                                arrowClosed={<span className="arrow-closed" />}
-                                arrowOpen={<span className="arrow-open" />}
-                                value={options[2]}
-                            />
-                        </div>
-
                     </div>
                 )}
 

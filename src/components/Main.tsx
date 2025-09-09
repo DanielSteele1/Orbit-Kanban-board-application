@@ -7,7 +7,6 @@ import { FaPlus } from 'react-icons/fa';
 
 import { DndContext, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
-import { MdOutlineSort } from "react-icons/md";
 import Masonry from 'react-masonry-css'
 import { IoSearchSharp } from "react-icons/io5";
 import './Masonry-grid.css';
@@ -52,6 +51,7 @@ function Main() {
             id: Date.now(),
             title: 'Edit Board Title',
             description: 'Edit Description',
+            creationDate: Date.now(),
             columns: []
 
         };
@@ -87,7 +87,6 @@ function Main() {
         );
 
     };
-
 
     function handleDragEnd(event: DragEndEvent) {
 
@@ -133,7 +132,7 @@ function Main() {
             <div className="main">
                 <div className="taskbar">
                     <span className="intro">
-                        <h1 className="App-desc-title" id="gradient"> Orbit helps you organize your projects and tasks with ease.  </h1>
+                        <h1 className="App-desc-title" id="gradient"> Orbit helps you organize your projects and tasks with ease. </h1>
                     </span>
 
                     <span className="App-desc">
@@ -165,9 +164,6 @@ function Main() {
                             />
                         </div>
 
-                        <button className="board-filter">
-                            <MdOutlineSort style={{ fontSize: '20px', marginRight: '5px' }} /> Filter Boards
-                        </button>
                     </div>
 
                     <SortableContext

@@ -18,5 +18,6 @@ export interface BoardType {
     title: string;
     description: string;
     columns: ColumnType[]
+    creationDate: number
 
 }

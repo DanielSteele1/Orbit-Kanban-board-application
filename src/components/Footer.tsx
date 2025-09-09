@@ -1,4 +1,3 @@
-import { CgCoffee } from "react-icons/cg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoEarthOutline } from "react-icons/io5";
 
@@ -16,7 +15,7 @@ function Footer() {
             </div>
 
             <div className="footer-flavourText">
-                <span id="gradient"> Made with TypeScript , React & lots of coffee <CgCoffee style={{ marginLeft: '10px', marginTop: '5px' }} /> </span>
+              
             </div>
 
             <Tippy

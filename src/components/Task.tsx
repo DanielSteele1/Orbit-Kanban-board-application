@@ -85,7 +85,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                             paddingLeft: '10px',
                             paddingTop: '8px',
                             textDecoration: isCompleted ? 'line-through' : 'none',
-                            color: isCompleted ? '' : 'white'
+                            color: isCompleted ? '' : ''
                         }}
                         onChange={e => onTextChange(e.target.value)}
                         className="task-input"

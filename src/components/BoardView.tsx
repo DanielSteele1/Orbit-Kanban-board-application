@@ -13,7 +13,6 @@ import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
 
-
 function BoardView() {
 
     const sensors = useSensors(
@@ -264,6 +263,7 @@ function BoardView() {
                     board.columns.findIndex((col) => col.id === active.id),
                     board.columns.findIndex((col) => col.id === over.id)
                 )
+
             };
 
             setBoard(updatedBoard);
@@ -299,6 +299,7 @@ function BoardView() {
                             </div>
                         </div>
 
+
                         <div className="board-desc">
 
                             <textarea
@@ -308,6 +309,9 @@ function BoardView() {
                                 value={board.description}
                                 onChange={(e) => handleBoardText('description', e.target.value)}
                             />
+
+                            <AddColumn handleAddColumn={handleAddColumn} />
+
 
                         </div>
 
@@ -334,7 +338,6 @@ function BoardView() {
                             </SortableContext>
 
                         ))}
-                        <AddColumn handleAddColumn={handleAddColumn} />
                     </div>
                 </div>
             </div>
