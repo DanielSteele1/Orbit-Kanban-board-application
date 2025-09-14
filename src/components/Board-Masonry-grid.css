@@ -1,0 +1,45 @@
+.board-masonry-container {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.board-masonry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.board-masonry-grid_column {
+  flex: 0 0 250px;
+}
+
+.board-masonry-grid_column>div {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1600px) {
+  .board-masonry-grid_column {
+    flex: 0 0 200px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .board-masonry-grid_column {
+    flex: 0 0 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .board-masonry-grid_column {
+    flex: 0 0 100%;
+  }
+}
+
+@media (max-width: 300px) {
+
+  .board-masonry-grid_column>div {
+    margin-bottom: 10px;
+  }
+}

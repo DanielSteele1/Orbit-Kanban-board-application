@@ -60,7 +60,9 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
             <div className="Task">
 
                 <div className="icons">
-                    <span className="icon">
+                    <span className="icon"
+                    id="icon-check"
+                    >
 
                         {isCompleted ? (
                             <MdOutlineCheckBox
@@ -95,7 +97,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
                 </span>
                 <div className="icons">
                     <span className="icon">
-                        <div id="icon" className="icon-copy">
+                        <div id="icon-more">
                             <TaskDropdown text={text} handleDeleteTasks={handleDeleteTasks} handleCopy={handleCopy} />
                         </div>
                     </span>

@@ -14,7 +14,7 @@ interface DropdownProps {
 const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks, handleCopy, text }) => {
 
     const dropdownContent = (
-        <div className="tooltip" style={{ display: 'flex',  width: 'fit-content', flexDirection: 'column',  }}>
+        <div className="tooltip" style={{ display: 'flex',  width: 'fit-content', flexDirection: 'column'}}>
             <button
                 className="tooltip-icons"
                 onClick={() => handleCopy(text)}
@@ -52,7 +52,7 @@ const TaskDropdown: React.FC<DropdownProps> = ({ handleDeleteTasks, handleCopy, 
             arrow={true}
             hideOnClick={false}
         >
-            <span className="icon-trigger">
+            <span className="icon-trigger" id="icon-more">
                 <TfiMore style={{ display: 'flex', margin: '5px', verticalAlign: 'middle' }} />
             </span>
         </Tippy>

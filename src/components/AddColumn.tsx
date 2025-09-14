@@ -20,10 +20,8 @@ function AddColumn({ handleAddColumn }: AddColumnProps) {
                         <div className="column-text"> Add a new list </div>
                     </button>
                 </div>
-
             </div>
         </div>
-
     )
 }
 

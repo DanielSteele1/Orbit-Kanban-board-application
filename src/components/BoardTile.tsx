@@ -7,7 +7,6 @@ import { CSS } from "@dnd-kit/utilities";
 import { FiTrash } from 'react-icons/fi';
 import { GrDrag } from "react-icons/gr";
 
-
 interface BoardProps {
     board: BoardType;
     handleDeleteBoard: (boardId: number) => (void);
@@ -22,9 +21,7 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
         transform: CSS.Transform.toString(transform),
         transition,
         willChange: "transform",
-        opacity: isDragging ? 0.5 : undefined,
         cursor: isDragging ? 'grabbing' : undefined,
-
 
     };
 

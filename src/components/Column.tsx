@@ -5,7 +5,8 @@ import TaskComponent from "./Task";
 import type { Task as TaskType } from "../types";
 
 import { CSS } from "@dnd-kit/utilities";
-import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { useSortable } from "@dnd-kit/sortable";
+
 type ColumnProps = {
     columnId: number;
     title: string;
@@ -44,6 +45,7 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks,
                     />
                     <div className="icons">
                         <span className="icon"
+                        id="delete-icon"
                             onClick={handleDeleteColumn}
                         >
                             <FiTrash
@@ -61,7 +63,6 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks,
                 </div>
 
                 {tasks.map(task => (
-                    <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
                         <TaskComponent
                             id={task.id}
                             text={task.text}
@@ -70,7 +71,6 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks,
                             onToggleIsCompleted={() => handleToggleIsCompleted(task.id)}
                             onTextChange={newText => handleTaskTextChange(task.id, newText)}
                         />
-                    </SortableContext>
                 ))}
 
                 <span className="add-task">

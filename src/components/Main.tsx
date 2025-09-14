@@ -52,8 +52,7 @@ function Main() {
             title: 'Edit Board Title',
             description: 'Edit Description',
             creationDate: Date.now(),
-            columns: []
-
+            items: [],
         };
         setBoards(prev => [...prev, newBoard]);
     };
@@ -106,7 +105,6 @@ function Main() {
 
     const [filteredBoard, setFilteredBoard] = useState<BoardType[]>(boards);
 
-
     useEffect(() => {
         setFilteredBoard(boards);
     }, [boards]);
@@ -143,7 +141,6 @@ function Main() {
                         </ul>
                         <span className="App-desc-action" id="gradient"> Click on the 'Add a Board' button to get started. </span>
                     </span>
-
                 </div>
 
                 <div className="grid-board">

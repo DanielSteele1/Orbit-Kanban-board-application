@@ -68,8 +68,10 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
 
                 </div>
 
-                <div className="nav-hamburger">
-                    <Hamburger toggled={isOpen} toggle={setOpen} />
+                <div className="nav-hamburger-container">
+                    <div className="nav-hamburger">
+                        <Hamburger toggled={isOpen} toggle={setOpen} />
+                    </div>
                 </div>
 
                 {isOpen && (
@@ -86,10 +88,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                                     </div>
                                 )
                                 }
-
-                            </div>
-
-                            <div className="nav-button">
 
                                 {islightOn ? (
                                     <button className="theme-button" onClick={handleThemeButton}>
