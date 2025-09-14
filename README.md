@@ -27,7 +27,6 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ## 🛠 Planned Features
 
 - Ability to export each a board's data, possibly via JSON.
-- Abillity to add notes as well as just lists.
 - User customisation (choice of colouring notes/tasks)
 - Let users pin certain tasks to the top of the board.
 --
@@ -42,6 +41,7 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 - Abillity to switch from a Kanban board (like trello) to a masonry layout (like Google Keep).
 - One click copy feature on every task
 - Search for boards by board name
+- Abillity to add notes as well as just lists.
 
 ## 🛠 Technologies Used (so far)
 
