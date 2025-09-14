@@ -335,6 +335,7 @@ body {
   margin: 0 auto;
   flex-direction: column;
   width: 80%;
+  min-width: 80%;
 }
 
 .board-container-masonry-mode{
@@ -342,6 +343,7 @@ body {
   margin: 0 auto;
   flex-direction: column;
   width: fit-content;
+  min-width: 80%;
 }
 
 .board-buttons {
