@@ -22,10 +22,11 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ---
 ## 🛠 Planned Features
 
-- filter boards by multiple means such as date created, alphabetically sorted etc. 
-- Ability to export each a board's data, possibly via JSON. 
-
----
+- Ability to export each a board's data, possibly via JSON.
+- Abillity to add notes as well as just lists.
+- User customisation (choice of colouring notes/tasks)
+- Let users pin certain tasks to the top of the board.
+--
 
 ## ✔️ Completed Features
 - Add & delete multiple boards.
@@ -34,7 +35,7 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 - Tick off tasks when their completed.
 - All user data saved into LocalStorage. 
 - Drag and Drop any column to re-order the board. Especially useful if you have a full board with lots of tasks, and need to reorder everyting quickly. Also planned to be implemented in the main area in which the user see's all thier boards.
-
+- Abillity to switch from a Kanban board (like trello) to a masonry layout (like Google Keep).
 - One click copy feature on every task
 - Search for boards by board name
 
