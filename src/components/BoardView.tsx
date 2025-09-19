@@ -239,13 +239,45 @@ function BoardView() {
         updateBoardInStorage({ ...board, items: updatedItems });
     };
 
-    const handleTitleChange = (columnId: number, newTitle: string) => {
+    const handleNoteTextEdit = (id: number, newNoteText: string,) => {
+
+        if (!board) return;
+        const updatedItems = board.items.map(item => {
+
+            if (item.type === 'note' && item.data.id === id) {
+
+                return {
+                    ...item,
+                    data: {
+                        ...item.data,
+                        text: newNoteText,
+                    }
+                };
+            }
+            return item;
+        });
+
+        setBoard({ ...board, items: updatedItems });
+        updateBoardInStorage({ ...board, items: updatedItems });
+
+    };
+
+    const handleTitleChange = (id: number, newTitle: string) => {
         if (!board) return;
 
         const updatedItems = board.items.map(item => {
 
-            if (item.type === 'column' && item.data.id === columnId) {
+            if (item.type === 'column' && item.data.id === id) {
 
+                return {
+                    ...item,
+                    data: {
+                        ...item.data,
+                        title: newTitle
+                    }
+                };
+            }
+            if (item.type === 'note' && item.data.id === id) {
                 return {
                     ...item,
                     data: {
@@ -256,6 +288,7 @@ function BoardView() {
             }
             return item;
         });
+
 
         setBoard({ ...board, items: updatedItems });
         updateBoardInStorage({ ...board, items: updatedItems });
@@ -268,31 +301,6 @@ function BoardView() {
 
         setBoard(updatedBoard);
         updateBoardInStorage(updatedBoard);
-    };
-
-
-    const handleNoteTextEdit = (id: number, newNoteTitle: string, newNoteText: string) => {
-
-        if (!board) return;
-        const updatedItems = board.items.map(item => {
-
-            if (item.type === 'note' && item.data.id === id) {
-
-                return {
-                    ...item,
-                    data: {
-                        ...item.data,
-                        title: newNoteTitle,
-                        text: newNoteText,
-                    }
-                };
-            }
-            return item;
-        });
-
-        setBoard({ ...board, items: updatedItems });
-        updateBoardInStorage({ ...board, items: updatedItems });
-
     };
 
     const [switchBoard, setswitchBoard] = useState(false);
@@ -379,7 +387,6 @@ function BoardView() {
                         </div>
                     </div>
 
-
                     {switchBoard ? (
                         <div className="column-scroll-container">
                             <div className="column-container">
@@ -397,7 +404,7 @@ function BoardView() {
                                             handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
                                             handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
                                             handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
-                                            handleTitleChange={handleTitleChange}
+                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
                                         />
                                     ) : (
                                         <Note
@@ -407,7 +414,8 @@ function BoardView() {
                                             text={item.data.text}
                                             creationDate={item.data.creationDate}
                                             handleDeleteNote={() => handleDeleteNote(item.data.id)}
-                                            handleNoteTextEdit={(newNoteTitle: string, newNoteText: string) => handleNoteTextEdit(item.data.id, newNoteTitle, newNoteText)}
+                                            handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
+                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
                                         />
                                     ))}
                                 </SortableContext>
@@ -433,7 +441,7 @@ function BoardView() {
                                             handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
                                             handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
                                             handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
-                                            handleTitleChange={handleTitleChange}
+                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
                                         />
                                     ) : (
 
@@ -445,7 +453,8 @@ function BoardView() {
                                             text={item.data.text}
                                             creationDate={item.data.creationDate}
                                             handleDeleteNote={() => handleDeleteNote(item.data.id)}
-                                            handleNoteTextEdit={(newNoteTitle: string, newNoteText: string) => handleNoteTextEdit(item.data.id, newNoteTitle, newNoteText)}
+                                            handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
+                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
 
                                         />
                                     ))}

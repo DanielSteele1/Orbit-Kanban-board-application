@@ -15,7 +15,7 @@ type ColumnProps = {
     handleDeleteTasks: (taskId: number) => void;
     handleToggleIsCompleted: (taskId: number) => void;
     handleTaskTextChange: (taskId: number, newText: string) => void;
-    handleTitleChange: (columnId: number, newTitle: string) => void;
+    handleTitleChange: (newTitle: string) => void;
     handleDeleteColumn: (columnId: any) => void;
 };
 
@@ -40,7 +40,7 @@ const Column = ({ columnId, title, tasks, handleDeleteColumn, handleAddTasks,
                         className="column-name"
                         value={title}
                         placeholder="Edit Title"
-                        onChange={(e) => handleTitleChange(columnId, e.target.value)}
+                        onChange={(e) => handleTitleChange(e.target.value)}
 
                     />
                     <div className="icons">

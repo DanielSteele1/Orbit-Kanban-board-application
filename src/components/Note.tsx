@@ -18,10 +18,11 @@ interface NoteProps extends NoteType {
     title: string;
     text: string;
     handleDeleteNote: (id: any) => void;
-    handleNoteTextEdit: (id: any, title: string, text: string) => void;
+    handleNoteTextEdit: (newNoteText: string) => void;
+    handleTitleChange: (newTitle: string) => void;
 }
 
-const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNoteTextEdit }) => {
+const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNoteTextEdit, handleTitleChange }) => {
 
     // resizes textarea so that it automatically grows and shrinks with content.
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -74,7 +75,7 @@ const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNo
 
                 <div className="note-title">
                     <input
-                        onChange={(e) => handleNoteTextEdit(id, title, e.target.value)}
+                        onChange={(e) => handleTitleChange(e.target.value)}
                         value={title}
                         className="note-name"
                         maxLength={50}
@@ -103,7 +104,7 @@ const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNo
                 <div className="note-content">
                     <textarea
                         className="note-content-input"
-                        onChange={(e) => handleNoteTextEdit(id, e.target.value, text)}
+                        onChange={(e) => handleNoteTextEdit(e.target.value)}
                         value={text}
                         maxLength={500}
                         placeholder={"Enter Note"}
