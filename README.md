@@ -10,15 +10,15 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 ## 📷 Screenshots - Everything is subject to change including this UI
 
 ### Main page showing a masonry grid with each board
-<img width="1910" height="916" alt="image" src="https://github.com/user-attachments/assets/6598afde-7e8c-4850-a941-8564568b8c22" />
+<img width="1913" height="911" alt="image" src="https://github.com/user-attachments/assets/7fa9adce-e09e-4b19-a4d3-8719673415e1" />
 
 ### Inside each board is a Kanban board, where you can add/remove tasks and columns, and reorder with drag and drop.
 
-<img width="1906" height="905" alt="image" src="https://github.com/user-attachments/assets/07478ae6-9157-4182-b72c-d36908eff4a6" />
+<img width="1915" height="919" alt="image" src="https://github.com/user-attachments/assets/b7a25072-5cd8-4c8b-ae64-31326c42dc1e" />
 
 ### Alternatively, you can switch the layout to a masonry layout, which enables users to visually see more at once.
 
-<img width="1902" height="850" alt="image" src="https://github.com/user-attachments/assets/dfc214d4-24e7-4667-8473-e963d5a4f8da" />
+<img width="1911" height="909" alt="image" src="https://github.com/user-attachments/assets/7b2d2982-e23a-4f27-b0ca-343ee630257b" />
 
 ### After each operatation, a toast notification displays in the bottom right hand corner of the screen telling the user an operation has been carried out.
 <img width="231" height="144" alt="image" src="https://github.com/user-attachments/assets/7cd272ed-235f-40fc-a39b-b5732bb4b222" />
