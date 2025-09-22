@@ -29,7 +29,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
     }, [text]);
 
 
-    const handleCopy = (text: string) => {
+    const handleCopy = (newText: string) => {
 
         Toastify({
             text: "Text copied to clipboard.",
@@ -52,7 +52,7 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
             onClick: function () { }
         }).showToast();
 
-        navigator.clipboard.writeText(text);
+        navigator.clipboard.writeText(newText);
     }
 
     return (

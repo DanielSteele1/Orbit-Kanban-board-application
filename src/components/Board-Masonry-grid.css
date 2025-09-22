@@ -2,38 +2,78 @@
   width: 100%;
   min-height: 70vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .board-masonry-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .board-masonry-grid_column {
   flex: 0 0 250px;
+  border-radius: 8px;
 }
 
 .board-masonry-grid_column>div {
   margin-bottom: 20px;
 }
 
+
 @media (max-width: 1600px) {
   .board-masonry-grid_column {
     flex: 0 0 200px;
+
   }
+
+  .board-masonry-container {
+    margin: 0 auto;
+    width: fit-content;
+  }
+
 }
 
-@media (max-width: 1000px) {
+@media(min-width: 1500px) and (max-width: 1600px) {
+
+  .board-masonry-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .board-masonry-grid_column {
-    flex: 0 0 180px;
+    flex: 0 0 150px;
+  }
+
+}
+
+
+@media (min-width: 750px) and (max-width: 1100px) {
+  .board-masonry-grid_column {
+    flex: 0 0 150px;
+  }
+
+  .board-masonry-container {
+    margin: 0 auto;
+    width: fit-content;
+
+  }
+    .board-masonry-grid {
+    gap: 35px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
+
   .board-masonry-grid_column {
     flex: 0 0 100%;
+  }
+
+  .board-masonry-container {
+    margin: 0 auto;
+    width: fit-content;
+
   }
 }
 
@@ -41,5 +81,11 @@
 
   .board-masonry-grid_column>div {
     margin-bottom: 10px;
+  }
+
+  .board-masonry-container {
+    margin: 0 auto;
+    width: fit-content;
+
   }
 }

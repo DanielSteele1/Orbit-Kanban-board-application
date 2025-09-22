@@ -5,14 +5,18 @@ import BoardTile from "./BoardTile";
 import type { BoardType } from '../types';
 import { FaPlus } from 'react-icons/fa';
 
-import { DndContext, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
+import { DndContext, DragOverlay, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
 import { horizontalListSortingStrategy, SortableContext, arrayMove } from "@dnd-kit/sortable";
 import Masonry from 'react-masonry-css'
 import { IoSearchSharp } from "react-icons/io5";
 import './Masonry-grid.css';
 
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
+
+import TextType from './React-bits/TextType';
 
 function Main() {
 
@@ -21,9 +25,10 @@ function Main() {
         useSensor(MouseSensor),
         useSensor(KeyboardSensor),
         useSensor(TouchSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
             activationConstraint: {
-                delay: 200,
-                tolerance: 5,
+                delay: 0,
+                tolerance: 1,
             },
         })
     )
@@ -49,7 +54,7 @@ function Main() {
         const newBoard: BoardType = {
 
             id: Date.now(),
-            title: 'Edit Board Title',
+            title: 'Edit Title',
             description: 'Edit Description',
             creationDate: Date.now(),
             items: [],
@@ -116,7 +121,6 @@ function Main() {
 
             setFilteredBoard(boards);
 
-
         } else {
             const filtered = boards.filter(board =>
                 board.title.toLowerCase().includes(searchTerm)
@@ -125,12 +129,34 @@ function Main() {
         }
     }
 
+    const [activeBoard, setActiveBoard] = useState<BoardType | null>(null);
+
     return (
-        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+        <DndContext sensors={sensors} collisionDetection={closestCorners}
+            onDragStart={({ active }) => {
+                const board = filteredBoard.find(b => b.id === active.id);
+                if (board) setActiveBoard(board);
+            }}
+
+            onDragEnd={(event) => {
+                handleDragEnd(event);
+                setActiveBoard(null);
+            }}
+        >
+
             <div className="main">
                 <div className="taskbar">
                     <span className="intro">
-                        <h1 className="App-desc-title" id="gradient"> Orbit helps you organize your projects and tasks with ease. </h1>
+                        <h1 className="App-desc-title" id="gradient">
+                            Orbit helps you&nbsp;
+                            <TextType
+                                text={["boost your productivity.", "track projects efficiently.", "organise your workflow."]}
+                                typingSpeed={50}
+                                pauseDuration={1500}
+                                showCursor={true}
+                                cursorCharacter="|"
+                            />
+                        </h1>
                     </span>
 
                     <span className="App-desc">
@@ -172,7 +198,7 @@ function Main() {
                                     breakpointCols={1}
                                     className="masonry-grid"
                                     columnClassName="masonry-grid_column">
-                                    
+
                                     {filteredBoard.map(board => (
                                         <BoardTile
                                             key={board.id}
@@ -180,7 +206,10 @@ function Main() {
                                             handleDeleteBoard={handleDeleteBoard}
                                         />
                                     ))}
+
                                 </Masonry>
+
+
                             ) : boards.length === 0 ? (
 
                                 <div className="no-results">
@@ -193,8 +222,17 @@ function Main() {
 
                             )}
 
-
                         </div>
+
+                        <DragOverlay>
+                            {activeBoard ? (
+                                <BoardTile
+                                    board={activeBoard}
+                                    handleDeleteBoard={handleDeleteBoard}
+                                />
+                            ) : null}
+                        </DragOverlay>
+
                     </SortableContext>
                 </div>
             </div>

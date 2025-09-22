@@ -19,9 +19,10 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
     const style = {
 
         transform: CSS.Transform.toString(transform),
-        transition,
+        transition: transition ?? undefined,
         willChange: "transform",
         cursor: isDragging ? 'grabbing' : undefined,
+        opacity: isDragging ? 0 : 1,
 
     };
 
@@ -37,7 +38,6 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
     return (
         <div className="board-tile" ref={setNodeRef} {...attributes} style={style} onClick={handleClick}// this should bind each board tile to it's corrosponding board, using it's ID
         >
-
             <div className="board-info">
                 <div className="board-top">
 
@@ -53,13 +53,13 @@ function BoardTile({ board, handleDeleteBoard }: BoardProps) {
                                     e.stopPropagation();
                                     handleDeleteBoard(board.id);
                                 }}
-                                style={{  display: 'flex', marginLeft: '0px', verticalAlign: 'middle', fontSize: '20px' }}
+                                style={{  display: 'flex', verticalAlign: 'middle', fontSize: '20px' }}
                             >
                                 <FiTrash />
                             </button>
                             </span>
                         <span className="icon" {...listeners}>
-                            <GrDrag id="drag-icon" style={{ display: 'flex', marginLeft: '10px', verticalAlign: 'middle', fontSize: '23px' }}
+                            <GrDrag id="drag-icon" style={{ display: 'flex', verticalAlign: 'middle', fontSize: '20px' }}
                             />
                         </span>
                     </div>

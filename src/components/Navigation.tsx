@@ -1,14 +1,14 @@
 
 import type { JSX, MouseEventHandler } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { useState } from 'react';
 import { useLocation } from "react-router-dom";
 
 import { FiMoon } from "react-icons/fi";
 import { FiSun } from "react-icons/fi";
-
-import { TbPlanet } from "react-icons/tb";
 import Hamburger from 'hamburger-react';
+import { TfiLayoutListThumbAlt } from "react-icons/tfi";
+import { FaMoon } from "react-icons/fa";
 
 interface NavigationProps {
 
@@ -34,8 +34,8 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
             <div className="navigation">
                 <div className="nav-logo">
                     <span id="logo">
-                        <TbPlanet style={{ fontSize: '25px', display: 'flex' }} />
-                        <span id="logo-text"> Orbit - Kanban Board app </span>
+                        <TfiLayoutListThumbAlt id="gradient" style={{ fontSize: '30px', display: 'flex' }} />
+                        <span id="logo-text"> Orbit Productivity Tracker </span>
                         <span id="logo-text-mobile"> Orbit </span>
                     </span>
                 </div>
@@ -43,7 +43,7 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
 
                     {isLookingAtBoard && (
                         <div className="back-button" onClick={handleBackButton}>
-                            <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
+                            <IoIosArrowBack style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
                             <span id="back-text"> Back </span>
                         </div>
                     )
@@ -52,7 +52,8 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                     {islightOn ? (
                         <button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
-                                <FiMoon style={{ margin: '10px', fontSize: '20px' }} />
+                                <FiSun style={{ margin: '10px', fontSize: '20px' }} />
+                                Light Mode
                             </span>
                         </button>
 
@@ -60,10 +61,26 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
 
                         <button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
-                                <FiSun style={{ margin: '10px', fontSize: '20px' }} />
-
+                                <FaMoon style={{ margin: '10px', fontSize: '18px' }} />
+                                Dark Mode
                             </span>
                         </button>
+                    )}
+
+                    {islightOn ? (
+                        <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
+                            <IoIosStarOutline style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
+                            <span className="star-text">
+                                Star on github
+                            </span>
+                        </a>
+                    ) : (
+                        <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
+                            <IoIosStar style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
+                            <span className="star-text">
+                                Star on github
+                            </span>
+                        </a>
                     )}
 
                 </div>
