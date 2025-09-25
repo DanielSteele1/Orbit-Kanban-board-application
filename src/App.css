@@ -30,7 +30,7 @@ body {
 }
 
 :root {
-  --background: #f5f5f5;
+  --background: #ffffff;
   --text-color: #1a1a1a;
   --primary-gradient-start: #ff4e50;
   --primary-gradient-end: #ff6ec4;
@@ -88,7 +88,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 90%;
+  width: 88%;
   margin: 0 auto;
 }
 
@@ -142,8 +142,7 @@ body {
 .star-button {
   background-color: var(--secondary-bg);
   color: var(--text-color);
-  border: 2px solid #292929;
-
+  border: 1px solid var(--border-color);
 }
 
 .back-button {
@@ -161,16 +160,13 @@ body {
 .theme-button:hover,
 .back-button:hover,
 .star-button:hover {
-  transition: 0.5s ease-in-out;
   cursor: pointer;
   border-color: var(--accent);
-
 }
 
 .theme-button:hover svg,
 .back-button:hover svg,
 .star-button:hover svg {
-  transition: 0.3s ease-in;
   color: var(--accent);
 }
 
@@ -683,8 +679,6 @@ body {
 .tooltip-icons:hover {
   cursor: pointer;
   color: #ff4e50;
-
-
 }
 
 .tooltip-text {
@@ -706,6 +700,7 @@ body {
 .icon-container:hover,
 #icon:hover {
   color: #fff;
+
 }
 
 #drag-icon {
@@ -716,7 +711,7 @@ body {
 
 #copy-icon,
 #icon-more {
-  color: var(--seconday-icon);
+  color: var(--secondary-icon);
 
 }
 
@@ -727,6 +722,10 @@ body {
 
 #drag-icon:active {
   cursor: grabbing;
+  color: var(--primary-icon);
+}
+
+#icon-more {
   color: var(--primary-icon);
 }
 
@@ -902,7 +901,7 @@ body {
   align-items: flex-start;
   justify-content: flex-end;
   padding: 5px;
-  color: #ff4e50;
+  color: var(--accent);
   font-size: 1.2rem;
 }
 

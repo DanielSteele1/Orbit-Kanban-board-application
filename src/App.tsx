@@ -11,19 +11,30 @@ import { useState, useEffect } from 'react';
 import Footer from './components/Footer'
 
 function App() {
-  const [islightOn, setlightOn] = useState(false);
+  const [islightOn, setlightOn] = useState(() => {
+
+
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme === 'light' : false;
+
+  });
 
   const handleThemeButton: React.MouseEventHandler<HTMLButtonElement> = () => {
     setlightOn(prev => !prev);
   }
 
   useEffect(() => {
+    const theme = islightOn ? "light" : "dark";
+
     document.documentElement.setAttribute(
-      "data-theme",
-      islightOn ? "light" : "dark"
+      "data-theme", theme,
     );
-    console.log("Theme applied:", islightOn ? "light" : "dark");
-  }, [ islightOn]);
+
+    localStorage.setItem("theme", theme);
+    console.log("Theme applied:", theme);
+
+
+  }, [islightOn, setlightOn]);
 
   return (
 

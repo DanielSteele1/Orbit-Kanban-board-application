@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 import { FiMoon } from "react-icons/fi";
 import { FiSun } from "react-icons/fi";
 import Hamburger from 'hamburger-react';
-import { TfiLayoutListThumbAlt } from "react-icons/tfi";
 import { FaMoon } from "react-icons/fa";
+import { LuOrbit } from "react-icons/lu";
 
 interface NavigationProps {
 
@@ -34,7 +34,7 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
             <div className="navigation">
                 <div className="nav-logo">
                     <span id="logo">
-                        <TfiLayoutListThumbAlt id="gradient" style={{ fontSize: '30px', display: 'flex' }} />
+                        <LuOrbit id="gradient" style={{ fontSize: '30px', display: 'flex' }} />
                         <span id="logo-text"> Orbit Productivity Tracker </span>
                         <span id="logo-text-mobile"> Orbit </span>
                     </span>

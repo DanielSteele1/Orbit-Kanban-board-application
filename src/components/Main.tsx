@@ -17,6 +17,7 @@ import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
 
 import TextType from './React-bits/TextType';
+import { LuOrbit } from 'react-icons/lu';
 
 function Main() {
 

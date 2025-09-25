@@ -85,7 +85,7 @@ const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNo
 
                     <div className="icons">
                         <span className="icon"
-                        id="delete-icon"
+                            id="delete-icon"
                             onClick={handleDeleteNote}
                         >
                             <FiTrash
@@ -112,8 +112,9 @@ const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNo
 
                     <div className="icons">
                         <div className="icon"
-                        onClick={() => handleCopy(text)}>
-                            <FiCopy style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle' }}/>
+                            onClick={() => handleCopy(text)}>
+                            <FiCopy id="copy-icon"
+                                style={{ display: 'flex', marginRight: '10px', verticalAlign: 'middle' }} />
                         </div>
                     </div>
                 </div>
