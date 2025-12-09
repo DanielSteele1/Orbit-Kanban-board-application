@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import BoardTile from "./BoardTile";
 
 import type { BoardType } from '../types';
+
 import { FaPlus } from 'react-icons/fa';
 
 import { DndContext, DragOverlay, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
@@ -17,6 +18,9 @@ import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
 
 import TextType from './React-bits/TextType';
+
+import { useContext } from 'react';
+import { BoardContext } from './context/BoardContext';
 
 function Main() {
 
@@ -33,21 +37,7 @@ function Main() {
         })
     )
 
-    // save boards to local storage 
-
-    const [boards, setBoards] = useState<BoardType[]>(() => {
-
-        const saved = localStorage.getItem('boards');
-        return saved ? JSON.parse(saved) : [];
-
-    });
-
-    useEffect(() => {
-
-        localStorage.setItem('boards', JSON.stringify(boards));
-
-    }, [boards])
-
+    const { boards, setBoards } = useContext(BoardContext);
 
     const handleAddBoard = () => {
 
@@ -145,95 +135,93 @@ function Main() {
         >
 
             <div className="main">
-                <div className="taskbar">
-                    <span className="intro">
-                        <h1 className="App-desc-title" id="gradient">
-                            Orbit helps you&nbsp;
-                            <TextType
-                                text={["boost your productivity.", "track projects efficiently.", "organise your workflow."]}
-                                typingSpeed={50}
-                                pauseDuration={1500}
-                                showCursor={true}
-                                cursorCharacter="|"
-                            />
-                        </h1>
-                    </span>
+                <div className="container">
+                    <div className="taskbar">
+                        <span className="intro">
+                            <h1 className="App-desc-title" id="gradient">
+                                Orbit helps you&nbsp;
+                                <TextType
+                                    text={["boost your productivity.", "track projects efficiently.", "organise your workflow."]}
+                                    typingSpeed={50}
+                                    pauseDuration={1500}
+                                    showCursor={true}
+                                    cursorCharacter="|"
+                                />
+                            </h1>
+                        </span>
 
-                    <span className="App-desc">
-                        <ul>
-                            <li className="list-item"> Create multiple boards to separate different areas of your work or life. </li>
-                            <li className="list-item"> Inside each board, you can add column to categorize tasks and track progress step-by-step. </li>
-                            <li className="list-item"> Re-order each column to maintain full control of your workflow. </li>
-                        </ul>
-                        <span className="App-desc-action" id="gradient"> Click on the 'Add a Board' button to get started. </span>
-                    </span>
-                </div>
-
-                <div className="grid-board">
-                    <div className="grid-controls">
-
-                        <button
-                            className="add-board"
-                            onClick={handleAddBoard}>
-                            <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add New Board
-                        </button>
-
-                        <div className="board-search">
-                            <IoSearchSharp style={{ fontSize: '20px' }} />
-                            <input type="search"
-                                className="board-search-input"
-                                placeholder="Search for a board..."
-                                onChange={SearchBoards}
-                            />
-                        </div>
-
+                        <span className="App-desc">
+                            <ul>
+                                <li className="list-item"> Create multiple boards to separate different areas of your work or life. </li>
+                                <li className="list-item"> Inside each board, you can add column to categorize tasks and track progress step-by-step. </li>
+                                <li className="list-item"> Re-order each column to maintain full control of your workflow. </li>
+                            </ul>
+                            <span className="App-desc-action" id="gradient"> Click on the 'Add a Board' button to get started. </span>
+                        </span>
                     </div>
 
-                    <SortableContext
-                        items={filteredBoard || []}
-                        strategy={horizontalListSortingStrategy}>
-                        <div className="grid">
-                            {filteredBoard?.length > 0 ? (
-                                <Masonry
-                                    breakpointCols={1}
-                                    className="masonry-grid"
-                                    columnClassName="masonry-grid_column">
+                    <div className="grid-board">
+                        <div className="grid-controls">
 
-                                    {filteredBoard.map(board => (
-                                        <BoardTile
-                                            key={board.id}
-                                            board={board}
-                                            handleDeleteBoard={handleDeleteBoard}
-                                        />
-                                    ))}
+                            <button
+                                className="add-board"
+                                onClick={handleAddBoard}>
+                                <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add New Board
+                            </button>
 
-                                </Masonry>
-
-
-                            ) : boards.length === 0 ? (
-
-                                <div className="no-results">
-                                    No boards available. Click "Add New Board" to create one.
-                                </div>
-                            ) : (
-                                <div className="no-results">
-                                    No boards match your current search.
-                                </div>
-
-                            )}
+                            <div className="board-search">
+                                <IoSearchSharp style={{ fontSize: '20px' }} />
+                                <input type="search"
+                                    className="board-search-input"
+                                    placeholder="Search for a board..."
+                                    onChange={SearchBoards}
+                                />
+                            </div>
 
                         </div>
 
-                        <DragOverlay>
-                            {activeBoard ? (
-                                <BoardTile
-                                    board={activeBoard}
-                                    handleDeleteBoard={handleDeleteBoard}
-                                />
-                            ) : null}
-                        </DragOverlay>
+                        <SortableContext
+                            items={filteredBoard || []}
+                            strategy={horizontalListSortingStrategy}>
+                            <div className="grid">
+                                {filteredBoard?.length > 0 ? (
+                                    <Masonry
+                                        breakpointCols={1}
+                                        className="masonry-grid"
+                                        columnClassName="masonry-grid_column">
 
-                    </SortableContext>
+                                        {filteredBoard.map(board => (
+                                            <BoardTile
+                                                key={board.id}
+                                                board={board}
+                                                handleDeleteBoard={handleDeleteBoard}
+                                            />
+                                        ))}
+
+                                    </Masonry>
+
+                                ) : boards.length === 0 ? (
+                                    <div className="no-results">
+                                        No boards available. Click "Add New Board" to create one.
+                                    </div>
+                                ) : (
+                                    <div className="no-results">
+                                        No boards match your current search.
+                                    </div>
+                                )}
+                            </div>
+
+                            <DragOverlay>
+                                {activeBoard ? (
+                                    <BoardTile
+                                        board={activeBoard}
+                                        handleDeleteBoard={handleDeleteBoard}
+                                    />
+                                ) : null}
+                            </DragOverlay>
+
+                        </SortableContext>
+                    </div>
                 </div>
             </div>
         </DndContext>

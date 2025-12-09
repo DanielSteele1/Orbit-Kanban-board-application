@@ -9,10 +9,14 @@ import BoardView from './components/BoardView';
 import { Analytics } from "@vercel/analytics/react"
 import { useState, useEffect } from 'react';
 import Footer from './components/Footer'
+import { BoardContext } from './components/context/BoardContext';
+
+import { MantineProvider } from '@mantine/core';
+
+import type { BoardType } from './types';
 
 function App() {
   const [islightOn, setlightOn] = useState(() => {
-
 
     const savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === 'light' : false;
@@ -36,20 +40,39 @@ function App() {
 
   }, [islightOn, setlightOn]);
 
+
+  // save boards to local storage 
+
+  const [boards, setBoards] = useState<BoardType[]>(() => {
+
+    const saved = localStorage.getItem('boards');
+    return saved ? JSON.parse(saved) : [];
+
+  });
+
+  useEffect(() => {
+
+    localStorage.setItem('boards', JSON.stringify(boards));
+
+  }, [boards])
+
   return (
+    <MantineProvider>
+      <BoardContext.Provider value={{ boards, setBoards }}>
 
-    <div className="app-wrapper" data-theme={islightOn ? 'light' : 'dark'}>
-      <Router>
-        <Navigation handleThemeButton={handleThemeButton} islightOn={islightOn} />
-
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="board/:boardId" element={<BoardView />} />
-        </Routes>
-        <Analytics />
-        <Footer />
-      </Router>
-    </div>
+        <div className="app-wrapper" data-theme={islightOn ? 'light' : 'dark'}>
+          <Router>
+            <Navigation handleThemeButton={handleThemeButton} islightOn={islightOn} />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="board/:boardId" element={<BoardView />} />
+            </Routes>
+            <Analytics />
+            <Footer />
+          </Router>
+        </div>
+      </BoardContext.Provider>
+    </MantineProvider>
   );
 }
 export default App;

@@ -10,6 +10,8 @@ import Hamburger from 'hamburger-react';
 import { FaMoon } from "react-icons/fa";
 import { LuOrbit } from "react-icons/lu";
 
+import { Button } from "@mantine/core";
+
 interface NavigationProps {
 
     handleThemeButton: React.MouseEventHandler<HTMLButtonElement>;
@@ -50,21 +52,20 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                     }
 
                     {islightOn ? (
-                        <button className="theme-button" onClick={handleThemeButton}>
+                        <Button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
                                 <FiSun style={{ margin: '10px', fontSize: '20px' }} />
                                 Light Mode
                             </span>
-                        </button>
-
+                        </Button>
                     ) : (
 
-                        <button className="theme-button" onClick={handleThemeButton}>
+                        <Button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
                                 <FaMoon style={{ margin: '10px', fontSize: '18px' }} />
                                 Dark Mode
                             </span>
-                        </button>
+                        </Button>
                     )}
 
                     {islightOn ? (
@@ -82,7 +83,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                             </span>
                         </a>
                     )}
-
                 </div>
 
                 <div className="nav-hamburger-container">

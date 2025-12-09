@@ -6,6 +6,7 @@ import AddColumn from './AddColumn.tsx';
 import Note from './Note.tsx'
 import AddNote from './AddNote.tsx'
 import SearchBoard from './SearchBoard.tsx'
+//import Sidebar from './Sidebar.tsx'
 
 import { useParams } from 'react-router-dom';
 
@@ -40,6 +41,7 @@ function BoardView() {
     );
 
     const { boardId } = useParams<{ boardId: string }>();
+    
     const [board, setBoard] = useState<BoardType | null>(null);
 
     useEffect(() => {
@@ -54,7 +56,6 @@ function BoardView() {
                     items: found.items ?? []
                 });
             } else {
-
                 setBoard(found ?? null);
             }
         }
@@ -381,133 +382,139 @@ function BoardView() {
     if (!board) return <div>Loading or Board not found...</div>;
 
     return (
-        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-            <div className="kanban-board">
-                <div className={switchBoard ? "board-container-kanban-mode" : "board-container-masonry-mode"}>
-                    <div className="controls-container">
-                        <div className="controls">
-                            <div className="board-text">
+            <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                <div className="Board-view">
+                    {/* <div className="sidebar-container">
+                        <Sidebar />
+                    </div> */}
 
-                                <input
-                                    className="board-title-input"
-                                    placeholder="Untitled Board"
-                                    maxLength={35} value={board.title}
-                                    onChange={(e) => handleBoardText('title', e.target.value)}
-                                />
+                    <div className="kanban-board">
+                        <div className={switchBoard ? "board-container-kanban-mode" : "board-container-masonry-mode"}>
+                            <div className="controls-container">
+                                <div className="controls">
+                                    <div className="board-text">
 
+                                        <input
+                                            className="board-title-input"
+                                            placeholder="Untitled Board"
+                                            maxLength={35} value={board.title}
+                                            onChange={(e) => handleBoardText('title', e.target.value)}
+                                        />
 
-                                <div className="board-id">Board ID:{board.id}</div>
+                                        <div className="board-id">Board ID:{board.id}</div>
 
-                                <textarea
-                                    className="board-description-input"
-                                    placeholder="Type to add a description"
-                                    maxLength={500} value={board.description}
-                                    onChange={(e) => handleBoardText('description', e.target.value)}
-                                />
+                                        <textarea
+                                            className="board-description-input"
+                                            placeholder="Type to add a description"
+                                            maxLength={500} value={board.description}
+                                            onChange={(e) => handleBoardText('description', e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="board-buttons">
+
+                                    <AddColumn handleAddColumn={handleAddColumn} />
+                                    <AddNote handleAddNote={handleAddNote} />
+                                    <SearchBoard handleSearchItems={handleSearchItems} />
+                                    <SwitchBoardLayout handleSwitchBoard={handleSwitchBoard} switchBoard={switchBoard} />
+
+                                    {switchBoard ? (
+
+                                        <div className="switchBoard-icon" style={{ padding: '10px' }}> <FaAngleRight style={{ display: 'flex', margin: '10px', fontSize: '20px' }} /> Kanban Layout </div>
+
+                                    ) : (
+
+                                        <div className="switchBoard-icon" style={{ padding: '10px' }}> <FaAngleDown style={{ display: 'flex', margin: '10px', fontSize: '20px' }} /> Masonry Layout </div>
+
+                                    )}
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div className="board-buttons">
-                            
-                            <AddColumn handleAddColumn={handleAddColumn} />
-                            <AddNote handleAddNote={handleAddNote} />
-                            <SearchBoard handleSearchItems={handleSearchItems} />
-                            <SwitchBoardLayout handleSwitchBoard={handleSwitchBoard} switchBoard={switchBoard} />
 
                             {switchBoard ? (
+                                <div className="column-scroll-container">
+                                    <div className="column-container">
 
-                                <div className="switchBoard-icon" style={{ padding: '10px' }}> <FaAngleRight style={{ display: 'flex', margin: '10px', fontSize: '20px' }} /> Kanban Layout </div>
+                                        <SortableContext items={filteredItems.map(i => i.data.id)} strategy={horizontalListSortingStrategy}>
 
+                                            {filteredItems.map(item => item.type === 'column' ? (
+                                                <Column
+                                                    key={item.data.id}
+                                                    columnId={item.data.id}
+                                                    title={item.data.title}
+                                                    tasks={item.data.tasks}
+                                                    handleDeleteColumn={() => handleDeleteColumn(item.data.id)}
+                                                    handleAddTasks={() => handleAddTask(item.data.id)}
+                                                    handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
+                                                    handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
+                                                    handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
+                                                    handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
+                                                />
+                                            ) : (
+                                                <Note
+                                                    key={item.data.id}
+                                                    id={item.data.id}
+                                                    title={item.data.title}
+                                                    text={item.data.text}
+                                                    creationDate={item.data.creationDate}
+                                                    handleDeleteNote={() => handleDeleteNote(item.data.id)}
+                                                    handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
+                                                    handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
+                                                />
+                                            ))}
+                                        </SortableContext>
+
+                                    </div>
+                                </div>
                             ) : (
 
-                                <div className="switchBoard-icon" style={{ padding: '10px' }}> <FaAngleDown style={{ display: 'flex', margin: '10px', fontSize: '20px' }} /> Masonry Layout </div>
+                                <div className="board-masonry-container">
+                                    <SortableContext items={filteredItems.map(i => i.data.id)} strategy={horizontalListSortingStrategy}>
+                                        <Masonry
+                                            breakpointCols={{ default: 6, 1700: 4, 1200: 2, 750: 1 }}
+                                            className="board-masonry-grid"
+                                            columnClassName="board-masonry-grid_column">
+                                            {filteredItems.map(item => item.type === 'column' ? (
 
+                                                <Column
+                                                    key={item.data.id}
+                                                    columnId={item.data.id}
+                                                    title={item.data.title}
+                                                    tasks={item.data.tasks}
+                                                    handleDeleteColumn={() => handleDeleteColumn(item.data.id)}
+                                                    handleAddTasks={() => handleAddTask(item.data.id)}
+                                                    handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
+                                                    handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
+                                                    handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
+                                                    handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
+                                                />
+                                            ) : (
+
+                                                <Note
+
+                                                    key={item.data.id}
+                                                    id={item.data.id}
+                                                    title={item.data.title}
+                                                    text={item.data.text}
+                                                    creationDate={item.data.creationDate}
+                                                    handleDeleteNote={() => handleDeleteNote(item.data.id)}
+                                                    handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
+                                                    handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
+
+                                                />
+                                            ))}
+
+
+                                        </Masonry>
+                                    </SortableContext>
+                                </div>
                             )}
                         </div>
-
-                    </div>
-
-                    {switchBoard ? (
-                        <div className="column-scroll-container">
-                            <div className="column-container">
-
-                                <SortableContext items={filteredItems.map(i => i.data.id)} strategy={horizontalListSortingStrategy}>
-
-                                    {filteredItems.map(item => item.type === 'column' ? (
-                                        <Column
-                                            key={item.data.id}
-                                            columnId={item.data.id}
-                                            title={item.data.title}
-                                            tasks={item.data.tasks}
-                                            handleDeleteColumn={() => handleDeleteColumn(item.data.id)}
-                                            handleAddTasks={() => handleAddTask(item.data.id)}
-                                            handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
-                                            handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
-                                            handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
-                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
-                                        />
-                                    ) : (
-                                        <Note
-                                            key={item.data.id}
-                                            id={item.data.id}
-                                            title={item.data.title}
-                                            text={item.data.text}
-                                            creationDate={item.data.creationDate}
-                                            handleDeleteNote={() => handleDeleteNote(item.data.id)}
-                                            handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
-                                            handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
-                                        />
-                                    ))}
-                                </SortableContext>
-
-                            </div>
-                        </div>
-                    ) : (
-
-                        <div className="board-masonry-container">
-                            <SortableContext items={filteredItems.map(i => i.data.id)} strategy={horizontalListSortingStrategy}>
-                                    <Masonry
-                                        breakpointCols={{ default: 6, 1700: 4, 1200: 2, 750: 1 }}
-                                        className="board-masonry-grid"
-                                        columnClassName="board-masonry-grid_column">
-                                        {filteredItems.map(item => item.type === 'column' ? (
-
-                                            <Column
-                                                key={item.data.id}
-                                                columnId={item.data.id}
-                                                title={item.data.title}
-                                                tasks={item.data.tasks}
-                                                handleDeleteColumn={() => handleDeleteColumn(item.data.id)}
-                                                handleAddTasks={() => handleAddTask(item.data.id)}
-                                                handleDeleteTasks={(taskId) => handleDeleteTask(item.data.id, taskId)}
-                                                handleToggleIsCompleted={(taskId) => handleToggleIsCompleted(item.data.id, taskId)}
-                                                handleTaskTextChange={(taskId, newText) => handleTaskTextChange(item.data.id, taskId, newText)}
-                                                handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
-                                            />
-                                        ) : (
-
-                                            <Note
-
-                                                key={item.data.id}
-                                                id={item.data.id}
-                                                title={item.data.title}
-                                                text={item.data.text}
-                                                creationDate={item.data.creationDate}
-                                                handleDeleteNote={() => handleDeleteNote(item.data.id)}
-                                                handleNoteTextEdit={(newNoteText) => handleNoteTextEdit(item.data.id, newNoteText)}
-                                                handleTitleChange={(newTitle) => handleTitleChange(item.data.id, newTitle)}
-
-                                            />
-                                        ))}
-
-
-                                    </Masonry>
-                            </SortableContext>
-                        </div>
-                    )}
+                    </div >
                 </div>
-            </div >
-        </DndContext >
+            </DndContext >
+
     );
 }
 

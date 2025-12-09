@@ -10,6 +10,7 @@ import TaskDropdown from "./TaskDropdown.tsx"
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
 
+
 interface TaskProps extends TaskType {
     onToggleIsCompleted: () => void;
     onTextChange: (newText: string) => void;
@@ -27,7 +28,6 @@ const Task: React.FC<TaskProps> = ({ handleDeleteTasks, text, onToggleIsComplete
             textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // Set to scroll height
         }
     }, [text]);
-
 
     const handleCopy = (newText: string) => {
 
