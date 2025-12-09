@@ -52,7 +52,7 @@ To keep the project lightweight and focused on frontend fundamentals, I used loc
 
 ## 📌 Status
 
-This project is in active development and will be deployed to the web once the core features are complete. 
+This project is live! Future updates and refinements will drop over time.
 
 ---
 
