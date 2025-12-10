@@ -1,6 +1,6 @@
 
 import type { JSX, MouseEventHandler } from "react";
-import { IoIosArrowBack, IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { IoIosArrowBack, IoIosStar } from "react-icons/io";
 import { useState } from 'react';
 import { useLocation } from "react-router-dom";
 
