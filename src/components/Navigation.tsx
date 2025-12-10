@@ -36,7 +36,7 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
             <div className="navigation">
                 <div className="nav-logo">
                     <span id="logo">
-                        <LuOrbit id="gradient" style={{ fontSize: '30px', display: 'flex' }} />
+                        <LuOrbit id="gradient" style={{ fontSize: '28px', display: 'flex' }} />
                         <span id="logo-text"> Orbit Productivity Tracker </span>
                         <span id="logo-text-mobile"> Orbit </span>
                     </span>
@@ -46,7 +46,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                     {isLookingAtBoard && (
                         <div className="back-button" onClick={handleBackButton}>
                             <IoIosArrowBack style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
-                            <span id="back-text"> Back </span>
                         </div>
                     )
                     }
@@ -55,7 +54,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                         <Button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
                                 <FiSun style={{ margin: '10px', fontSize: '20px' }} />
-                                Light Mode
                             </span>
                         </Button>
                     ) : (
@@ -63,14 +61,13 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                         <Button className="theme-button" onClick={handleThemeButton}>
                             <span className="theme-icon">
                                 <FaMoon style={{ margin: '10px', fontSize: '18px' }} />
-                                Dark Mode
                             </span>
                         </Button>
                     )}
 
                     {islightOn ? (
                         <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
-                            <IoIosStarOutline style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
+                            <IoIosStar style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
                             <span className="star-text">
                                 Star on github
                             </span>
@@ -101,7 +98,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                                 {isLookingAtBoard && (
                                     <div className="back-button" onClick={handleBackButton}>
                                         <IoIosArrowBack style={{ display: 'flex', fontSize: '20px' }} />
-                                        <span id="button-text"> Back </span>
                                     </div>
                                 )
                                 }
