@@ -361,12 +361,12 @@ body {
   height: fit-content;
   border-radius: 20px;
   padding: 10px;
+  margin: 10px;
 }
 
 .container {
   width: 80%;
   margin: 0 auto;
-  padding: 10px;
 }
 
 .board-text {
@@ -813,8 +813,9 @@ body {
   justify-content: center;
   min-height: fit-content;
   width: fit-content;
-  min-width: 350px;
-  min-height: 130px;
+  min-width: 100%;
+  margin: 0 auto;
+  min-height: 100px;
   height: fit-content;
   max-width: 100%;
   overflow: hidden;
@@ -1029,9 +1030,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: fit-content;
+  min-width: 100%;
   text-align: center;
-  padding: 20px;
   font-size: 1.2rem;
   color: var(--text-color);
   overflow: hidden;
@@ -1051,6 +1051,16 @@ body {
 
 
 @media (min-width: 300px) and (max-width: 750px) {
+
+  .container {
+    width: 80% !important;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
+  .board-masonry-container{
+    width: 100%;
+  }
 
   .add-column-container {
     min-width: fit-content;
@@ -1187,7 +1197,7 @@ body {
   }
 
   .board-tile {
-    width: 90%;
+    width: 100%;
     min-width: unset;
     height: fit-content;
     margin: 10px;
