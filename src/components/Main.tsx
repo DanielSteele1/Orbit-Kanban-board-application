@@ -22,6 +22,8 @@ import TextType from './React-bits/TextType';
 import { useContext } from 'react';
 import { BoardContext } from './context/BoardContext';
 
+import MainCards from './mainCards.tsx';
+
 function Main() {
 
     const sensors = useSensors(
@@ -151,12 +153,9 @@ function Main() {
                         </span>
 
                         <span className="App-desc">
-                            <ul>
-                                <li className="list-item"> Create multiple boards to separate different areas of your work or life. </li>
-                                <li className="list-item"> Inside each board, you can add column to categorize tasks and track progress step-by-step. </li>
-                                <li className="list-item"> Re-order each column to maintain full control of your workflow. </li>
-                            </ul>
-                            <span className="App-desc-action" id="gradient"> Click on the 'Add a Board' button to get started. </span>
+
+                            <MainCards />
+
                         </span>
                     </div>
 
