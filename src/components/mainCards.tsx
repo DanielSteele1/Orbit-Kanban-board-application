@@ -1,9 +1,6 @@
 
-import { IoCreateOutline } from 'react-icons/io5';
 import './card.css';
 import { CiStickyNote } from 'react-icons/ci';
-import { GrDrag } from 'react-icons/gr';
-import { CgDrop } from 'react-icons/cg';
 import { TbLayoutKanban } from 'react-icons/tb';
 import { BiPlus } from 'react-icons/bi';
 
