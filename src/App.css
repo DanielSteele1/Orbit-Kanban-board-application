@@ -1,19 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 html,
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
-  scrollbar-width: thin;
 }
 
 .app-wrapper {
-  overflow: hidden;
-  padding-top: 0px;
   background-color: var(--background);
+  min-height: 100%;
+  width: 100%;
 }
 
 [data-theme="dark"] {
@@ -26,7 +23,6 @@ body {
   --navigation-color: rgb(15, 15, 15, 0.9);
   --secondary-icon: whitesmoke;
   --primary-icon: #ff4e50;
-
 }
 
 :root {
@@ -65,10 +61,11 @@ body {
   display: flex;
   z-index: 1;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: 80px;
+  margin: 0 auto;
   position: fixed;
   font-family: 'Open sans', sans-serif;
   font-weight: 500;
@@ -81,6 +78,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: fit-content;
   width: 80%;
   margin: 0 auto;
 }
@@ -102,13 +100,12 @@ body {
 .back-button {
   display: flex;
   flex-direction: row;
-  background-color: transparent;
   border: none;
   width: fit-content;
   justify-content: center;
   align-items: center;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-left: 10px;
   padding: 10px;
 }
@@ -121,17 +118,23 @@ body {
   font-size: 1.0rem;
   font-family: 'Figtree', sans-serif;
   font-weight: 400;
-  border-radius: 8px;
+}
+
+.theme-button:hover,
+.star-button:hover {
+  background-color: var(--primary-icon);
+  color: white;
 }
 
 .star-button {
   display: flex;
-  background-color: transparent;
+  background-color: var(--accent);
+  width: fit-content;
+  margin-left: 20px;
 }
 
 .back-button,
-.theme-button,
-.star-button {
+.theme-button {
   background-color: var(--secondary-bg);
   color: var(--text-color);
 }
@@ -159,13 +162,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
   border-radius: 8px;
   height: fit-content;
 }
 
 .nav-logo span svg {
-  color: var(--accent);
+  font-size: 20px;
+  color: #f14a4d;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #f14a4d;
 }
 
 .nav-logo span {
@@ -178,8 +183,9 @@ body {
   padding: 5px 20px;
   text-align: center;
   font-size: 1.2em;
-  font-weight: 600;
-  font-family: 'figtree', sans-serif;
+  font-weight: 400;
+    font-family: 'Kalam', sans-serif;
+
 }
 
 #button-text {
@@ -193,23 +199,20 @@ body {
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  justify-content:space-around;
   width: 100%;
-  height: fit-content;
+  height: 100px;
   margin: 0 auto;
   font-size: 16px;
-  background-color: var(--secondary-bg);
 }
 
 .footer-item {
   display: inline-flex;
-  vertical-align: middle;
+  width: 200px;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   color: var(--text-color);
-
 }
 
 .social svg {
@@ -230,11 +233,10 @@ body {
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
+
+  flex: 1;
+  min-height: fit-content;
   height: 100%;
-  width: 100%;
-  margin-top: 100px;
 }
 
 .Board-view {
@@ -242,8 +244,6 @@ body {
   flex-direction: row;
   width: 100%;
 }
-
-
 
 .kanban-board {
   display: flex;
@@ -258,7 +258,7 @@ body {
   overflow-y: visible;
 }
 
-.main,
+
 .kanban-board {
   box-sizing: border-box;
   height: fit-content;
@@ -367,6 +367,7 @@ body {
 .container {
   width: 80%;
   margin: 0 auto;
+  padding-top: 100px;
 }
 
 .board-text {
@@ -513,8 +514,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-size: 3.0rem;
-  font-family: 'Open Sans', sans-serif;
+  font-size: 3.5rem;
+  font-family: 'Kalam', sans-serif;
   margin: 0 auto;
   line-height: normal;
   color: var(--text-color);
@@ -533,9 +534,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-desc-action {
@@ -543,14 +542,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.App-title {
-  font-size: 2.5rem;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  margin: 10px;
+  font-weight: 400;
 }
 
 .Note {
@@ -948,6 +940,7 @@ body {
   font-size: 1.0rem;
   font-weight: 500;
   width: 100%;
+
 }
 
 
@@ -1055,10 +1048,10 @@ body {
   .container {
     width: 80% !important;
     margin: 0 auto;
-    padding: 0px;
+    padding-top: 150px;
   }
 
-  .board-masonry-container{
+  .board-masonry-container {
     width: 100%;
   }
 

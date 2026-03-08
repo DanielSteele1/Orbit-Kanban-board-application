@@ -68,8 +68,8 @@ function App() {
               <Route path="board/:boardId" element={<BoardView />} />
             </Routes>
             <Analytics />
-            <Footer />
           </Router>
+          <Footer />
         </div>
       </BoardContext.Provider>
     </MantineProvider>

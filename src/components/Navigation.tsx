@@ -8,7 +8,7 @@ import { FiMoon } from "react-icons/fi";
 import { FiSun } from "react-icons/fi";
 import Hamburger from 'hamburger-react';
 import { FaMoon } from "react-icons/fa";
-import { LuOrbit } from "react-icons/lu";
+import { HiOutlinePencil } from "react-icons/hi";
 
 import { Button } from "@mantine/core";
 
@@ -36,9 +36,9 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
             <div className="navigation">
                 <div className="nav-logo">
                     <span id="logo">
-                        <LuOrbit id="gradient" style={{ fontSize: '28px', display: 'flex' }} />
+                        <HiOutlinePencil />
                         <span id="logo-text"> Orbit Productivity Tracker </span>
-                        <span id="logo-text-mobile"> Orbit </span>
+                        <span id="logo-text-mobile"> Orbit Notes App </span>
                     </span>
                 </div>
                 <div className="nav-buttons">

@@ -41,7 +41,6 @@ function BoardView() {
     );
 
     const { boardId } = useParams<{ boardId: string }>();
-    
     const [board, setBoard] = useState<BoardType | null>(null);
 
     useEffect(() => {
