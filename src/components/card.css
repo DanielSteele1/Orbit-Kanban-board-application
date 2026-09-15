@@ -1,12 +1,11 @@
 .card-container {
 
-
     display: grid;
     height: 300px;
     margin: 10px;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
@@ -15,24 +14,24 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    height: 130px;
-    align-items: flex-start;
+    height: fit-content;
+    align-items: center;
     justify-content: center;
     background-color: var(--secondary-bg);
     border-radius: 15px;
 }
 
 #card-icon svg {
-    font-size: 40px;
-    margin-right: 20px;
+    font-size: 30px;
+    margin-right: 10px;
 }
 
 #card-icon {
-    display: inline-flex;
+    display: flex;
     color: var(--accent);
-    padding-bottom: 10px;
     justify-content: center;
     align-items: center;
+    margin: auto;
 }
 
 #card-icon span {
@@ -41,7 +40,11 @@
 
 #card-description{
     display: flex;
-    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    font-size: 1.0rem;
+    text-align: center;
 }
 
 
@@ -50,8 +53,7 @@
 
     .card-container{
         grid-template-columns: repeat(3, 1fr);
-
-        height: 250px;
+        height: fit-content;
     }
 
     .card{
@@ -70,6 +72,11 @@
     .card-container{
         grid-template-columns: repeat(1, 1fr);
         height: fit-content;
+    }
+
+    #card-description{
+        height: fit-content;
+        padding: 10px;
     }
 
         #card-description{

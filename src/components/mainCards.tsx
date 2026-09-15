@@ -10,8 +10,6 @@ function MainCards() {
     return (
 
         <div className="card-container">
-
-
             <div className="card">
 
                 <div id="card-icon">

@@ -1,6 +1,6 @@
 
 import type { JSX, MouseEventHandler } from "react";
-import { IoIosArrowBack, IoIosStar } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { useState } from 'react';
 import { useLocation } from "react-router-dom";
 
@@ -65,21 +65,6 @@ function Navigation({ handleThemeButton, islightOn }: NavigationProps): JSX.Elem
                         </Button>
                     )}
 
-                    {islightOn ? (
-                        <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
-                            <IoIosStar style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
-                            <span className="star-text">
-                                Star on github
-                            </span>
-                        </a>
-                    ) : (
-                        <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
-                            <IoIosStar style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
-                            <span className="star-text">
-                                Star on github
-                            </span>
-                        </a>
-                    )}
                 </div>
 
                 <div className="nav-hamburger-container">

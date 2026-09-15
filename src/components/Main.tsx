@@ -1,9 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import BoardTile from "./BoardTile";
-
 import type { BoardType } from '../types';
-
 import { FaPlus } from 'react-icons/fa';
 
 import { DndContext, DragOverlay, closestCorners, type DragEndEvent, useSensor, useSensors, MouseSensor, TouchSensor, KeyboardSensor } from "@dnd-kit/core";
@@ -13,7 +11,6 @@ import { IoSearchSharp } from "react-icons/io5";
 import './Masonry-grid.css';
 
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-
 import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css"
 
@@ -21,8 +18,9 @@ import TextType from './React-bits/TextType';
 
 import { useContext } from 'react';
 import { BoardContext } from './context/BoardContext';
-
 import MainCards from './mainCards.tsx';
+import { Button } from '@mantine/core';
+import { IoIosStar } from 'react-icons/io';
 
 function Main() {
 
@@ -67,7 +65,7 @@ function Main() {
             position: "right",
             stopOnFocus: true,
             style: {
-                background: '#292929',
+                background: '#131212',
                 color: '#ff4e50',
                 boxShadow: 'none',
                 display: 'flex',
@@ -141,15 +139,28 @@ function Main() {
                     <div className="taskbar">
                         <span className="intro">
                             <h1 className="App-desc-title" id="gradient">
-                                Orbit helps you&nbsp;
+                                Orbit helps you
                                 <TextType
                                     text={["boost your productivity.", "track projects efficiently.", "organise your workflow."]}
-                                    typingSpeed={50}
-                                    pauseDuration={1500}
+                                    typingSpeed={100}
+                                    pauseDuration={3000}
                                     showCursor={true}
                                     cursorCharacter="|"
                                 />
                             </h1>
+
+                            <div className="github-cta"> 
+
+                            <a className="star-button" href="https://github.com/DanielSteele1/Orbit-Kanban-board-application">
+                            <IoIosStar style={{ display: 'flex', margin: '10px', fontSize: '20px' }} />
+                          
+                            <span className="star-text">
+                                Star me on github ?
+                            </span>
+
+                            </a>
+
+                            </div>
                         </span>
 
                         <span className="App-desc">
@@ -165,7 +176,7 @@ function Main() {
                             <button
                                 className="add-board"
                                 onClick={handleAddBoard}>
-                                <FaPlus style={{ fontSize: '18px', marginRight: '5px' }} /> Add New Board
+                                <FaPlus style={{ fontSize: '16px', marginRight: '5px' }} /> Add New Board
                             </button>
 
                             <div className="board-search">
@@ -182,8 +193,10 @@ function Main() {
                         <SortableContext
                             items={filteredBoard || []}
                             strategy={horizontalListSortingStrategy}>
-                            <div className="grid">
+                                <div className="boards-main-container">
                                 {filteredBoard?.length > 0 ? (
+
+                                <div className="grid">
                                     <Masonry
                                         breakpointCols={1}
                                         className="masonry-grid"
@@ -198,6 +211,7 @@ function Main() {
                                         ))}
 
                                     </Masonry>
+                                   </div>
 
                                 ) : boards.length === 0 ? (
                                     <div className="no-results">
@@ -208,7 +222,7 @@ function Main() {
                                         No boards match your current search.
                                     </div>
                                 )}
-                            </div>
+                                </div>
 
                             <DragOverlay>
                                 {activeBoard ? (
@@ -220,8 +234,8 @@ function Main() {
                             </DragOverlay>
 
                         </SortableContext>
-                    </div>
                 </div>
+            </div>
             </div>
         </DndContext>
     );

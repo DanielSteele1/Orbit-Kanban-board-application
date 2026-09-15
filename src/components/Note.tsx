@@ -60,8 +60,6 @@ const Note: React.FC<NoteProps> = ({ text, title, id, handleDeleteNote, handleNo
                 display: 'flex',
                 width: 'fit-content',
                 padding: '10px'
-
-
             },
             onClick: function () { }
         }).showToast();
