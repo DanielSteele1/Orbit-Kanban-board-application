@@ -19,7 +19,6 @@ import TextType from './React-bits/TextType';
 import { useContext } from 'react';
 import { BoardContext } from './context/BoardContext';
 import MainCards from './mainCards.tsx';
-import { Button } from '@mantine/core';
 import { IoIosStar } from 'react-icons/io';
 
 function Main() {
